@@ -1,9 +1,10 @@
 @import './base/common';
-@import './base/body';
 @import './base/reset';
 @import './base/fonts';
 
 @import './utils/variables';
+
+@import './base/body';
 
 @import './layout/header-main';
 @import './layout/header-library';
