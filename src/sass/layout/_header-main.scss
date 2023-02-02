@@ -73,35 +73,7 @@
     }
 }
 
-.button-search {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding: 10px;
 
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: transparent;
-    border: none;
-    outline: none;
-    border-radius: 8px;
-
-    transition: transform $animation;
-
-    &:hover,
-    &:focus {
-        transform: scale(1.15);
-        cursor: pointer;
-    }
-}
-
-.btn-submit__icon {
-    stroke: $txt-white-color;
-    fill: transparent;
-}
 
 
 .header__input {
