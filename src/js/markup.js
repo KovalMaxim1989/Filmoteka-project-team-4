@@ -39,44 +39,46 @@ export function trimGenresList(genres) {
 
 // Function for render about movies in modal window
 export function createMarkupSelectedMovie(moviesData) {
+  const {poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview} = moviesData;
+
   const markup = ` <img class='modal-poster'
   src="${
-    moviesData.poster_path
-      ? `https://image.tmdb.org/t/p/w500${moviesData.poster_path}`
+    poster_path
+      ? `https://image.tmdb.org/t/p/w500${poster_path}`
       : defaultImg
   }"
-   alt=${moviesData.title}
+   alt=${title}
   
    width='240'/>
  <div>
    <div>
-     <h2 class='modal-movie-title'>${moviesData.title}</h2>
+     <h2 class='modal-movie-title'>${title}</h2>
 
      <div class='wrap-flex'>
           <p class='movie-label'>Vote / Votes</p>
           <p class='movie-disc disc-wrap'>
            <span class='accent-detail__orange'>
-            ${moviesData.vote_average.toFixed(1)}</span>
-            <span class='disc-space'> / </span> <span class="accent-detail__gray">${moviesData.vote_count}</span>
+            ${vote_average.toFixed(1)}</span>
+            <span class='disc-space'> / </span> <span class="accent-detail__gray">${vote_count}</span>
          </p>
      </div>
      <div class='wrap-flex'>
          <p class='movie-label'>Popularity</p>
-          <p class='movie-disc'>${moviesData.popularity.toFixed(1)}</p>
+          <p class='movie-disc'>${popularity.toFixed(1)}</p>
      </div>
      <div class='wrap-flex'>
          <p class='movie-label'>Original Title</p>
-         <p class='movie-disc movie-disc-title'>${moviesData.original_title}</p>
+         <p class='movie-disc movie-disc-title'>${original_title}</p>
      </div>
      <div class='wrap-flex'>
         <p class='movie-label'>Genre</p>
-        <p class='movie-disc movie-disc-genres'>${moviesData.genres
+        <p class='movie-disc movie-disc-genres'>${genres
           .map(genre => genre.name)
           .join(', ')}</p>
      </div>
 
      <h3 class='disc-title'>About</h3>
-     <p class='disc-text'>${moviesData.overview}</p>
+     <p class='disc-text'>${overview}</p>
    </div>
    <div class='button-container'>
      <button type='button' class='modal-btn btn-watched'>add to watched</button>
