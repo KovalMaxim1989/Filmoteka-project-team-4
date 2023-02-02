@@ -1,22 +1,35 @@
 import axios from 'axios';
 import { createMarkupSelectedMovie } from './markup';
+import {fetchTrailer} from './modal-trailer'
 
 // References to DOM
 const backdrop = document.querySelector('.backdrop');
 const modalFilm = document.querySelector('[data-modal]');
 const openModalCard = document.querySelector('[data-modal-open]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
+const trailerBtn = document.querySelector('.trailer-btn')
 
 // openModalCard.addEventListener('click', openModal);
 closeModalBtn.addEventListener('click', toggleModal);
 backdrop.addEventListener('click', onBackdropClick);
 
-// export function openModal(evt) {
-//   if (evt.currentTarget === evt.target) {
-//     return;
-//   }
-// //   document.querySelector('.wrap-disc').innerHTML = '';
-// }
+export function openModal(evt) {
+  if (evt.currentTarget === evt.target) {
+    return;
+  }
+  document.querySelector('.wrap-disc').innerHTML = '';
+
+  const currentMovie = evt.target.closest('.js-item');
+  const currentId = Number(currentMovie.dataset.id);
+  
+  fetchModal(currentId).then(data => {
+    createMarkupSelectedMovie(data);
+  })
+
+  trailerBtn.addEventListener('click', () => fetchTrailer(currentId) , {once: true})
+toggleModal();
+}
+
 
 function toggleModal() {
   window.addEventListener('keydown', onEscPress);
@@ -54,11 +67,12 @@ async function fetchModal(movie_id) {
 
 
 // Тестовый запрос для проверки отрисовки модального окна
-fetchModal(566574)
+fetchModal(550)
   .then(data => {
-    console.log(data);
+    // console.log(data);
     createMarkupSelectedMovie(data);
+    trailerBtn.addEventListener('click', () => fetchTrailer(550) , {once: true})
   })
   .catch();
 
-console.log('hello');
+// console.log('hello');
