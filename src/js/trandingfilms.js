@@ -3,21 +3,17 @@
 // збереження жанрів у localStorage
 import { MovieAPI } from './MoviesApiServise';
 import { createMarkupFilmsList } from './markup';
+import { DataService } from './data-service';
+import { refs } from './refs';
 
+const dataService = new DataService(); // create new instance Class Data Service
 const movieAPI = new MovieAPI();
 
 export function saveGenres() {
   movieAPI
     .getGenres()
     .then(data => {
-      const genresData = data;
-      const genres = {};
-      for (let i = 0; i < genresData.length; i += 1) {
-        const genre = Object.values(genresData[i]);
-        genres[genre[0]] = genre[1];
-      }
-
-      localStorage.setItem('GENRES', JSON.stringify(genres));
+      localStorage.setItem('GENRES', JSON.stringify(data));
     })
     .catch(error => console.log(error));
 }
@@ -25,5 +21,26 @@ export function saveGenres() {
 //підвантаження популярних фільмів
 
 export function renderTrendMovie() {
-  movieAPI.getTrendMovie().then();
+  movieAPI.getTrendMovie().then(data => {
+    const allGenres = JSON.parse(localStorage.getItem('GENRES'));
+    const necessaryData = dataService.getDataTrendMovies(data, allGenres);
+    const markupTrendMovies = createMarkupFilmsList(necessaryData);
+    refs.moviesList.innerHTML = markupTrendMovies;
+  });
+}
+
+// отримання актуальних жанрів для фільму
+
+export function getTrendMovieGenres(genreIds) {
+  const allGenres = JSON.parse(localStorage.getItem('GENRES'));
+  const result = [];
+  genreIds.find(genreId => {
+    allGenres.forEach(genre => {
+      if (genre.id === genreId) {
+        result.push(genre.name);
+      }
+    });
+  });
+
+  return result;
 }

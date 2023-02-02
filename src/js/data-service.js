@@ -1,3 +1,5 @@
+import { getTrendMovieGenres } from './trandingfilms';
+
 const baseImgUrl = `https://image.tmdb.org/t/p/`;
 const imgPosterSize = `w500`;
 
@@ -9,6 +11,7 @@ export class DataService {
       ({ poster_path, genre_ids, vote_average, title, id, release_date }) => {
         const imgUrl = baseImgUrl + imgPosterSize + poster_path;
         // const genres = genresService.getTrendMovieGenres(genre_ids, allGenres);  // TODO here you need handle genres
+        const genres = getTrendMovieGenres(genre_ids);
 
         return {
           imgUrl: imgUrl,
