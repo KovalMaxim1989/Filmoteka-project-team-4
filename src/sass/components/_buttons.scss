@@ -5,22 +5,75 @@
     align-items: center;
 }
 
-.button-library {
-    width: 130px;
+.button-wrapper--library {
+    @media screen and (min-width: 768px) {
+        gap: 32px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        gap: 16px;
+    }
+}
+
+.main-btn {
+    display: inline-flex;
+    width: 110px;
     height: 44px;
-    border: 1px solid $txt-white-color;
-    color: $txt-white-color;
-    background-color: #0000;
-    border-radius: 5px;
+
     font-weight: 500;
     font-size: 12px;
-    line-height: 1.3;
-    justify-content: center;
+    line-height: calc(16 / 12);
+    border-radius: 5px;
+    border: 1px solid $txt-black-color;
+    outline: none;
+    background-color: $bg-white-color;
+
     align-items: center;
-    text-align: center;
+    justify-content: center;
     text-transform: uppercase;
-    display: inline-flex;
-    transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-        background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    color: $txt-black-color;
+    transition: color $animation, background-color $animation,
+        box-shadow $animation;
+
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        color: $txt-white-color;
+        background-color: $bg-active-color;
+        border: transparent;
+        box-shadow: $btn-shadow;
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 125px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        width: 136px;
+    }
 }
+
+.main-btn--library {
+    width: 130px;
+    color: $txt-white-color;
+    background-color: transparent;
+    border: 1px solid $txt-white-color;
+
+    @media screen and (min-width: 768px) {
+        width: 152px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        width: 148px;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: $bg-active-color;
+    }
+}
+
+// .main-btn--library.is-active {
+//     background-color: $bg-active-color;
+// }
