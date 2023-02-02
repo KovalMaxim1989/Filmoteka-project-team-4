@@ -37,62 +37,71 @@ export function trimGenresList(genres) {
   }
 }
 
-export function createMarkupSelectedMovie(movieData) {
-  const {
-    imgUrl,
-    name,
-    vote,
-    votes,
-    popularity,
-    originalTitle,
-    genres,
-    about,
-  } = movieData;
-  const genresToShow = trimGenresList(genres);
+// Function for render about movies in modal window
+export function createMarkupSelectedMovie(moviesData) {
+  const markup = ` <img class='modal-poster'
+  src="${
+    moviesData.poster_path
+      ? `https://image.tmdb.org/t/p/w500${moviesData.poster_path}`
+      : defaultImg
+  }"
+   alt=${moviesData.title}
+  
+   width='240'/>
+ <div>
+   <div>
+     <h2 class='modal-movie-title'>${moviesData.title}</h2>
 
-  return `<div class="img-wrapper">
-      <img src="${imgUrl}" alt="${name}" class="modal-main__img" />
-    </div>
-    <div class="info-wrapper">
-      <div class="modal-main__info movie-info">
-        <h2 class="movie-info__title">${name}</h2>
-        <ul class="movie-info__list">
-          <li class="movie-info__item">
-            <span class="movie-info__param">Vote / Votes</span>
-            <span class="movie-info__value"
-              ><span class="movie-info__vote">${vote}</span> /
-              <span class="movie-info__votes">${votes}</span></span
-            >
-          </li>
-          <li class="movie-info__item">
-            <span class="movie-info__param">Popularity</span>
-            <span class="movie-info__value">${popularity}</span>
-          </li>
-          <li class="movie-info__item">
-            <span class="movie-info__param">Original Title</span>
-            <span class="movie-info__value movie-info__value--uppercase"
-              >${originalTitle}</span
-            >
-          </li>
-          <li class="movie-info__item">
-            <span class="movie-info__param">Genre</span>
-            <span class="movie-info__value">${genresToShow}</span>
-          </li>
-        </ul>
-        <h3 class="modal-info__subtitle">ABOUT</h3>
-        <p class="modal-info__desc">${about}</p>
+     <div class='wrap-flex'>
+          <p class='movie-label'>Vote / Votes</p>
+          <p class='movie-disc disc-wrap'>
+           <span class='accent-detail__orange'>
+            ${moviesData.vote_average.toFixed(1)}</span>
+            <span class='disc-space'> / </span> <span class="accent-detail__gray">${moviesData.vote_count}</span>
+         </p>
+     </div>
+     <div class='wrap-flex'>
+         <p class='movie-label'>Popularity</p>
+          <p class='movie-disc'>${moviesData.popularity.toFixed(1)}</p>
+     </div>
+     <div class='wrap-flex'>
+         <p class='movie-label'>Original Title</p>
+         <p class='movie-disc movie-disc-title'>${moviesData.original_title}</p>
+     </div>
+     <div class='wrap-flex'>
+        <p class='movie-label'>Genre</p>
+        <p class='movie-disc movie-disc-genres'>${moviesData.genres
+          .map(genre => genre.name)
+          .join(', ')}</p>
+     </div>
 
-        <div class="btn-wrapper">
-      <button class="main-btn main-btn--modal" name="add-to-watched" type="button">
-        ADD to watched
-      </button>
-      <button class="main-btn main-btn--modal" name="add-to-queue" type="button">
-        ADD to queue
-      </button>
-    </div>
-      </div>
-      
-    </div>`;
+     <h3 class='disc-title'>About</h3>
+     <p class='disc-text'>${moviesData.overview}</p>
+   </div>
+   <div class='button-container'>
+     <button type='button' class='modal-btn btn-watched'>add to watched</button>
+     <button type='button' class='modal-btn btn-queue'>
+       add to queue
+     </button>
+   </div>
+   </div>
+ </div>`;
+ document.querySelector('.wrap-disc').innerHTML = markup;
+
+ document
+   .querySelector('.backdrop')
+   .setAttribute(
+     'style',
+     `background-image: url(https://image.tmdb.org/t/p/original/${moviesData.backdrop_path}); background-position: center; background-size: cover;`
+   );
+ if (moviesData.backdrop_path === null) {
+   document
+     .querySelector('.backdrop')
+     .setAttribute(
+       'style',
+       `background-image: url(${defaultImg}); background-position: center; background-size: cover;`
+     );
+ }
 }
 
 export function createMarkupLibraryList(moviesData) {
