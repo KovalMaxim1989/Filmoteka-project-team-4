@@ -2,6 +2,7 @@
 
 // збереження жанрів у localStorage
 import { MovieAPI } from './MoviesApiServise';
+import { createMarkupFilmsList } from './markup';
 
 const movieAPI = new MovieAPI();
 
@@ -24,13 +25,5 @@ export function saveGenres() {
 //підвантаження популярних фільмів
 
 export function renderTrendMovie() {
-  movieAPI.getTrendMovie().then(data => console.log(data));
+  movieAPI.getTrendMovie().then();
 }
-
-// import { saveGenres } from './js/trandingfilms';
-
-// saveGenres();
-
-// import { renderTrendMovie } from './js/trandingfilms';
-
-// renderTrendMovie();
