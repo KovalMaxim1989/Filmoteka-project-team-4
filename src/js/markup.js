@@ -1,3 +1,5 @@
+import defaultImg from '../images/keep-calm-poster-not-found.webp';
+
 export function createMarkupFilmsList(moviesData) {
   return moviesData
     .map(movie => {

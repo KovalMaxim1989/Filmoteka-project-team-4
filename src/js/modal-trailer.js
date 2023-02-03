@@ -4,6 +4,7 @@ import Notiflix from 'notiflix';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
+
 const BASE_URL = 'https://api.themoviedb.org/3/movie/';
 const API_KEY = 'd03712107dcdd723f1173c5ee2c0d8c1';
 
