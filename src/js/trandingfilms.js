@@ -19,14 +19,15 @@ export function saveGenres() {
     .catch(error => console.log(error));
 }
 
-//підвантаження популярних фільмів
+// перевірка на наявність жанрів у localStorage
 
-export function renderTrendMovie() {
-  movieAPI.getTrendMovie().then(data => {
-    const necessaryData = dataService.getDataTrendMovies(data);
-    const markupTrendMovies = createMarkupFilmsList(necessaryData);
-    refs.moviesList.innerHTML = markupTrendMovies;
-  });
+function checkGanres() {
+  try {
+    const savedData = localStorage.getItem('GENRES');
+    return savedData === null ? [] : JSON.parse(savedData);
+  } catch (error) {
+    console.error('Get state error: ', error.message);
+  }
 }
 
 // отримання актуальних жанрів для фільму
@@ -44,13 +45,12 @@ export function getTrendMovieGenres(genreIds) {
   return result;
 }
 
-// перевірка на наявність жанрів у localStorage
+//підвантаження популярних фільмів
 
-function checkGanres() {
-  try {
-    const savedData = localStorage.getItem('GENRES');
-    return savedData === null ? [] : JSON.parse(savedData);
-  } catch (error) {
-    console.error('Get state error: ', error.message);
-  }
+export function renderTrendMovie() {
+  movieAPI.getTrendMovie().then(data => {
+    const necessaryData = dataService.getDataTrendMovies(data);
+    const markupTrendMovies = createMarkupFilmsList(necessaryData);
+    refs.moviesList.innerHTML = markupTrendMovies;
+  });
 }
