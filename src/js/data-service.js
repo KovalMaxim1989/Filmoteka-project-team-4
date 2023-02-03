@@ -1,4 +1,5 @@
 import { getTrendMovieGenres } from './trandingfilms';
+import defaultImg from '../images/movie-pic.jpg';
 
 const baseImgUrl = `https://image.tmdb.org/t/p/`;
 const imgPosterSize = `w500`;
@@ -7,7 +8,12 @@ export class DataService {
   getDataTrendMovies(results) {
     return results.map(
       ({ poster_path, genre_ids, vote_average, title, id, release_date }) => {
-        const imgUrl = baseImgUrl + imgPosterSize + poster_path;
+        let imgUrl = baseImgUrl + imgPosterSize + poster_path;
+
+        if (!poster_path) {
+          imgUrl = defaultImg;
+        }
+
         const genres = getTrendMovieGenres(genre_ids);
 
         return {
