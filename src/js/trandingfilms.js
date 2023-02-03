@@ -3,6 +3,7 @@
 import { MovieAPI } from './MoviesApiServise';
 import { createMarkupFilmsList } from './markup';
 import { DataService } from './data-service';
+import { pagination } from './pagination';
 import { refs } from './refs';
 
 const dataService = new DataService();
@@ -49,8 +50,9 @@ export function getTrendMovieGenres(genreIds) {
 
 export function renderTrendMovie() {
   movieAPI.getTrendMovie().then(data => {
-    const necessaryData = dataService.getDataTrendMovies(data);
+    const necessaryData = dataService.getDataTrendMovies(data.results);
     const markupTrendMovies = createMarkupFilmsList(necessaryData);
     refs.moviesList.innerHTML = markupTrendMovies;
+    pagination(data);
   });
 }

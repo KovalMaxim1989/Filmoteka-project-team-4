@@ -10,9 +10,11 @@ export class MovieAPI {
   async getTrendMovie() {
     try {
       const { data } = await axios.get(
-        `${this.#BASE_URL}/trending/movie/day?api_key=${this.#API_KEY}`
+        `${this.#BASE_URL}/trending/movie/day?api_key=${this.#API_KEY}&page=${
+          this.#page
+        }`
       );
-      return data.results;
+      return data;
     } catch (error) {
       console.error(error);
     }
@@ -54,5 +56,12 @@ export class MovieAPI {
 
   set query(newQuery) {
     this.#query = newQuery;
+  }
+
+  get page() {
+    return this.#page;
+  }
+  set page(newPage) {
+    this.#page = newPage;
   }
 }
