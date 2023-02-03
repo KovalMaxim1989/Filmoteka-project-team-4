@@ -6,7 +6,7 @@ const imgPosterSize = `w500`;
 // TODO here you need get genres!!!
 
 export class DataService {
-  getDataTrendMovies(results, allGenres) {
+  getDataTrendMovies(results) {
     return results.map(
       ({ poster_path, genre_ids, vote_average, title, id, release_date }) => {
         const imgUrl = baseImgUrl + imgPosterSize + poster_path;

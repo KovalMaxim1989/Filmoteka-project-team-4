@@ -1,13 +1,14 @@
 // функція підвантаження трендових фільмів
 
-// збереження жанрів у localStorage
 import { MovieAPI } from './MoviesApiServise';
 import { createMarkupFilmsList } from './markup';
 import { DataService } from './data-service';
 import { refs } from './refs';
 
-const dataService = new DataService(); // create new instance Class Data Service
+const dataService = new DataService();
 const movieAPI = new MovieAPI();
+
+// збереження жанрів у localStorage
 
 export function saveGenres() {
   movieAPI
@@ -22,8 +23,7 @@ export function saveGenres() {
 
 export function renderTrendMovie() {
   movieAPI.getTrendMovie().then(data => {
-    const allGenres = JSON.parse(localStorage.getItem('GENRES'));
-    const necessaryData = dataService.getDataTrendMovies(data, allGenres);
+    const necessaryData = dataService.getDataTrendMovies(data);
     const markupTrendMovies = createMarkupFilmsList(necessaryData);
     refs.moviesList.innerHTML = markupTrendMovies;
   });
@@ -32,8 +32,6 @@ export function renderTrendMovie() {
 // отримання актуальних жанрів для фільму
 
 export function getTrendMovieGenres(genreIds) {
-  // const allGenres = JSON.parse(localStorage.getItem('GENRES'));
-
   const result = [];
   genreIds.find(genreId => {
     checkGanres().forEach(genre => {
