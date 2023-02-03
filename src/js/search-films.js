@@ -29,16 +29,17 @@ function onSearch(e) {
 
   movieAPI
     .getSearchMovies()
-    .then(({ results }) => {
-      if (results.length === 0) {
+    .then(data => {
+      if (data.results.length === 0) {
         return Notify.info(
           'Sorry, there are no movies matching your search query. Please try again.'
         );
       }
 
-      const necessaryData = dataService.getDataTrendMovies(results);
+      const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
       refs.moviesList.innerHTML = markupTrendMovies;
+      pagination(data);
     })
     .catch(err => Notify.failure(err));
 }
