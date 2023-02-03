@@ -246,13 +246,15 @@ export async function onClickIncrementPage() {
       await movieAPI
         .getSearchMovies()
         .then(data => {
+          pagination(data);
+          console.log(data.total_pages);
           if (pageActive >= data.total_pages) {
             refs.plusQuery.disabled = true;
           }
           if (pageActive < data.total_pages) {
             refs.plusQuery.disabled = false;
           }
-          pagination(data);
+
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
           refs.moviesList.innerHTML = markupTrendMovies;

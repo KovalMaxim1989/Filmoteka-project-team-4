@@ -3,6 +3,7 @@
 import { MovieAPI } from './MoviesApiServise';
 import { createMarkupFilmsList } from './markup';
 import { DataService } from './data-service';
+import { pagination } from './pagination';
 import { refs } from './refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -36,10 +37,11 @@ function onSearch(e) {
         );
       }
 
+      pagination(data);
+
       const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
       refs.moviesList.innerHTML = markupTrendMovies;
-      pagination(data);
     })
     .catch(err => Notify.failure(err));
 }
