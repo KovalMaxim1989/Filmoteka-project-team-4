@@ -135,12 +135,12 @@ export function pagination(data) {
       refs.firstPage.classList.remove('btn-active');
       refs.activPage.classList.remove('btn-active');
       refs.lastPage.textContent = data.total_pages;
-      refs.minus2Page.textContent = data.page - 4;
+      refs.minus2Page.textContent = data.page - 5;
       refs.plus2Page.classList.add('btn-active');
-      refs.minus1Page.textContent = data.page - 3;
-      refs.activPage.textContent = data.page - 2;
-      refs.plus1Page.textContent = data.page - 1;
-      refs.plus2Page.textContent = data.page;
+      refs.minus1Page.textContent = data.page - 4;
+      refs.activPage.textContent = data.page - 3;
+      refs.plus1Page.textContent = data.page - 2;
+      refs.plus2Page.textContent = data.page - 1;
       break;
     case data.total_pages:
       refs.firstPage.textContent = 1;
@@ -151,12 +151,12 @@ export function pagination(data) {
       refs.firstPage.classList.remove('btn-active');
       refs.activPage.classList.remove('btn-active');
       refs.lastPage.textContent = data.total_pages;
-      refs.minus2Page.textContent = data.page - 4;
+      refs.minus2Page.textContent = data.page - 5;
       refs.lastPage.classList.add('btn-active');
-      refs.minus1Page.textContent = data.page - 3;
-      refs.activPage.textContent = data.page - 2;
-      refs.plus1Page.textContent = data.page - 1;
-      refs.plus2Page.textContent = data.page;
+      refs.minus1Page.textContent = data.page - 4;
+      refs.activPage.textContent = data.page - 3;
+      refs.plus1Page.textContent = data.page - 2;
+      refs.plus2Page.textContent = data.page - 1;
       break;
 
     default:
@@ -246,21 +246,30 @@ export async function onClickIncrementPage() {
       await movieAPI
         .getSearchMovies()
         .then(data => {
+          if (pageActive >= data.total_pages) {
+            refs.plusQuery.disabled = true;
+          }
+          if (pageActive < data.total_pages) {
+            refs.plusQuery.disabled = false;
+          }
+          pagination(data);
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
           refs.moviesList.innerHTML = markupTrendMovies;
-          pagination(data);
+          refs.minusQuery.disabled = false;
         })
         .catch(err => Notify.failure(err));
-      return;
-    }
-    if (refs.lastPage.classList.contains('btn-active')) {
-      refs.plusQuery.disabled = true;
       return;
     }
 
     refs.minusQuery.disabled = false;
     await movieAPI.getTrendMovie().then(data => {
+      if (pageActive >= data.total_pages) {
+        refs.plusQuery.disabled = true;
+      }
+      if (pageActive < data.total_pages) {
+        refs.plusQuery.disabled = false;
+      }
       const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
       refs.moviesList.innerHTML = markupTrendMovies;
@@ -286,21 +295,30 @@ export async function onClickDecrementPage() {
       await movieAPI
         .getSearchMovies()
         .then(data => {
+          if (pageActive >= data.total_pages) {
+            refs.plusQuery.disabled = true;
+          }
+          if (pageActive < data.total_pages) {
+            refs.plusQuery.disabled = false;
+          }
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
           refs.moviesList.innerHTML = markupTrendMovies;
           pagination(data);
+          refs.minusQuery.disabled = false;
         })
         .catch(err => Notify.failure(err));
-      return;
-    }
-    if (refs.lastPage.classList.contains('btn-active')) {
-      refs.plusQuery.disabled = true;
       return;
     }
 
     refs.minusQuery.disabled = false;
     await movieAPI.getTrendMovie().then(data => {
+      if (pageActive >= data.total_pages) {
+        refs.plusQuery.disabled = true;
+      }
+      if (pageActive < data.total_pages) {
+        refs.plusQuery.disabled = false;
+      }
       const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
       refs.moviesList.innerHTML = markupTrendMovies;
@@ -328,21 +346,30 @@ export async function onClickPaginationBtnNumber(e) {
       await movieAPI
         .getSearchMovies()
         .then(data => {
+          if (pageActive >= data.total_pages) {
+            refs.plusQuery.disabled = true;
+          }
+          if (pageActive < data.total_pages) {
+            refs.plusQuery.disabled = false;
+          }
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
           refs.moviesList.innerHTML = markupTrendMovies;
           pagination(data);
+          refs.minusQuery.disabled = false;
         })
         .catch(err => Notify.failure(err));
-      return;
-    }
-    if (refs.lastPage.classList.contains('btn-active')) {
-      refs.plusQuery.disabled = true;
       return;
     }
 
     refs.minusQuery.disabled = false;
     await movieAPI.getTrendMovie().then(data => {
+      if (pageActive >= data.total_pages) {
+        refs.plusQuery.disabled = true;
+      }
+      if (pageActive < data.total_pages) {
+        refs.plusQuery.disabled = false;
+      }
       const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
       refs.moviesList.innerHTML = markupTrendMovies;
