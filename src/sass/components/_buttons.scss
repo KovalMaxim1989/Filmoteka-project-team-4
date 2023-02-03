@@ -118,7 +118,7 @@
   height: 35px;
 
   @media screen and (max-width: 768px) {
-    width: 120px;
+    width: 100px;
   }
 
   font-weight: 500;
@@ -154,4 +154,8 @@
   margin: 0;
   width: 17;
   height: 17;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
