@@ -17,3 +17,5 @@ import { renderTrendMovie } from './js/trandingfilms';
 
 saveGenres();
 renderTrendMovie();
+
+import './js/search-films'

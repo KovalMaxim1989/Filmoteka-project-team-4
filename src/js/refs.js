@@ -11,7 +11,7 @@ export const refs = {
   // btnAddToWatched: document.querySelector('[data-add-to-watched]'),
 
   // // Search input in Header
-  // searchForm: document.querySelector('.header__form'),
+  searchForm: document.querySelector('.header__form'),
 
   // // spiner
   // backdropSpinner: document.querySelector('[data-load]'),
