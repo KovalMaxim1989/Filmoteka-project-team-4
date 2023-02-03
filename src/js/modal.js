@@ -66,14 +66,3 @@ async function fetchModal(movie_id) {
   }
 }
 
-
-// Тестовый запрос для проверки отрисовки модального окна
-fetchModal(550)
-  .then(data => {
-    // console.log(data);
-    createMarkupSelectedMovie(data);
-    trailerBtn.addEventListener('click', () => fetchTrailer(550) , {once: true})
-  })
-  .catch();
-
-// console.log('hello');
