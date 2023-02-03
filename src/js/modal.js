@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createMarkupSelectedMovie } from './markup';
 import {fetchTrailer} from './modal-trailer'
 
+
 // References to DOM
 const backdrop = document.querySelector('.backdrop');
 const modalFilm = document.querySelector('[data-modal]');
@@ -9,7 +10,7 @@ const openModalCard = document.querySelector('[data-modal-open]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
 const trailerBtn = document.querySelector('.trailer-btn')
 
-// openModalCard.addEventListener('click', openModal);
+openModalCard.addEventListener('click', openModal);
 closeModalBtn.addEventListener('click', toggleModal);
 backdrop.addEventListener('click', onBackdropClick);
 
@@ -19,7 +20,7 @@ export function openModal(evt) {
   }
   document.querySelector('.wrap-disc').innerHTML = '';
 
-  const currentMovie = evt.target.closest('.js-item');
+  const currentMovie = evt.target.closest('.js-target');
   const currentId = Number(currentMovie.dataset.id);
   
   fetchModal(currentId).then(data => {
