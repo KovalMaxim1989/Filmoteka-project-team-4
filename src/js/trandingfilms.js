@@ -32,10 +32,11 @@ export function renderTrendMovie() {
 // отримання актуальних жанрів для фільму
 
 export function getTrendMovieGenres(genreIds) {
-  const allGenres = JSON.parse(localStorage.getItem('GENRES'));
+  // const allGenres = JSON.parse(localStorage.getItem('GENRES'));
+
   const result = [];
   genreIds.find(genreId => {
-    allGenres.forEach(genre => {
+    checkGanres().forEach(genre => {
       if (genre.id === genreId) {
         result.push(genre.name);
       }
@@ -43,4 +44,15 @@ export function getTrendMovieGenres(genreIds) {
   });
 
   return result;
+}
+
+// перевірка на наявність жанрів у localStorage
+
+function checkGanres() {
+  try {
+    const savedData = localStorage.getItem('GENRES');
+    return savedData === null ? [] : JSON.parse(savedData);
+  } catch (error) {
+    console.error('Get state error: ', error.message);
+  }
 }

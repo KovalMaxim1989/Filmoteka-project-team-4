@@ -13,9 +13,7 @@
 
 // import './js/modal'
 import { saveGenres } from './js/trandingfilms';
-
-saveGenres();
-
 import { renderTrendMovie } from './js/trandingfilms';
 
+saveGenres();
 renderTrendMovie();
