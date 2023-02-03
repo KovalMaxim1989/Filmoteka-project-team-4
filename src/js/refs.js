@@ -18,13 +18,17 @@ export const refs = {
 
   // ЯКЩО КОМУ ПОТРІБНІ РЕФИ АБО ШУКАЙТЕ ВЖЕ СТВОРЕНІ І РОЗКОМЕНТОВУЙТЕ АБО ДОДАВАЙТЕ СВОЇ
 
-  // Modal elements
-  // modalContainer: document.querySelector('.js-modal-container'),
-  // closeModalBtn: document.querySelector('[data-modal-close]'),
-  // modal: document.querySelector('[data-modal]'), // backdrop
+  // Refs for Modal Movies
+  backdrop: document.querySelector('.backdrop'),
+  modalMovies: document.querySelector('[data-modal]'),
+  openModalCard: document.querySelector('[data-modal-open]'),
+  closeModalBtn: document.querySelector('[data-modal-close]'),
+  trailerBtn: document.querySelector('.trailer-btn'),
+
   // btnAddToQueue: document.querySelector('[data-add-to-queue]'),
   // btnAddToWatched: document.querySelector('[data-add-to-watched]'),
 
+  // End refs Modal Movies
   // // Search input in Header
   searchForm: document.querySelector('.header__form'),
 
@@ -37,7 +41,6 @@ export const refs = {
   // btnQueue: document.querySelector('.js-btn-queue'),
   // btnWatched: document.querySelector('.js-btn-watched'),
 };
-
 refs.minusQuery.addEventListener('click', onClickDecrementPage);
 refs.plusQuery.addEventListener('click', onClickIncrementPage);
 refs.containerPage.addEventListener('click', onClickPaginationBtnNumber);

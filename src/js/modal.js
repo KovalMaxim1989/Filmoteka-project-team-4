@@ -1,18 +1,21 @@
+// Refs for Modal Movies
 import axios from 'axios';
 import { createMarkupSelectedMovie } from './markup';
-import {fetchTrailer} from './modal-trailer'
+import { fetchTrailer } from './modal-trailer';
+import { refs } from './refs';
 
+// debugger
 
 // References to DOM
-const backdrop = document.querySelector('.backdrop');
-const modalFilm = document.querySelector('[data-modal]');
-const openModalCard = document.querySelector('[data-modal-open]');
-const closeModalBtn = document.querySelector('[data-modal-close]');
-const trailerBtn = document.querySelector('.trailer-btn')
+// const backdrop = document.querySelector('.backdrop');
+// const modalMovies = document.querySelector('[data-modal]');
+// const openModalCard = document.querySelector('[data-modal-open]');
+// const closeModalBtn = document.querySelector('[data-modal-close]');
+// const trailerBtn = document.querySelector('.trailer-btn')
 
-openModalCard.addEventListener('click', openModal);
-closeModalBtn.addEventListener('click', toggleModal);
-backdrop.addEventListener('click', onBackdropClick);
+refs.openModalCard.addEventListener('click', openModal);
+refs.closeModalBtn.addEventListener('click', toggleModal);
+refs.backdrop.addEventListener('click', onBackdropClick);
 
 export function openModal(evt) {
   if (evt.currentTarget === evt.target) {
@@ -22,20 +25,21 @@ export function openModal(evt) {
 
   const currentMovie = evt.target.closest('.js-target');
   const currentId = Number(currentMovie.dataset.id);
-  
+
   fetchModal(currentId).then(data => {
     createMarkupSelectedMovie(data);
-  })
+  });
 
-  trailerBtn.addEventListener('click', () => fetchTrailer(currentId) , {once: true})
-toggleModal();
+  refs.trailerBtn.addEventListener('click', () => fetchTrailer(currentId), {
+    once: true,
+  });
+  toggleModal();
 }
-
 
 function toggleModal() {
   window.addEventListener('keydown', onEscPress);
-  modalFilm.classList.toggle('is-hidden');
-  if (modalFilm.classList.contains('is-hidden')) {
+  refs.modalMovies.classList.toggle('is-hidden');
+  if (refs.modalMovies.classList.contains('is-hidden')) {
     window.removeEventListener('keydown', onEscPress);
   }
 }
@@ -47,9 +51,9 @@ function onBackdropClick(evt) {
 }
 
 function onEscPress(evt) {
-    if(evt.key === 'Escape'){
-        toggleModal();
-    }
+  if (evt.key === 'Escape') {
+    toggleModal();
+  }
 }
 
 const BASE_URL = 'https://api.themoviedb.org/3/movie/';
@@ -61,8 +65,7 @@ async function fetchModal(movie_id) {
       `${BASE_URL}${movie_id}?api_key=${API_KEY}`
     );
     return response.data;
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 }
-

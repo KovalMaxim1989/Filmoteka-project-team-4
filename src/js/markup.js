@@ -1,4 +1,4 @@
-import defaultImg from '../images/keep-calm-poster-not-found.webp';
+import defaultImg from '../images/movie-pic.jpg';
 
 export function createMarkupFilmsList(moviesData) {
   return moviesData
