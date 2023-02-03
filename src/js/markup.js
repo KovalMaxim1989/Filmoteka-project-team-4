@@ -32,7 +32,9 @@ export function createMarkupFilmsList(moviesData) {
 
 //  function render to main page first 3 genres
 export function trimGenresList(genres) {
-  if (genres.length <= 3) {
+  if (genres.length === 0) {
+    return `Other`;
+  } else if (genres.length <= 3) {
     return genres.join(', ');
   } else {
     return `${genres[0]}, ${genres[1]}, Other`;
