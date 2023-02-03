@@ -11,4 +11,11 @@
 
 // #API_KEY = 'd03712107dcdd723f1173c5ee2c0d8c1';
 
-import './js/modal'
+// import './js/modal'
+import { saveGenres } from './js/trandingfilms';
+
+saveGenres();
+
+import { renderTrendMovie } from './js/trandingfilms';
+
+renderTrendMovie();

@@ -39,13 +39,20 @@ export function trimGenresList(genres) {
 
 // Function for render about movies in modal window
 export function createMarkupSelectedMovie(moviesData) {
-  const {poster_path, title, vote_average, vote_count, popularity, original_title, genres, overview} = moviesData;
+  const {
+    poster_path,
+    title,
+    vote_average,
+    vote_count,
+    popularity,
+    original_title,
+    genres,
+    overview,
+  } = moviesData;
 
   const markup = ` <img class='modal-poster'
   src="${
-    poster_path
-      ? `https://image.tmdb.org/t/p/w500${poster_path}`
-      : defaultImg
+    poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : defaultImg
   }"
    alt=${title}
   
@@ -88,22 +95,22 @@ export function createMarkupSelectedMovie(moviesData) {
    </div>
    </div>
  </div>`;
- document.querySelector('.wrap-disc').innerHTML = markup;
+  document.querySelector('.wrap-disc').innerHTML = markup;
 
- document
-   .querySelector('.backdrop')
-   .setAttribute(
-     'style',
-     `background-image: url(https://image.tmdb.org/t/p/original/${moviesData.backdrop_path}); background-position: center; background-size: cover;`
-   );
- if (moviesData.backdrop_path === null) {
-   document
-     .querySelector('.backdrop')
-     .setAttribute(
-       'style',
-       `background-image: url(${defaultImg}); background-position: center; background-size: cover;`
-     );
- }
+  document
+    .querySelector('.backdrop')
+    .setAttribute(
+      'style',
+      `background-image: url(https://image.tmdb.org/t/p/original/${moviesData.backdrop_path}); background-position: center; background-size: cover;`
+    );
+  if (moviesData.backdrop_path === null) {
+    document
+      .querySelector('.backdrop')
+      .setAttribute(
+        'style',
+        `background-image: url(${defaultImg}); background-position: center; background-size: cover;`
+      );
+  }
 }
 
 export function createMarkupLibraryList(moviesData) {
