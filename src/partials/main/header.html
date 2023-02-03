@@ -1,14 +1,43 @@
-<header>
-  <form class="header__form" id="search-form">
-    <input
-      type="text"
-      name="searchQuery"
-      autocomplete="off"
-      placeholder="Search images..."
-    />
-    <button type="submit">Search!</button>
-    <div class="gallery">
-      <!-- Карточки изображений -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/src/index.html">
+          <svg class="logo__icon" width="24" height="24">
+            <use href="./images/sprite/icons.svg#icon-film"></use>
+          </svg>
+          <span class="logo">Filmoteka</span></a
+        >
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="./index.html" class="nav__title nav__title--current"
+              >HOME</a
+            >
+          </li>
+          <li class="nav__item">
+            <a href="./library.html" class="nav__title nav__title--redirect"
+              >MY LIBRARY</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <form class="header__form" id="search-form">
+        <input
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          class="header__input"
+          placeholder="Movie search..."
+          name="query"
+        />
+        <button type="submit" class="button-search">
+          <svg class="button-search__icon" width="12" height="12">
+            <use href="./images/sprite/icons.svg#search"></use>
+          </svg>
+        </button>
+      
+      </form>
+        </div>
+    </form> -->
     </div>
-  </form>
+  </header>
 </header>

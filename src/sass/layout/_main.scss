@@ -1,0 +1,93 @@
+.filmoteka {
+}
+
+.films {
+  padding: 20px 0;
+
+  @media screen and (min-width: 768px) {
+    padding: 60px 0;
+  }
+}
+
+.films__list {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    gap: 16px;
+  }
+}
+
+.films__item {
+  padding: 5px;
+  border-radius: 10px;
+  width: 100%;
+
+  &:not(:last-child) {
+    @media screen and (max-width: 767px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 394px;
+  }
+
+  transition: transform $animation;
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transform: scale(1.03);
+  }
+}
+
+.films__img-wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+// .films__img {
+// }
+
+.films__info {
+  padding-top: 10px;
+  overflow: hidden;
+}
+
+.films__name {
+  width: 100%;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: calc(22 / 18);
+  text-transform: uppercase;
+
+  color: $txt-black-color;
+}
+
+.films__desk {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+
+  color: $txt-active-color;
+}
+
+.films__genre {
+}
+.films__year {
+}
+.films__rating {
+}
+
+.films__rating--text {
+  color: $txt-black-color;
+}

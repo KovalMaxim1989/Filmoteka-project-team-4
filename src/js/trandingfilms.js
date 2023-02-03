@@ -1,13 +1,14 @@
 // функція підвантаження трендових фільмів
 
-// збереження жанрів у localStorage
 import { MovieAPI } from './MoviesApiServise';
 import { createMarkupFilmsList } from './markup';
 import { DataService } from './data-service';
 import { refs } from './refs';
 
-const dataService = new DataService(); // create new instance Class Data Service
+const dataService = new DataService();
 const movieAPI = new MovieAPI();
+
+// збереження жанрів у localStorage
 
 export function saveGenres() {
   movieAPI
@@ -18,24 +19,23 @@ export function saveGenres() {
     .catch(error => console.log(error));
 }
 
-//підвантаження популярних фільмів
+// перевірка на наявність жанрів у localStorage
 
-export function renderTrendMovie() {
-  movieAPI.getTrendMovie().then(data => {
-    const allGenres = JSON.parse(localStorage.getItem('GENRES'));
-    const necessaryData = dataService.getDataTrendMovies(data, allGenres);
-    const markupTrendMovies = createMarkupFilmsList(necessaryData);
-    refs.moviesList.innerHTML = markupTrendMovies;
-  });
+function checkGanres() {
+  try {
+    const savedData = localStorage.getItem('GENRES');
+    return savedData === null ? [] : JSON.parse(savedData);
+  } catch (error) {
+    console.error('Get state error: ', error.message);
+  }
 }
 
 // отримання актуальних жанрів для фільму
 
 export function getTrendMovieGenres(genreIds) {
-  const allGenres = JSON.parse(localStorage.getItem('GENRES'));
   const result = [];
   genreIds.find(genreId => {
-    allGenres.forEach(genre => {
+    checkGanres().forEach(genre => {
       if (genre.id === genreId) {
         result.push(genre.name);
       }
@@ -43,4 +43,14 @@ export function getTrendMovieGenres(genreIds) {
   });
 
   return result;
+}
+
+//підвантаження популярних фільмів
+
+export function renderTrendMovie() {
+  movieAPI.getTrendMovie().then(data => {
+    const necessaryData = dataService.getDataTrendMovies(data);
+    const markupTrendMovies = createMarkupFilmsList(necessaryData);
+    refs.moviesList.innerHTML = markupTrendMovies;
+  });
 }
