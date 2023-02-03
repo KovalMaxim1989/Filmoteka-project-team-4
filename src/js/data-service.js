@@ -9,12 +9,16 @@ export class DataService {
     return results.map(
       ({ poster_path, genre_ids, vote_average, title, id, release_date }) => {
         let imgUrl = baseImgUrl + imgPosterSize + poster_path;
+        let year = Number.parseInt(release_date);
+        const genres = getTrendMovieGenres(genre_ids);
 
         if (!poster_path) {
           imgUrl = defaultImg;
         }
 
-        const genres = getTrendMovieGenres(genre_ids);
+        if (!release_date) {
+          year = 'Unknown date';
+        }
 
         return {
           imgUrl: imgUrl,
@@ -22,7 +26,7 @@ export class DataService {
           rating: vote_average.toFixed(1),
           name: title,
           id: id,
-          year: Number.parseInt(release_date),
+          year: year,
         };
       }
     );
