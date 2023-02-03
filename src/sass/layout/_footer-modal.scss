@@ -1,55 +1,19 @@
-// .backdrop {
+// .backdrop-footer {
 //   position: fixed;
 //   top: 0;
 //   left: 0;
 //   width: 100%;
 //   height: 100%;
-//   background: $header-bgc;
+//   background: rgba(0, 0, 0, 0.56);
 // }
 
-// .disable-scroll {
-//   position: relative;
-//   overflow: hidden;
-//   height: 100vh;
-//   position: fixed;
-//   left: 0;
-//   top: 0;
-//   width: 100%;
-// }
-
-// .backdrop.is-hidden .modal-students {
-//   transform: perspective(250px) translate(-50%, -100%) scale(1);
-// }
-
-// .is-hidden {
+// .backdrop-footer.is-hidden {
 //   opacity: 0;
-//   visibility: hidden;
 //   pointer-events: none;
-//   transition: all 350ms ease 0s;
+//   visibility: hidden;
 // }
 
-// .title-box {
-//   width: auto;
-//   position: sticky;
-//   top: -1px;
-
-//   z-index: 6;
-
-//   margin: 0;
-//   height: 70px;
-
-//   border-bottom: 1px solid $orange-text;
-//   box-shadow: 0px 2px 2px $orange-text;
-
-//   background: $main-bgc;
-//   text-align: center;
-//   justify-content: center;
-//   align-items: center;
-
-//   display: flex;
-// }
-
-.modal-students {
+.modal-developers {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -81,5 +45,181 @@
   @media screen and (min-width: 1280px) {
     max-height: 750px;
     width: 80%;
+  }
+}
+
+// .disable-scroll {
+//   position: relative;
+//   overflow: hidden;
+//   height: 100vh;
+//   position: fixed;
+//   left: 0;
+//   top: 0;
+//   width: 100%;
+// }
+
+// .backdrop.is-hidden .modal-students {
+//   transform: perspective(250px) translate(-50%, -100%) scale(1);
+// }
+
+.title-box {
+  width: auto;
+  position: sticky;
+  top: -1px;
+
+  z-index: 6;
+
+  margin: 0;
+  height: 70px;
+
+  border-bottom: 1px solid $txt-active-color;
+  box-shadow: 0px 2px 2px $txt-active-color;
+
+  background: $bg-white-color;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.modal-devop-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  padding: 0;
+  display: flex;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button-close__icon {
+  stroke: $txt-black-color;
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    stroke: $orange-hover;
+  }
+}
+
+.modal-team__title {
+  padding-top: 15px;
+  display: flex;
+  color: $txt-footer-color;
+
+  text-transform: uppercase;
+  line-height: 1.17;
+
+  @media screen and (max-width: 479px) {
+    font-weight: 500;
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: 480px) {
+    font-weight: 400;
+    font-size: 28px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-weight: 600;
+    font-size: 30px;
+  }
+}
+.card-team__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  padding: 10px;
+
+  color: $txt-footer-color;
+
+  @media screen and (max-width: 479px) {
+    margin-top: 15px;
+    gap: 15px;
+  }
+
+  @media screen and (min-width: 480px) {
+    margin-top: 25px;
+    gap: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    justify-content: center;
+    margin-top: 30px;
+    gap: 20px;
+  }
+}
+
+.card-team__item {
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+}
+.card-team__img {
+  width: 225px;
+  object-fit: cover;
+  height: 250px;
+}
+
+.card-team__wrap {
+  width: 225px;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.card-member__name {
+  text-align: center;
+  color: $txt-active-color;
+  margin-bottom: 5px;
+}
+.card-member__role {
+  text-align: center;
+  font-weight: 500;
+  color: $txt-black-color;
+}
+
+.card-member__text {
+  display: flex;
+  color: $txt-footer-color;
+
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+
+  margin-bottom: 10px;
+  border: 2px solid $bg-footer-color;
+  border-radius: 5px;
+  height: 100px;
+}
+.social-list {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.social-list__item {
+  &:last-child {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+
+    @media screen and (min-width: 768px) {
+      opacity: 1;
+      visibility: visible;
+      position: static;
+    }
+  }
+}
+
+.social-list__icon {
+  width: 25px;
+  height: 25px;
+  fill: $txt-secondary-color;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    fill: $orange-hover;
+    scale: 1.15;
   }
 }
