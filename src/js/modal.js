@@ -31,8 +31,7 @@ export function openModal(evt) {
     createMarkupSelectedMovie(data);
   });
 
-  const x = refs.trailerBtn;
-  x.addEventListener('click', fetchTrailer.bind(evt, currentId));
+  refs.trailerBtn.addEventListener('click', fetchTrailer.bind(evt, currentId));
   // debugger
   toggleModal();
 }
