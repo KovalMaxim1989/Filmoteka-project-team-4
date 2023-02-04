@@ -66,28 +66,47 @@ export function openModal(evt) {
       }
     };
   });
-  document.body.classList.add('scroll__lock');
+  bodyScrollOff();
   toggleModal();
+}
+
+export function bodyScrollOff() {
+  let scrollX = window.scrollX;
+  let scrollY = window.scrollY;
+  window.onscroll = function () {
+    window.scrollTo(scrollX, scrollY);
+  };
 }
 
 function toggleModal() {
   window.addEventListener('keydown', onEscPress);
   refs.modalMovies.classList.toggle('is-hidden');
   if (refs.modalMovies.classList.contains('is-hidden')) {
-    document.body.classList.remove('scroll__lock');
     window.removeEventListener('keydown', onEscPress);
+
+    window.onscroll = function () {
+      window.scrollTo();
+    };
   }
 }
 
 function onBackdropClick(evt) {
   if (evt.currentTarget === evt.target) {
     toggleModal();
+
+    window.onscroll = function () {
+      window.scrollTo();
+    };
   }
 }
 
 function onEscPress(evt) {
   if (evt.key === 'Escape') {
     toggleModal();
+
+    window.onscroll = function () {
+      window.scrollTo();
+    };
   }
 }
 

@@ -1,26 +1,19 @@
-const refs = {
-  openModalBtn: document.querySelector('[data-modal-open-team]'),
-  closeModalBtn: document.querySelector('[data-modal-close-team]'),
-  backdrop: document.querySelector('.backdrop-footer'),
-};
+import { refs } from './refs';
+import { bodyScrollOff } from './modal';
 
-refs.openModalBtn.addEventListener('click', onOpenModal);
-refs.closeModalBtn.addEventListener('click', onCloseModal);
-refs.backdrop.addEventListener('click', onClickBackdrop);
+refs.openTeamModalBtn.addEventListener('click', onOpenModal);
+refs.closeTeamModalBtn.addEventListener('click', onCloseModal);
+refs.backdropFooter.addEventListener('click', onClickBackdrop);
 
 function onOpenModal() {
-  refs.backdrop.classList.remove('is-hidden');
+  refs.backdropFooter.classList.remove('is-hidden');
   window.addEventListener('keydown', onPressESC);
 
-  let scrollX = window.scrollX;
-  let scrollY = window.scrollY;
-  window.onscroll = function () {
-    window.scrollTo(scrollX, scrollY);
-  };
+  bodyScrollOff();
 }
 
 function onCloseModal() {
-  refs.backdrop.classList.add('is-hidden');
+  refs.backdropFooter.classList.add('is-hidden');
   window.removeEventListener('keydown', onPressESC);
 
   window.onscroll = function () {
@@ -31,19 +24,11 @@ function onCloseModal() {
 function onClickBackdrop(e) {
   if (e.currentTarget === e.target) {
     onCloseModal();
-
-    window.onscroll = function () {
-      window.scrollTo();
-    };
   }
 }
 
 function onPressESC(e) {
   if (e.code === 'Escape') {
     onCloseModal();
-
-    window.onscroll = function () {
-      window.scrollTo();
-    };
   }
 }
