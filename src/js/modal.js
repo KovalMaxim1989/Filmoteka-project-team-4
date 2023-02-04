@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { createMarkupSelectedMovie } from './markup';
 import { fetchTrailerKey } from './modal-trailer';
+import { onAddToLocalStorage } from './addToLocalStorage';
 
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
@@ -34,6 +35,7 @@ export function openModal(evt) {
 
   fetchModal(currentId).then(data => {
     createMarkupSelectedMovie(data);
+    onAddToLocalStorage(data);
   });
 
   fetchTrailerKey(currentId).then(key => {
