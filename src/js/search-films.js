@@ -17,7 +17,7 @@ function onSearch(e) {
   e.preventDefault();
   const formValue = e.currentTarget.elements.searchQuery.value.trim();
   if (!formValue) {
-    return Notify.failure(
+    return Notify.info(
       'Sorry, there are no movies matching your search query. Please try again.'
     );
   }
@@ -31,7 +31,9 @@ function onSearch(e) {
   movieAPI
     .getSearchMovies()
     .then(data => {
+      refs.searchErrorImg.classList.add('visually-hidden');
       if (data.results.length === 0) {
+        refs.searchErrorImg.classList.remove('visually-hidden');
         return Notify.info(
           'Sorry, there are no movies matching your search query. Please try again.'
         );
