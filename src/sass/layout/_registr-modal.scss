@@ -10,7 +10,6 @@
   background-color: rgba(0, 0, 0, 0.2);
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
 }
 
 .backdrop-registr.is-hidden {
@@ -29,7 +28,7 @@
   justify-content: center;
   align-items: center;
   padding: 0;
-  transition: fill .25s cubic-bezier(.4, 0, .2, 1);
+  transition: fill 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   position: absolute;
   top: 8px;
@@ -54,10 +53,26 @@
   padding: 40px 36px;
 
   transform: translate(-50%, -50%) scale(1);
-  width: 806px;
-  min-height: 560px;
+  width: 460px;
+  min-height: 460px;
   padding: 40px 12px;
+  border-radius: 8px;
 
+  background-color: rgba(255, 255, 255, 0.901);
+}
 
-  background-color: rgba(255, 255, 255, 0.83);
+// wraper for register-modal buttons
+
+.register-modal__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  width: 300px;
+  justify-content: center;
+  align-items: center;
 }
