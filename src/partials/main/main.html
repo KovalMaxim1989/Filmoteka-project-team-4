@@ -13,8 +13,13 @@
     />
   </div>
 </section>
-<section>
-  <button class="js-btn__minusQuery" type="button">-</button>
+<section class="js-pagination">
+  <button class="btn-incremention js-btn__minusQuery" type="button">
+    <svg class="js-pagination__arrow" width="16" height="16">
+      <use href="././images/sprite/icons.svg#icon-arrow-left"></use>
+    </svg>
+  </button>
+  <button class="btn-decrement-ten btn--ten">...</button>
   <div class="js-pagination__page">
     <button class="js-pagination--firstPage btn btn-pagination" type="button">
       1
@@ -38,5 +43,10 @@
       7
     </button>
   </div>
-  <button class="js-btn__plusQuery" type="button">+</button>
+  <button class="btn-increment-ten btn--ten">...</button>
+  <button class="btn-incremention js-btn__plusQuery" type="button">
+    <svg class="js-pagination__arrow" width="16" height="16">
+      <use href="././images/sprite/icons.svg#icon-arrow-right"></use>
+    </svg>
+  </button>
 </section>

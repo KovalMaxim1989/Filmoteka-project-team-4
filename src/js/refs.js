@@ -2,6 +2,8 @@ import {
   onClickIncrementPage,
   onClickDecrementPage,
   onClickPaginationBtnNumber,
+  onClickDecrementTen,
+  onClickIncrementTen,
 } from './pagination';
 export const refs = {
   moviesList: document.querySelector('.js-films-list'),
@@ -15,6 +17,8 @@ export const refs = {
   minusQuery: document.querySelector('.js-btn__minusQuery'),
   plusQuery: document.querySelector('.js-btn__plusQuery'),
   containerPage: document.querySelector('.js-pagination__page'),
+  plusTen: document.querySelector('.btn-increment-ten'),
+  minusTen: document.querySelector('.btn-decrement-ten'),
 
   // ЯКЩО КОМУ ПОТРІБНІ РЕФИ АБО ШУКАЙТЕ ВЖЕ СТВОРЕНІ І РОЗКОМЕНТОВУЙТЕ АБО ДОДАВАЙТЕ СВОЇ
 
@@ -45,3 +49,5 @@ export const refs = {
 refs.minusQuery.addEventListener('click', onClickDecrementPage);
 refs.plusQuery.addEventListener('click', onClickIncrementPage);
 refs.containerPage.addEventListener('click', onClickPaginationBtnNumber);
+refs.minusTen.addEventListener('click', onClickDecrementTen);
+refs.plusTen.addEventListener('click', onClickIncrementTen);
