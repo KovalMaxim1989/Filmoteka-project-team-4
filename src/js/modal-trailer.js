@@ -23,24 +23,4 @@ async function fetchTrailerKey(currentId) {
   //   spinnerOff();
 }
 
-// function renderTrailer(key) {
-//   const instance = basicLightbox.create(
-//     `<div class="modal-trailer">
-//           <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-//           </div>`,
-//     {
-//       onShow: () => window.addEventListener('keydown', onEsc.bind(instance)),
-//       onClose: () =>
-//         window.removeEventListener('keydown', onEsc.bind(instance)),
-//     }
-//   );
-//   instance.show();
-
-//   function onEsc(evt) {
-//     if (evt.key === 'Escape') {
-//       this.close();
-//     }
-//   }
-// }
-
 export { fetchTrailerKey };

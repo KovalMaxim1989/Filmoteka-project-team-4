@@ -20,6 +20,8 @@ refs.openModalCard.addEventListener('click', openModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
 refs.backdrop.addEventListener('click', onBackdropClick);
 
+// debugger;
+
 export function openModal(evt) {
   if (evt.currentTarget === evt.target) {
     return;
