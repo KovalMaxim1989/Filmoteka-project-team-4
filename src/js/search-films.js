@@ -52,6 +52,7 @@ function onSearch(e) {
           'films__no-movies-notification-show'
         );
         refs.noMoviesNotification.classList.remove('visually-hidden');
+        refs.containerPagAll.classList.add('visually-hidden');
         return;
       }
       refs.containerPagAll.classList.remove('visually-hidden');
