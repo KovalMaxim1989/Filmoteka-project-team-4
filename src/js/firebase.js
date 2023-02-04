@@ -33,16 +33,6 @@ import {
 import { refs } from '../js/refs';
 import { onCloseModal } from '../js/registr-modal';
 
-// const signInButtonElement = document.querySelector('.js-sign-in');
-// const signOutButtonElement = document.querySelector('.js-sign-out');
-// const deleteMovieEl = document.querySelector('[data-modal-movie-delete]'); // TODO
-// const userPicElement = document.getElementById('user-pic');
-// const userNameElement = document.getElementById('user-name');
-
-// refs.signOutButtonElement.addEventListener('click', signOutUser);
-// refs.signInButtonElement.addEventListener('click', signIn);
-// deleteMovieEl.addEventListener('click', deleteQueueMovie);
-
 export class FireBaseService {
   // Signs-in Movie cabinet.
   async signIn() {
@@ -78,8 +68,9 @@ function authStateObserver(user) {
     refs.userNameElement.textContent = userName;
 
     // Show user's profile and sign-out button.
-    refs.userNameElement.removeAttribute('hidden');
-    refs.userPicElement.removeAttribute('hidden');
+    // refs.userNameElement.removeAttribute('hidden');
+    // refs.userPicElement.removeAttribute('hidden');
+    refs.userInfoElement.classList.remove('visually-hidden');
     refs.signOutButtonElement.classList.remove('visually-hidden');
 
     // Hide sign-in button.
@@ -90,8 +81,9 @@ function authStateObserver(user) {
   } else {
     // User is signed out!
     // Hide user's profile and sign-out button.
-    refs.userNameElement.setAttribute('hidden', 'true');
-    refs.userPicElement.setAttribute('hidden', 'true');
+    // refs.userNameElement.setAttribute('hidden', 'true');
+    // refs.userPicElement.setAttribute('hidden', 'true');
+    refs.userInfoElement.classList.add('visually-hidden');
     refs.signOutButtonElement.classList.add('visually-hidden');
 
     // Show sign-in button.

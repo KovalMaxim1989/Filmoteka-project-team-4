@@ -31,7 +31,7 @@ renderTrendMovie();
 // ! additional functions
 //  here you add neccessary functions
 
-// ? FireBase logic authentification *******************************************
+// ! FireBase logic authentification *******************************************
 
 import { FireBaseService } from './js/firebase';
 import { refs } from './js/refs';
@@ -43,8 +43,7 @@ const firebase = new FireBaseService();
 refs.signInWithGoogle.addEventListener('click', firebase.signIn);
 refs.signOutButtonElement.addEventListener('click', firebase.signOutUser);
 
-// TODO 0: Initialize Firebase
+// * Initialize Firebase
 initializeApp(firebaseAppConfig);
-// TODO : Initialize Firebase Performance Monitoring
+// * Initialize Firebase Performance Monitoring
 firebase.initFirebaseAuth();
-// loadQueueMovie(); //

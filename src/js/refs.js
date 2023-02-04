@@ -53,6 +53,7 @@ export const refs = {
   signOutButtonElement: document.querySelector('.js-sign-out'),
   userPicElement: document.getElementById('user-pic'),
   userNameElement: document.getElementById('user-name'),
+  userInfoElement: document.getElementById('user-container'),
   signInWithEmail: document.querySelector('[data-modal-sign-in-email]'),
   signInWithGoogle: document.querySelector('[data-modal-sign-in-google]'),
 };
