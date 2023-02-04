@@ -54,7 +54,7 @@ function onSearch(e) {
         refs.noMoviesNotification.classList.remove('visually-hidden');
         return;
       }
-
+      refs.containerPagAll.classList.remove('visually-hidden');
       pagination(data);
 
       const necessaryData = dataService.getDataTrendMovies(data.results);

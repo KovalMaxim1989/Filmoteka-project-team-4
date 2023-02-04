@@ -119,32 +119,45 @@ export function createMarkupSelectedMovie(moviesData) {
   }
 }
 
+export function trimGenresLibraryList(genres) {
+  if (genres.length === 0) {
+    return `Other`;
+  } else if (genres.length <= 3) {
+    return genres.map(genre => genre.name);
+  } else {
+    return `${genres[0].name}, ${genres[1].name}, Other`;
+  }
+}
+
 export function createMarkupLibraryList(moviesData) {
   return moviesData
     .map(movie => {
-      const { genres, id, imgUrl, name, vote, year } = movie;
-      const genresToShow = trimGenresList(genres);
+      const { genres, id, poster_path, title, vote_average, release_date } =
+        movie;
+      const filterGenres = trimGenresLibraryList(genres);
 
       return `<li class="films__item js-target" data-id="${id}">
                   <div class="films__img-wrapper">
-            <img
-              src="${imgUrl}"
-              alt="${name}"
-              class="films__img" loading="lazy"
-            />
-          </div>
-          <div class="films__info">
-            <p class="films__name">${name}</p>
-            <p class="films__desk">
-              <span class="films__genre">${genresToShow}</span> |
-              <span class="films__year">${year}</span>
-            </p>
-            <p class="films__desk">
-              <span class="films__rating--text"> Rating: </span>
-              <span class="films__rating">${vote}</span>
-            </p>
-          </div>
-      </li>`;
+                   <img
+                    src="${poster_path? `https://image.tmdb.org/t/p/w500${poster_path}` : defaultImg}"
+                    alt="${title}"
+                    class="films__img" loading="lazy"
+                   />
+                   <div class="rating">
+                     <p class="films__desk">
+                       <span class="films__rating--text"> Rating: </span>
+                       <span class="films__rating">${vote_average.toFixed(1)}</span>
+                     </p>
+                    </div>
+                  </div>
+               <div class="films__info">
+                 <p class="films__name">${title}</p>
+                 <p class="films__desk">
+                   <span class="films__genre">${filterGenres}</span> |
+                    <span class="films__year">${Number.parseInt(release_date)}</span>
+                  </p>
+               </div>
+             </li>`;
     })
     .join('');
 }

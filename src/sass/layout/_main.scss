@@ -57,7 +57,7 @@
 }
 
 // .films__img {
-
+//   position: relative;
 // }
 
 .films__info {
@@ -87,11 +87,17 @@
 // }
 // .films__year {
 // }
-// .films__rating {
-// }
+.films__rating {
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+}
 
 .films__rating--text {
-  color: $txt-black-color;
+  color: $bg-white-color;
+  // color: $bg-active-color;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .films__error-img {
@@ -108,14 +114,21 @@
     padding: 100px 0 100px 0;
   }
 }
-
 .rating {
-  display: block;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
   position: absolute;
   width: 100%;
   left: 0;
   bottom: 0;
   text-align: center;
+
+  height: 35px;
+  background-color: $bg-rating-color;
+  border-radius: 10px;
 }
 
 .films__error {

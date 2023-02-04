@@ -24,7 +24,8 @@
     "lodash": "^4.17.21",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.6",
-    "spin.js": "^4.1.1"
+    "spin.js": "^4.1.1",
+    "swiper": "^9.0.2"
   },
   "devDependencies": {
     "@parcel/packager-raw-url": "^2.8.3",

@@ -36,7 +36,6 @@ body.scroll__lock {
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086);
-
   transition: all 350ms ease 0s;
 
   @media screen and (max-width: 479px) {
@@ -65,10 +64,6 @@ body.scroll__lock {
 //   left: 0;
 //   top: 0;
 //   width: 100%;
-// }
-
-// .backdrop.is-hidden .modal-students {
-//   transform: perspective(250px) translate(-50%, -100%) scale(1);
 // }
 
 .title-box {
@@ -163,7 +158,7 @@ body.scroll__lock {
 }
 
 .card-team__item {
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: $card-developers-shadow;
   border-radius: 3px;
 }
 
