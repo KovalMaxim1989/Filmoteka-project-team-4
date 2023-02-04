@@ -12,7 +12,7 @@ async function fetchTrailer(currentId) {
 //   spinnerOn();
   try {
     const response = await axios.get(
-      `${BASE_URL}${currentId}/videos?api_key=${API_KEY}&language=en-US`
+      `${BASE_URL}${currentId}/videos?api_key=${API_KEY}`
     );
     const key = response.data.results[0].key;
     renderTrailer(key);
@@ -21,6 +21,7 @@ async function fetchTrailer(currentId) {
   }
 //   spinnerOff();
 }
+// debugger
 
 function renderTrailer(key) {
   const instance = basicLightbox.create(
@@ -28,18 +29,16 @@ function renderTrailer(key) {
           <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>`,
     {
-      onShow: () => {
-        window.addEventListener('keydown', onEsc);
-      },
-      onClose: () => {
-        window.removeEventListener('keydown', onEsc);
-      },
+      onShow: () => window.addEventListener('keydown', onEsc.bind(instance)),
+      onClose: () => window.removeEventListener('keydown', onEsc.bind(instance)),
     }
   );
+  // debugger
   instance.show();
+  
   function onEsc(evt) {
     if (evt.key === 'Escape') {
-      instance.close();
+      this.close();
     }
   }
 }

@@ -221,11 +221,13 @@
   }
   .modal__button-play {
     display: flex;
+    border: 2px;
     border-color: #ff6b01;
-    box-shadow: 0 0 25px 3px rgb(242 122 9 / 80%);
-    background: transparent;
-    margin: 20px 20px 0;
+    cursor: pointer;
+    background: none;
     justify-content: center;
+    margin: 20px 20px 0;
+    box-shadow: 0px 0px 2px 2px #f27a09cc;
   }
   
   .modal__img-play {
@@ -234,10 +236,9 @@
   }
   
   .modal__button-play:hover {
+    background: radial-gradient(#f27a09cc 100%, #fff 62%);
     border: 2px #ff6b01;
-    box-shadow: 0 0 25px 3px rgb(242 122 9 / 80%);
-  
-    background: radial-gradient(rgba(242, 122, 9, 0.8) 100%, #fff 62%);
+    box-shadow: inset 0 0 3px 3px #f27a09cc;
   }
   .modal__button-play:active {
     box-shadow: 2px 2px 5px #fc894d;

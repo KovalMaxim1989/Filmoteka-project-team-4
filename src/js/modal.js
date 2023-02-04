@@ -6,6 +6,7 @@ import { refs } from './refs';
 
 // debugger
 
+// Тимчасово пам'ятка
 // References to DOM
 // const backdrop = document.querySelector('.backdrop');
 // const modalMovies = document.querySelector('[data-modal]');
@@ -30,17 +31,24 @@ export function openModal(evt) {
     createMarkupSelectedMovie(data);
   });
 
-  refs.trailerBtn.addEventListener('click', () => fetchTrailer(currentId), {
-    once: true,
-  });
+  const x = refs.trailerBtn;
+  x.addEventListener('click', fetchTrailer.bind(evt, currentId));
+  // debugger
   toggleModal();
 }
+
+function onFetchTrailer (currentId) {
+  fetchTrailer(currentId);
+  // debugger
+};
 
 function toggleModal() {
   window.addEventListener('keydown', onEscPress);
   refs.modalMovies.classList.toggle('is-hidden');
   if (refs.modalMovies.classList.contains('is-hidden')) {
     window.removeEventListener('keydown', onEscPress);
+    refs.trailerBtn.removeEventListener('click', fetchTrailer)
+    debugger
   }
 }
 
