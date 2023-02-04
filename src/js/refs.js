@@ -31,6 +31,7 @@ export const refs = {
   // End refs Modal Movies
   // // Search input in Header
   searchForm: document.querySelector('.header__form'),
+  searchErrorImg: document.querySelector('.films__error-img'),
 
   // // spiner
   // backdropSpinner: document.querySelector('[data-load]'),
