@@ -50,6 +50,7 @@
 display: none;
 
     transition: color $animation;
+  
 
     @media screen and (min-width: 768px) {
         display: inline-block;
@@ -58,9 +59,23 @@ display: none;
         line-height: 1.2;
 
         color: $txt-white-color;
+
+        &:hover {
+            animation: animeLogo 1s ease 0s 1 normal forwards;
+          }
     }
+    
 }
 
+@keyframes animeLogo {
+  0% {
+    transform: scale(0.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 .nav {
   margin-bottom: 54px;
 
