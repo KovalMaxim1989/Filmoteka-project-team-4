@@ -25,3 +25,5 @@ renderTrendMovie();
 
 // ! additional functions
 //  here you add neccessary functions
+//  Кнопка догори
+import { scrollTop } from './js/button';
