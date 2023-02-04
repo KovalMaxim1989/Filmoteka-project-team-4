@@ -34,7 +34,6 @@ function onSearch(e) {
       refs.searchErrorImg.classList.add('visually-hidden');
       if (data.results.length === 0) {
         refs.searchErrorImg.classList.remove('visually-hidden');
-        refs.containerPage.classList.add('visually-hidden');
         return Notify.info(
           'Sorry, there are no movies matching your search query. Please try again.'
         );
