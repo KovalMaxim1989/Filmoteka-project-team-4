@@ -72,7 +72,10 @@
   &:focus {
     background-color: $bg-active-color;
   }
+
+  
 }
+
 
 .button-search {
   position: absolute;
@@ -167,4 +170,11 @@
 
 .register-modal__btn-icon {
   margin-right: 10px;
+}
+
+
+.main-btn--library-active {
+  background-color: $bg-active-color;
+  border: transparent;
+  box-shadow: $btn-shadow;
 }
