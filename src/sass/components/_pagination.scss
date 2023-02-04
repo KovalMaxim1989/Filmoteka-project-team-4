@@ -1,0 +1,23 @@
+.js-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 60px;
+  }
+}
+.js-pagination__page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.js-pagination__arrow use {
+  fill: $txt-black-color;
+
+  transition: fill $animation, background-color $animation,
+    box-shadow $animation;
+}

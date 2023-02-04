@@ -4,12 +4,11 @@ import Notiflix from 'notiflix';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
-
 const BASE_URL = 'https://api.themoviedb.org/3/movie/';
 const API_KEY = 'd03712107dcdd723f1173c5ee2c0d8c1';
 
 async function fetchTrailer(currentId) {
-//   spinnerOn();
+  //   spinnerOn();
   try {
     const response = await axios.get(
       `${BASE_URL}${currentId}/videos?api_key=${API_KEY}&language=en-US`
@@ -19,7 +18,7 @@ async function fetchTrailer(currentId) {
   } catch (error) {
     Notiflix.Notify.failure('Sorry, there is no trailer for this movie');
   }
-//   spinnerOff();
+  //   spinnerOff();
 }
 
 function renderTrailer(key) {
