@@ -103,13 +103,15 @@
 .films__error-img {
   width: 200px;
   margin: auto;
-  padding: 100px 0 100px 0;
+  padding: 30px 0 30px 0;
   @media screen and (min-width: 768px) {
     width: 300px;
+    padding: 50px 0 50px 0;
   }
 
   @media screen and (min-width: 1280px) {
     width: 400px;
+    padding: 100px 0 100px 0;
   }
 }
 .rating {
@@ -127,4 +129,107 @@
   height: 35px;
   background-color: $bg-rating-color;
   border-radius: 10px;
+}
+
+.films__error {
+  width: 200px;
+  margin: auto;
+  padding: 30px 0 30px 0;
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    padding: 50px 0 100px 0;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 600px;
+    padding: 100px 0 100px 0;
+  }
+}
+
+.films__not-correct-notification {
+  display: none;
+
+  align-items: center;
+  padding: 10px 10px 10px 10px;
+  position: absolute;
+  overflow: hidden;
+
+  font-size: 17px;
+
+  width: 270px;
+  height: 60px;
+  background-color: $orange-hover;
+  border-radius: 10px;
+
+  &-show {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    animation: warning 600ms ease-in-out forwards;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+
+    @media screen and (min-width: 768px) {
+      top: 67%;
+      left: 50%;
+      transform: translate(-50%, -67%);
+      width: 500px;
+      height: 50px;
+      padding: 8px;
+      font-size: 18px;
+    }
+  }
+}
+
+.films__no-movies-notification {
+  display: none;
+
+  align-items: center;
+  padding: 10px 10px 10px 10px;
+  position: absolute;
+  overflow: hidden;
+
+  font-size: 17px;
+
+  width: 270px;
+  height: 57px;
+  background-color: $orange-hover;
+  border-radius: 10px;
+
+  &-show {
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -47%);
+
+    animation: warning 600ms ease-in-out forwards;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+
+    @media screen and (min-width: 768px) {
+      top: 72%;
+      left: 50%;
+      transform: translate(-50%, -72%);
+      width: 500px;
+      padding: 8px;
+      font-size: 18px;
+    }
+  }
+}
+
+@keyframes warning {
+  0% {
+    opacity: 0;
+    top: 0;
+  }
+  5% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    top: 200px;
+  }
 }
