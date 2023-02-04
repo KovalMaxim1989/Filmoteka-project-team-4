@@ -142,19 +142,20 @@
 }
 
 .films__error {
-  width: 200px;
-  margin: auto;
-  padding: 30px 0 30px 0;
+  height: 1000px;
+  // width: 200px;
+  // margin: auto;
+  // padding: 30px 0 30px 0;
 
-  @media screen and (min-width: 768px) {
-    width: 400px;
-    padding: 50px 0 100px 0;
-  }
+  // @media screen and (min-width: 768px) {
+  //   width: 400px;
+  //   padding: 50px 0 100px 0;
+  // }
 
-  @media screen and (min-width: 1280px) {
-    width: 600px;
-    padding: 100px 0 100px 0;
-  }
+  // @media screen and (min-width: 1280px) {
+  //   width: 600px;
+  //   padding: 100px 0 100px 0;
+  // }
 }
 
 .films__not-correct-notification {
