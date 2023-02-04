@@ -1,5 +1,6 @@
 // ALL IMPORTS:
-// import { initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
+import { getFirebaseConfig } from './js/firebase-config';
 // import Notiflix from 'notiflix';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import axios from 'axios';
@@ -12,6 +13,8 @@ import './js/search-films';
 import './js/modal';
 import './js/footer-modal';
 import './js/registr-modal';
+//  Кнопка догори
+import { scrollTop } from './js/button';
 
 // ! Section for create new Class instances:
 // here you create new Class instances
@@ -25,5 +28,13 @@ renderTrendMovie();
 
 // ! additional functions
 //  here you add neccessary functions
-//  Кнопка догори
-import { scrollTop } from './js/button';
+
+// ? *******************************************
+
+const firebaseAppConfig = getFirebaseConfig();
+// TODO 0: Initialize Firebase
+initializeApp(firebaseAppConfig);
+
+// TODO : Initialize Firebase Performance Monitoring
+// initFirebaseAuth();
+// loadQueueMovie(); //
