@@ -22,3 +22,4 @@ import './js/search-films';
 // Створення Модальогое вікна обраного фільму Modal Movies
 import './js/modal';
 import './js/footer-modal';
+import './js/registr-modal';

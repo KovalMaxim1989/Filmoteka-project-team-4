@@ -1,7 +1,7 @@
 const refs = {
-  openModalBtn: document.querySelector('[data-modal-open-team]'),
-  closeModalBtn: document.querySelector('[data-modal-close-team]'),
-  backdrop: document.querySelector('.backdrop-footer'),
+  openModalBtn: document.querySelector('[data-modal-open-registr]'),
+  closeModalBtn: document.querySelector('[data-modal-close-registr]'),
+  backdrop: document.querySelector('.backdrop-registr'),
 };
 
 refs.openModalBtn.addEventListener('click', onOpenModal);
@@ -21,6 +21,7 @@ function onOpenModal() {
 
 function onCloseModal() {
   refs.backdrop.classList.add('is-hidden');
+  document.body.classList.remove('scroll__lock');
   window.removeEventListener('keydown', onPressESC);
 
   window.onscroll = function () {
