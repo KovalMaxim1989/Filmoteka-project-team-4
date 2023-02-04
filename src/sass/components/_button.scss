@@ -1,0 +1,29 @@
+#top {
+  position: fixed;
+  right: 5px;
+  bottom: 50px;
+
+  padding: 8px 10px;
+
+  color: #ffffff;
+  background: #ff6b08;
+  border: #ff6b08;
+  border-radius: 20%;
+
+  transition: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: transform, opacity;
+
+  cursor: pointer;
+  opacity: 0.85;
+
+  &:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  @media screen and (min-width: 768px) {
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 12px;
+  }
+}

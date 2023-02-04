@@ -80,10 +80,7 @@
     box-shadow: $btn-shadow;
   }
 }
-.btn-active {
-  color: $txt-white-color;
-  background-color: $bg-active-color;
-}
+
 .btn--ten {
   display: none;
   @media screen and (min-width: 768px) {
@@ -104,4 +101,8 @@
       box-shadow: $btn-shadow;
     }
   }
+}
+.btn-active {
+  color: $txt-white-color;
+  background-color: $bg-active-color;
 }
