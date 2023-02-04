@@ -1,4 +1,5 @@
-import { onQueue, onWatched } from './js/library-markup';
+import { onQueue, onWatched, onLoadLibrary } from './js/library-markup';
+window.onload = onLoadLibrary();
 
 onQueue();
 onWatched();
