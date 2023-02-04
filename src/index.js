@@ -37,16 +37,7 @@ import { FireBaseService } from './js/firebase';
 import { refs } from './js/refs';
 
 const firebaseAppConfig = getFirebaseConfig();
-
 const firebase = new FireBaseService();
-
-// Get all elements
-// const signInButtonElement = document.querySelector('.js-sign-in');
-// const signOutButtonElement = document.querySelector('.js-sign-out');
-// const signInWithEmail = document.querySelector('[data-modal-sign-in-email]');
-// const signInWithGoogle = document.querySelector('[data-modal-sign-in-google]');
-// const userPicElement = document.getElementById('user-pic');
-// const userNameElement = document.getElementById('user-name');
 
 // add listeners
 refs.signInWithGoogle.addEventListener('click', firebase.signIn);
