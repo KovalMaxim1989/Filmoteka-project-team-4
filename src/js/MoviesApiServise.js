@@ -18,7 +18,7 @@ export class MovieAPI {
       refs.containerPagAll.classList.remove('visually-hidden');
       return data;
     } catch (error) {
-      refs.containerPage.classList.add('visually-hidden');
+      refs.containerPagAll.classList.add('visually-hidden');
       console.error(error);
     }
   }
