@@ -13,6 +13,7 @@
 
 import { saveGenres } from './js/trandingfilms';
 import { renderTrendMovie } from './js/trandingfilms';
+import { scrollTop } from './js/button';
 
 saveGenres();
 renderTrendMovie();
