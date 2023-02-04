@@ -14,7 +14,8 @@ export function onQueue() {
     if (queueFilms) {
       list.innerHTML = createMarkupLibraryList(JSON.parse(queueFilms));
     } else {
-      list.innerHTML = '';
+      list.innerHTML =
+        '<div style="height: 500px; font-size: 24px">заглушка, коли нема фільмів</div>';
       return;
     }
   });
@@ -25,7 +26,8 @@ export function onWatched() {
     if (watchedFilms) {
       list.innerHTML = createMarkupLibraryList(JSON.parse(watchedFilms));
     } else {
-      list.innerHTML = '';
+      list.innerHTML =
+        '<div style="height: 500px; font-size: 24px">заглушка, коли нема фільмів</div>';
       return;
     }
   });
