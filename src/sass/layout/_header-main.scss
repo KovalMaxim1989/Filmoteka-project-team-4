@@ -49,8 +49,24 @@
   stroke: $txt-white-color;
   fill: transparent;
 
-  transition: stroke $animation;
+transition: stroke $animation;
+
+&:hover{
+animation: myAnim 2s ease 0s infinite;
 }
+}
+
+@keyframes myAnim {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
 
 .header__form {
   position: relative;
@@ -114,3 +130,4 @@
     transition: transform $animation;
   }
 }
+

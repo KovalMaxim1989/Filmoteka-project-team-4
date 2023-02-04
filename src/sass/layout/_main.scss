@@ -1,5 +1,5 @@
-.filmoteka {
-}
+// .filmoteka {
+// }
 
 .films {
   padding: 20px 0;
@@ -53,9 +53,11 @@
 .films__img-wrapper {
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
 
 // .films__img {
+//   position: relative;
 // }
 
 .films__info {
@@ -81,13 +83,34 @@
   color: $txt-active-color;
 }
 
-.films__genre {
-}
-.films__year {
-}
-.films__rating {
-}
+// .films__genre {
+// }
+// .films__year {
+// }
+// .films__rating {
+// }
 
 .films__rating--text {
   color: $txt-black-color;
+}
+
+.films__error-img {
+  width: 200px;
+  margin: auto;
+  padding: 100px 0 100px 0;
+  @media screen and (min-width: 768px) {
+    width: 300px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 400px;
+  }
+}
+.rating {
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  text-align: center;
 }

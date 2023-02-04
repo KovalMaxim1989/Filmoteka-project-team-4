@@ -19,6 +19,7 @@ export const refs = {
   containerPage: document.querySelector('.js-pagination__page'),
   plusTen: document.querySelector('.btn-increment-ten'),
   minusTen: document.querySelector('.btn-decrement-ten'),
+  containerPagAll: document.querySelector('.js-pagination'),
 
   // ЯКЩО КОМУ ПОТРІБНІ РЕФИ АБО ШУКАЙТЕ ВЖЕ СТВОРЕНІ І РОЗКОМЕНТОВУЙТЕ АБО ДОДАВАЙТЕ СВОЇ
 
@@ -35,6 +36,7 @@ export const refs = {
   // End refs Modal Movies
   // // Search input in Header
   searchForm: document.querySelector('.header__form'),
+  searchErrorImg: document.querySelector('.films__error-img'),
 
   // // spiner
   // backdropSpinner: document.querySelector('[data-load]'),
@@ -50,3 +52,5 @@ refs.plusQuery.addEventListener('click', onClickIncrementPage);
 refs.containerPage.addEventListener('click', onClickPaginationBtnNumber);
 refs.minusTen.addEventListener('click', onClickDecrementTen);
 refs.plusTen.addEventListener('click', onClickIncrementTen);
+refs.lastPage.addEventListener('click', onClickPaginationBtnNumber);
+refs.firstPage.addEventListener('click', onClickPaginationBtnNumber);
