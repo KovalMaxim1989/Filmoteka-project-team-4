@@ -74,6 +74,12 @@
   }
 }
 
+.main-btn--library-active{
+  background-color: $bg-active-color;
+  border: transparent;
+  box-shadow: $btn-shadow;
+}
+
 .button-search {
   position: absolute;
   right: 0;
