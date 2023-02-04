@@ -52,6 +52,38 @@ export class FireBaseService {
     // Listen to auth state changes.
     onAuthStateChanged(getAuth(), authStateObserver);
   }
+
+  // Saves a new watched movie to Cloud Firestore.
+  async saveWatchedMovie(data) {
+    // Add a new watched movie to the Firebase database.
+    try {
+      console.log('😎 I am going to FireBase');
+      await addDoc(collection(getFirestore(), 'WatchedMovie'), {
+        name: getUserName(),
+        movieData: JSON.stringify([data]),
+
+        // profilePicUrl: getProfilePicUrl(),
+        // timestamp: serverTimestamp(),
+      });
+    } catch (error) {
+      console.error('Error writing new message to Firebase Database', error);
+    }
+  }
+
+  // Saves a new queue movie to Cloud Firestore.
+  async saveQueueMovie(data) {
+    console.log('🤗 I go to FireBase');
+    // Add a new queue movie to the Firebase database.
+    try {
+      await addDoc(collection(getFirestore(), 'QueueMovie'), {
+        name: getUserName(),
+        movieData: JSON.stringify([data]),
+      });
+      // const docRef =
+    } catch (error) {
+      console.error('Error writing new message to Firebase Database', error);
+    }
+  }
 }
 
 // Triggers when the auth state change for instance when the user signs-in or signs-out.
