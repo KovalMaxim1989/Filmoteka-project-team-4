@@ -1,3 +1,4 @@
+import defaultImgBack from '../images/backdrop-kino.jpg';
 import defaultImg from '../images/movie-pic.jpg';
 
 export function createMarkupFilmsList(moviesData) {
@@ -114,7 +115,7 @@ export function createMarkupSelectedMovie(moviesData) {
       .querySelector('.backdrop')
       .setAttribute(
         'style',
-        `background-image: url(${defaultImg}); background-position: center; background-size: cover;`
+        `background-image: url(${defaultImgBack}); background-position: center; background-size: cover;`
       );
   }
 }
