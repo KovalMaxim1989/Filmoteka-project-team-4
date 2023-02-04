@@ -27,12 +27,11 @@ export function openModal(evt) {
     return;
   }
 
-  refs.body.document.querySelector('.wrap-disc').innerHTML = '';
+  document.querySelector('.wrap-disc').innerHTML = '';
 
   const currentMovie = evt.target.closest('.js-target');
   const currentId = Number(currentMovie.dataset.id);
 
-  // debugger;
   fetchModal(currentId).then(data => {
     createMarkupSelectedMovie(data);
   });
@@ -52,7 +51,6 @@ export function openModal(evt) {
               window.removeEventListener('keydown', onEsc.bind(instance)),
           }
         );
-        // debugger
         instance.show();
 
         function onEsc(evt) {
@@ -71,11 +69,8 @@ export function openModal(evt) {
 function toggleModal() {
   window.addEventListener('keydown', onEscPress);
   refs.modalMovies.classList.toggle('is-hidden');
-  hideScroll();
   if (refs.modalMovies.classList.contains('is-hidden')) {
     window.removeEventListener('keydown', onEscPress);
-    // refs.trailerBtn.removeEventListener('click', modalTrailer.fetchTrailer);
-    // debugger;
   }
 }
 
@@ -103,9 +98,4 @@ async function fetchModal(movie_id) {
   } catch (error) {
     console.log(error);
   }
-}
-// debugger;
-
-function hideScroll() {
-  refs.body.classList.toggle('show-modal');
 }
