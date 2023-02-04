@@ -1,7 +1,11 @@
 // Refs for Modal Movies
 import axios from 'axios';
 import { createMarkupSelectedMovie } from './markup';
-import { fetchTrailer } from './modal-trailer';
+import { fetchTrailerKey } from './modal-trailer';
+
+import * as basicLightbox from 'basiclightbox';
+import 'basiclightbox/dist/basicLightbox.min.css';
+
 import { refs } from './refs';
 
 // debugger
@@ -22,32 +26,56 @@ export function openModal(evt) {
   if (evt.currentTarget === evt.target) {
     return;
   }
-  document.querySelector('.wrap-disc').innerHTML = '';
+
+  refs.body.document.querySelector('.wrap-disc').innerHTML = '';
 
   const currentMovie = evt.target.closest('.js-target');
   const currentId = Number(currentMovie.dataset.id);
 
+  // debugger;
   fetchModal(currentId).then(data => {
     createMarkupSelectedMovie(data);
   });
 
-  refs.trailerBtn.addEventListener('click', fetchTrailer.bind(evt, currentId));
-  // debugger
+  fetchTrailerKey(currentId).then(
+    key =>
+      (refs.trailerBtn.onclick = () => {
+        basicLightbox;
+        const instance = basicLightbox.create(
+          `<div class="modal-trailer">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>`,
+          {
+            onShow: () =>
+              window.addEventListener('keydown', onEsc.bind(instance)),
+            onClose: () =>
+              window.removeEventListener('keydown', onEsc.bind(instance)),
+          }
+        );
+        // debugger
+        instance.show();
+
+        function onEsc(evt) {
+          if (evt.key === 'Escape') {
+            this.close();
+          }
+        }
+      })
+  );
+
+  // refs.trailerBtn.addEventListener('click', fetchTrailerKey(currentId));
+  // debugger;
   toggleModal();
 }
-
-function onFetchTrailer (currentId) {
-  fetchTrailer(currentId);
-  // debugger
-};
 
 function toggleModal() {
   window.addEventListener('keydown', onEscPress);
   refs.modalMovies.classList.toggle('is-hidden');
+  hideScroll();
   if (refs.modalMovies.classList.contains('is-hidden')) {
     window.removeEventListener('keydown', onEscPress);
-    refs.trailerBtn.removeEventListener('click', fetchTrailer)
-    debugger
+    // refs.trailerBtn.removeEventListener('click', modalTrailer.fetchTrailer);
+    // debugger;
   }
 }
 
@@ -75,4 +103,9 @@ async function fetchModal(movie_id) {
   } catch (error) {
     console.log(error);
   }
+}
+// debugger;
+
+function hideScroll() {
+  refs.body.classList.toggle('show-modal');
 }

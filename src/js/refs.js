@@ -18,6 +18,8 @@ export const refs = {
 
   // ЯКЩО КОМУ ПОТРІБНІ РЕФИ АБО ШУКАЙТЕ ВЖЕ СТВОРЕНІ І РОЗКОМЕНТОВУЙТЕ АБО ДОДАВАЙТЕ СВОЇ
 
+  body: document.querySelector('body'),
+
   // Refs for Modal Movies
   backdrop: document.querySelector('.backdrop'),
   modalMovies: document.querySelector('[data-modal]'),
