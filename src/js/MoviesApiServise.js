@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { refs } from './refs';
 
 export class MovieAPI {
   #BASE_URL = 'https://api.themoviedb.org/3';
@@ -14,8 +15,10 @@ export class MovieAPI {
           this.#page
         }`
       );
+      refs.containerPagAll.classList.remove('visually-hidden');
       return data;
     } catch (error) {
+      refs.containerPage.classList.add('visually-hidden');
       console.error(error);
     }
   }
@@ -42,6 +45,7 @@ export class MovieAPI {
       );
       return response.data;
     } catch (error) {
+      refs.containerPage.classList.add('visually-hidden');
       Notify.failure(error);
     }
   }

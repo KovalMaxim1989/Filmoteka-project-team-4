@@ -32,12 +32,14 @@ function onSearch(e) {
     .getSearchMovies()
     .then(data => {
       if (data.results.length === 0) {
+        refs.containerPagAll.classList.add('visually-hidden');
         return Notify.info(
           'Sorry, there are no movies matching your search query. Please try again.'
         );
       }
 
       pagination(data);
+      refs.containerPagAll.classList.remove('visually-hidden');
 
       const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
