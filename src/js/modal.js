@@ -8,9 +8,7 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 
 import { refs } from './refs';
 
-// debugger
-
-// Тимчасово пам'ятка
+// Тимчасово пам'ятка в продакшн видалити
 // References to DOM
 // const backdrop = document.querySelector('.backdrop');
 // const modalMovies = document.querySelector('[data-modal]');
@@ -36,33 +34,35 @@ export function openModal(evt) {
     createMarkupSelectedMovie(data);
   });
 
-  fetchTrailerKey(currentId).then(
-    key =>
-      (refs.trailerBtn.onclick = () => {
-        basicLightbox;
-        const instance = basicLightbox.create(
-          `<div class="modal-trailer">
+  fetchTrailerKey(currentId).then(key => {
+    refs.trailerBtn.onclick = () => {
+      const instance = basicLightbox.create(
+        `<div class="modal-trailer">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>`,
-          {
-            onShow: () =>
-              window.addEventListener('keydown', onEsc.bind(instance)),
-            onClose: () =>
-              window.removeEventListener('keydown', onEsc.bind(instance)),
-          }
-        );
-        instance.show();
-
-        function onEsc(evt) {
-          if (evt.key === 'Escape') {
-            this.close();
-          }
+        {
+          onShow: () => {
+            window.removeEventListener('keydown', onEscPress);
+            window.addEventListener('keydown', onEsc.bind(instance), {
+              once: true,
+            });
+          },
+          onClose: () => {
+            window.addEventListener('keydown', onEscPress, { once: true });
+            window.removeEventListener('keydown', onEsc.bind(instance));
+          },
         }
-      })
-  );
+      );
+      instance.show();
 
-  // refs.trailerBtn.addEventListener('click', fetchTrailerKey(currentId));
-  // debugger;
+      function onEsc(evt) {
+        if (evt.key === 'Escape') {
+          this.close();
+        }
+      }
+    };
+  });
+  document.body.classList.add('scroll__lock');
   toggleModal();
 }
 
@@ -70,6 +70,7 @@ function toggleModal() {
   window.addEventListener('keydown', onEscPress);
   refs.modalMovies.classList.toggle('is-hidden');
   if (refs.modalMovies.classList.contains('is-hidden')) {
+    document.body.classList.remove('scroll__lock');
     window.removeEventListener('keydown', onEscPress);
   }
 }

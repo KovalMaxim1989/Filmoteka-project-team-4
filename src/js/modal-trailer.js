@@ -15,44 +15,32 @@ async function fetchTrailerKey(currentId) {
       `${BASE_URL}${currentId}/videos?api_key=${API_KEY}`
     );
     const key = response.data.results[0].key;
-    // debugger;
-    // renderTrailer(key);
-    // refs.trailerBtn.onclick = () => {
-    //   basicLightbox
-    //     .create(
-    //       `<div class="modal-trailer">
-    //       <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    //       </div>`
-    //     )
-    //     .show();
-    // };
+
     return key;
   } catch (error) {
     Notiflix.Notify.failure('Sorry, there is no trailer for this movie');
   }
   //   spinnerOff();
 }
-// debugger
 
-function renderTrailer(key) {
-  const instance = basicLightbox.create(
-    `<div class="modal-trailer">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>`,
-    {
-      onShow: () => window.addEventListener('keydown', onEsc.bind(instance)),
-      onClose: () =>
-        window.removeEventListener('keydown', onEsc.bind(instance)),
-    }
-  );
-  // debugger
-  instance.show();
+// function renderTrailer(key) {
+//   const instance = basicLightbox.create(
+//     `<div class="modal-trailer">
+//           <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+//           </div>`,
+//     {
+//       onShow: () => window.addEventListener('keydown', onEsc.bind(instance)),
+//       onClose: () =>
+//         window.removeEventListener('keydown', onEsc.bind(instance)),
+//     }
+//   );
+//   instance.show();
 
-  function onEsc(evt) {
-    if (evt.key === 'Escape') {
-      this.close();
-    }
-  }
-}
+//   function onEsc(evt) {
+//     if (evt.key === 'Escape') {
+//       this.close();
+//     }
+//   }
+// }
 
 export { fetchTrailerKey };
