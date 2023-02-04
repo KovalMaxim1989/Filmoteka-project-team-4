@@ -1,6 +1,7 @@
 // ALL IMPORTS:
 import { initializeApp } from 'firebase/app';
 import { getFirebaseConfig } from './js/firebase-config';
+import { refs } from './js/refs';
 // import Notiflix from 'notiflix';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import axios from 'axios';
@@ -38,3 +39,13 @@ initializeApp(firebaseAppConfig);
 // TODO : Initialize Firebase Performance Monitoring
 // initFirebaseAuth();
 // loadQueueMovie(); //
+
+//  signInButtonElement: document.querySelector('.js-sign-in'),
+//   signOutButtonElement: document.querySelector('.js-sign-out'),
+//   userPicElement: document.getElementById('user-pic'),
+//   userNameElement: document.getElementById('user-name'),
+
+console.log(refs.signInButtonElement);
+console.log(refs.signOutButtonElement);
+console.log(refs.userPicElement);
+console.log(refs.userNameElement);

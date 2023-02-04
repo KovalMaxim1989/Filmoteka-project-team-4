@@ -46,6 +46,12 @@ export const refs = {
   // libraryList: document.querySelector('.js-library-list'),
   // btnQueue: document.querySelector('.js-btn-queue'),
   // btnWatched: document.querySelector('.js-btn-watched'),
+
+  // FireBase
+  signInButtonElement: document.querySelector('.js-sign-in'),
+  signOutButtonElement: document.querySelector('.js-sign-out'),
+  userPicElement: document.getElementById('user-pic'),
+  userNameElement: document.getElementById('user-name'),
 };
 refs.minusQuery.addEventListener('click', onClickDecrementPage);
 refs.plusQuery.addEventListener('click', onClickIncrementPage);
