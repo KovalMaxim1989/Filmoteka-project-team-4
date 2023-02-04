@@ -19,7 +19,7 @@ function onOpenModal() {
   };
 }
 
-function onCloseModal() {
+export function onCloseModal() {
   refs.backdrop.classList.add('is-hidden');
   document.body.classList.remove('scroll__lock');
   window.removeEventListener('keydown', onPressESC);

@@ -1,0 +1,30 @@
+#user-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  top: 48px;
+  width: 100%;
+  right: 0;
+  padding-left: 10px;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+#user-pic {
+  top: -3px;
+  position: relative;
+  display: inline-block;
+  background-image: url(../images/profile_placeholder.png);
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-size: 40px;
+  border-radius: 20px;
+}
+
+#user-name {
+  color: $txt-white-color;
+  font-size: 16px;
+  line-height: 2;
+  padding-left: 20px;
+}
