@@ -16,10 +16,18 @@ refs.searchForm.addEventListener('submit', onSearch);
 function onSearch(e) {
   e.preventDefault();
   const formValue = e.currentTarget.elements.searchQuery.value.trim();
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
+  refs.noMoviesNotification.classList.add('visually-hidden');
   if (!formValue) {
-    return Notify.info(
-      'Sorry, there are no movies matching your search query. Please try again.'
+    refs.notCorrectNotification.classList.add(
+      'films__not-correct-notification-show'
     );
+    return;
   }
 
   refs.moviesList.innerHTML = '';
@@ -31,12 +39,20 @@ function onSearch(e) {
   movieAPI
     .getSearchMovies()
     .then(data => {
+      refs.notCorrectNotification.classList.remove(
+        'films__not-correct-notification-show'
+      );
+      refs.noMoviesNotification.classList.remove(
+        'films__no-movies-notification-show'
+      );
       refs.searchErrorImg.classList.add('visually-hidden');
       if (data.results.length === 0) {
         refs.searchErrorImg.classList.remove('visually-hidden');
-        return Notify.info(
-          'Sorry, there are no movies matching your search query. Please try again.'
+        refs.noMoviesNotification.classList.add(
+          'films__no-movies-notification-show'
         );
+        refs.noMoviesNotification.classList.remove('visually-hidden');
+        return;
       }
 
       pagination(data);

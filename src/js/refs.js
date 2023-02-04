@@ -36,6 +36,12 @@ export const refs = {
   // // Search input in Header
   searchForm: document.querySelector('.header__form'),
   searchErrorImg: document.querySelector('.films__error-img'),
+  noMoviesNotification: document.querySelector(
+    '.films__no-movies-notification'
+  ),
+  notCorrectNotification: document.querySelector(
+    '.films__not-correct-notification'
+  ),
 
   // // spiner
   // backdropSpinner: document.querySelector('[data-load]'),

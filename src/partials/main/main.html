@@ -1,11 +1,18 @@
 <section class="filmoteka films">
   <div class="container">
     <h1 class="visually-hidden">Filmoteka</h1>
+    <div class="films__not-correct-notification">
+      Write the correct title of the movie.
+    </div>
     <ul class="films__list js-films-list" data-modal-open>
-      <li>
-        <p>Заглушка (Якщо це видно, то не приходить відпоідь з бекенду)</p>
+      <li class="films__error">
+        <img src="./images/error-start-page.jpg" alt="Sorry No Results Found" />
       </li>
     </ul>
+
+    <div class="films__no-movies-notification">
+      Sorry, there are no movies matching your search query.
+    </div>
     <img
       class="films__error-img visually-hidden"
       src="./images/no-results.png"
