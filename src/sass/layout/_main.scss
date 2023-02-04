@@ -57,7 +57,7 @@
 }
 
 // .films__img {
-
+//   position: relative;
 // }
 
 .films__info {
@@ -105,7 +105,7 @@
   @media screen and (min-width: 1280px) {
     width: 400px;
   }
-
+}
 .rating {
   display: block;
   position: absolute;
@@ -113,5 +113,4 @@
   left: 0;
   bottom: 0;
   text-align: center;
-}
 }
