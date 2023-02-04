@@ -2,44 +2,63 @@
   <div class="container">
     <h1 class="visually-hidden">Filmoteka</h1>
     <ul class="films__list js-films-list" data-modal-open>
-      <p>Заглушка (Якщо це видно, то не приходить відпоідь з бекенду)</p>
+      <li>
+        <p>Заглушка (Якщо це видно, то не приходить відпоідь з бекенду)</p>
+      </li>
     </ul>
+    <img
+      class="films__error-img visually-hidden"
+      src="./images/no-results.png"
+      alt="Sorry No Results Found"
+    />
   </div>
 </section>
-<section class="js-pagination">
-  <button class="btn-incremention js-btn__minusQuery" type="button">
-    <svg class="js-pagination__arrow" width="16" height="16">
-      <use href="././images/sprite/icons.svg#icon-arrow-left"></use>
-    </svg>
-  </button>
-  <button class="btn-decrement-ten btn--ten">...</button>
-  <div class="js-pagination__page">
+<section>
+  <div class="js-pagination">
     <button class="js-pagination--firstPage btn btn-pagination" type="button">
       1
     </button>
-    <button class="js-pagination--minus2Page btn btn-pagination" type="button">
-      2
+
+    <button class="btn-incremention js-btn__minusQuery" type="button">
+      <svg class="js-pagination__arrow" width="16" height="16">
+        <use href="././images/sprite/icons.svg#icon-arrow-left"></use>
+      </svg>
     </button>
-    <button class="js-pagination--minus1Page btn btn-pagination" type="button">
-      3
+
+    <button class="btn-decrement-ten btn--ten">...</button>
+    <div class="js-pagination__page">
+      <button
+        class="js-pagination--minus2Page btn btn-pagination"
+        type="button"
+      >
+        2
+      </button>
+      <button
+        class="js-pagination--minus1Page btn btn-pagination"
+        type="button"
+      >
+        3
+      </button>
+      <button class="js-pagination--activPage btn btn-pagination" type="button">
+        4
+      </button>
+      <button class="js-pagination--plus1Page btn btn-pagination" type="button">
+        5
+      </button>
+      <button class="js-pagination--plus2Page btn btn-pagination" type="button">
+        6
+      </button>
+    </div>
+    <button class="btn-increment-ten btn--ten">...</button>
+
+    <button class="btn-incremention js-btn__plusQuery" type="button">
+      <svg class="js-pagination__arrow" width="16" height="16">
+        <use href="././images/sprite/icons.svg#icon-arrow-right"></use>
+      </svg>
     </button>
-    <button class="js-pagination--activPage btn btn-pagination" type="button">
-      4
-    </button>
-    <button class="js-pagination--plus1Page btn btn-pagination" type="button">
-      5
-    </button>
-    <button class="js-pagination--plus2Page btn btn-pagination" type="button">
-      6
-    </button>
+
     <button class="js-pagination--lastPage btn btn-pagination" type="button">
       7
     </button>
   </div>
-  <button class="btn-increment-ten btn--ten">...</button>
-  <button class="btn-incremention js-btn__plusQuery" type="button">
-    <svg class="js-pagination__arrow" width="16" height="16">
-      <use href="././images/sprite/icons.svg#icon-arrow-right"></use>
-    </svg>
-  </button>
 </section>
