@@ -29,7 +29,7 @@ import {
   getDownloadURL,
 } from 'firebase/storage';
 
-import { getFirebaseConfig } from '../js/firebase-config';
+// import { getFirebaseConfig } from '../js/firebase-config';
 import { refs } from '../js/refs';
 
 // const signInButtonElement = document.querySelector('.js-sign-in');
@@ -59,41 +59,41 @@ export class FireBaseService {
   // Initialize firebase auth
   initFirebaseAuth() {
     // Listen to auth state changes.
-    onAuthStateChanged(getAuth(), this.authStateObserver);
+    onAuthStateChanged(getAuth(), authStateObserver);
   }
+}
 
-  // Triggers when the auth state change for instance when the user signs-in or signs-out.
-  authStateObserver(user) {
-    if (user) {
-      // // User is signed in!
-      // // Get the signed-in user's profile pic and name.
-      // let profilePicUrl = getProfilePicUrl();
-      // let userName = getUserName();
+// Triggers when the auth state change for instance when the user signs-in or signs-out.
+function authStateObserver(user) {
+  if (user) {
+    // User is signed in!
+    // Get the signed-in user's profile pic and name.
+    // let profilePicUrl = getProfilePicUrl();
+    // let userName = getUserName();
 
-      // // Set the user's profile pic and name.
-      // userPicElement.style.backgroundImage =
-      //   "url(" + addSizeToGoogleProfilePic(profilePicUrl) + ")";
-      // userNameElement.textContent = userName;
+    // // Set the user's profile pic and name.
+    // userPicElement.style.backgroundImage =
+    //   "url(" + addSizeToGoogleProfilePic(profilePicUrl) + ")";
+    // userNameElement.textContent = userName;
 
-      // Show user's profile and sign-out button.
-      // userNameElement.removeAttribute("hidden");
-      // userPicElement.removeAttribute("hidden");
-      signOutButtonElement.classList.remove('is-hidden');
+    // Show user's profile and sign-out button.
+    // userNameElement.removeAttribute("hidden");
+    // userPicElement.removeAttribute("hidden");
+    refs.signOutButtonElement.classList.remove('visually-hidden');
 
-      // Hide sign-in button.
-      signInButtonElement.classList.add('is-hidden');
+    // Hide sign-in button.
+    refs.signInButtonElement.classList.add('visually-hidden');
 
-      // We save the Firebase Messaging Device token and enable notifications.
-      // saveMessagingDeviceToken();
-    } else {
-      // User is signed out!
-      // Hide user's profile and sign-out button.
-      // userNameElement.setAttribute("hidden", "true");
-      // userPicElement.setAttribute("hidden", "true");
-      signOutButtonElement.classList.add('is-hidden');
+    // We save the Firebase Messaging Device token and enable notifications.
+    // saveMessagingDeviceToken();
+  } else {
+    // User is signed out!
+    // Hide user's profile and sign-out button.
+    // userNameElement.setAttribute("hidden", "true");
+    // userPicElement.setAttribute("hidden", "true");
+    refs.signOutButtonElement.classList.add('visually-hidden');
 
-      // Show sign-in button.
-      signInButtonElement.classList.remove('is-hidden');
-    }
+    // Show sign-in button.
+    refs.signInButtonElement.classList.remove('visually-hidden');
   }
 }

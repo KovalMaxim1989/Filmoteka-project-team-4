@@ -1,7 +1,7 @@
 // ALL IMPORTS:
 import { initializeApp } from 'firebase/app';
 import { getFirebaseConfig } from './js/firebase-config';
-import { refs } from './js/refs';
+
 // import Notiflix from 'notiflix';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import axios from 'axios';
@@ -16,6 +16,7 @@ import './js/footer-modal';
 import './js/registr-modal';
 //  Кнопка догори
 import { scrollTop } from './js/button';
+// import { refs } from './js/refs';
 
 // ! Section for create new Class instances:
 // here you create new Class instances
@@ -30,22 +31,29 @@ renderTrendMovie();
 // ! additional functions
 //  here you add neccessary functions
 
-// ? *******************************************
+// ? FireBase logic authentification *******************************************
+
+import { FireBaseService } from './js/firebase';
+import { refs } from './js/refs';
 
 const firebaseAppConfig = getFirebaseConfig();
+
+const firebase = new FireBaseService();
+
+// Get all elements
+// const signInButtonElement = document.querySelector('.js-sign-in');
+// const signOutButtonElement = document.querySelector('.js-sign-out');
+// const signInWithEmail = document.querySelector('[data-modal-sign-in-email]');
+// const signInWithGoogle = document.querySelector('[data-modal-sign-in-google]');
+// const userPicElement = document.getElementById('user-pic');
+// const userNameElement = document.getElementById('user-name');
+
+// add listeners
+refs.signInWithGoogle.addEventListener('click', firebase.signIn);
+refs.signOutButtonElement.addEventListener('click', firebase.signOutUser);
+
 // TODO 0: Initialize Firebase
 initializeApp(firebaseAppConfig);
-
 // TODO : Initialize Firebase Performance Monitoring
-// initFirebaseAuth();
+firebase.initFirebaseAuth();
 // loadQueueMovie(); //
-
-//  signInButtonElement: document.querySelector('.js-sign-in'),
-//   signOutButtonElement: document.querySelector('.js-sign-out'),
-//   userPicElement: document.getElementById('user-pic'),
-//   userNameElement: document.getElementById('user-name'),
-
-console.log(refs.signInButtonElement);
-console.log(refs.signOutButtonElement);
-console.log(refs.userPicElement);
-console.log(refs.userNameElement);

@@ -5,6 +5,7 @@ import {
   onClickDecrementTen,
   onClickIncrementTen,
 } from './pagination';
+
 export const refs = {
   moviesList: document.querySelector('.js-films-list'),
   firstPage: document.querySelector('.js-pagination--firstPage'),
@@ -52,6 +53,8 @@ export const refs = {
   signOutButtonElement: document.querySelector('.js-sign-out'),
   userPicElement: document.getElementById('user-pic'),
   userNameElement: document.getElementById('user-name'),
+  signInWithEmail: document.querySelector('[data-modal-sign-in-email]'),
+  signInWithGoogle: document.querySelector('[data-modal-sign-in-google]'),
 };
 refs.minusQuery.addEventListener('click', onClickDecrementPage);
 refs.plusQuery.addEventListener('click', onClickIncrementPage);
