@@ -48,11 +48,10 @@ function onSearch(e) {
       refs.searchErrorImg.classList.add('visually-hidden');
       if (data.results.length === 0) {
         refs.searchErrorImg.classList.remove('visually-hidden');
-        refs.noMoviesNotification.classList.add(
-          'films__no-movies-notification-show'
+        refs.containerPagAll.classList.add('visually-hidden');
+        return Notify.info(
+          'Sorry, there are no movies matching your search query. Please try again.'
         );
-        refs.noMoviesNotification.classList.remove('visually-hidden');
-        return;
       }
       refs.containerPagAll.classList.remove('visually-hidden');
       pagination(data);
