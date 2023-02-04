@@ -17,7 +17,7 @@ import { renderTrendMovie } from './js/trandingfilms';
 saveGenres();
 renderTrendMovie();
 
-import './js/search-films'
+import './js/search-films';
 
 // Створення Модальогое вікна обраного фільму Modal Movies
-import './js/modal'
+import './js/modal';
