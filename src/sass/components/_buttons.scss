@@ -1,105 +1,161 @@
 .button-wrapper {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .button-wrapper--library {
-    @media screen and (min-width: 768px) {
-        gap: 32px;
-    }
+  @media screen and (min-width: 768px) {
+    gap: 32px;
+  }
 
-    @media screen and (min-width: 1280px) {
-        gap: 16px;
-    }
+  @media screen and (min-width: 1280px) {
+    gap: 16px;
+  }
 }
 
 .main-btn {
-    display: inline-flex;
-    width: 110px;
-    height: 44px;
+  display: inline-flex;
+  width: 110px;
+  height: 44px;
 
-    font-weight: 500;
-    font-size: 12px;
-    line-height: calc(16 / 12);
-    border-radius: 5px;
-    border: 1px solid $txt-black-color;
-    outline: none;
-    background-color: $bg-white-color;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  border-radius: 5px;
+  border: 1px solid $txt-black-color;
+  outline: none;
+  background-color: $bg-white-color;
 
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
 
-    color: $txt-black-color;
-    transition: color $animation, background-color $animation,
-        box-shadow $animation;
+  color: $txt-black-color;
+  transition: color $animation, background-color $animation,
+    box-shadow $animation;
 
-    &:hover,
-    &:focus {
-        cursor: pointer;
-        color: $txt-white-color;
-        background-color: $bg-active-color;
-        border: transparent;
-        box-shadow: $btn-shadow;
-    }
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $txt-white-color;
+    background-color: $bg-active-color;
+    border: transparent;
+    box-shadow: $btn-shadow;
+  }
 
-    @media screen and (min-width: 768px) {
-        width: 125px;
-    }
+  @media screen and (min-width: 768px) {
+    width: 125px;
+  }
 
-    @media screen and (min-width: 1280px) {
-        width: 136px;
-    }
+  @media screen and (min-width: 1280px) {
+    width: 136px;
+  }
 }
 
 .main-btn--library {
-    width: 130px;
-    color: $txt-white-color;
-    background-color: transparent;
-    border: 1px solid $txt-white-color;
+  width: 130px;
+  color: $txt-white-color;
+  background-color: transparent;
+  border: 1px solid $txt-white-color;
 
-    @media screen and (min-width: 768px) {
-        width: 152px;
-    }
+  @media screen and (min-width: 768px) {
+    width: 152px;
+  }
 
-    @media screen and (min-width: 1280px) {
-        width: 148px;
-    }
+  @media screen and (min-width: 1280px) {
+    width: 148px;
+  }
 
-    &:hover,
-    &:focus {
-        background-color: $bg-active-color;
-    }
+  &:hover,
+  &:focus {
+    background-color: $bg-active-color;
+  }
 }
 
 .button-search {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 10px;
 
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
-    background-color: transparent;
-    border: none;
-    outline: none;
-    border-radius: 8px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-radius: 8px;
 
-    transition: transform $animation;
+  transition: transform $animation;
 
-    &:hover,
-    &:focus {
-        transform: scale(1.15);
-        cursor: pointer;
-    }
+  &:hover,
+  &:focus {
+    transform: scale(1.15);
+    cursor: pointer;
+  }
 }
 
 .btn-search__icon {
-    stroke: $txt-white-color;
-    fill: transparent;
+  stroke: $txt-white-color;
+  fill: transparent;
+}
+
+.registration-btn-wrap {
+  position: relative;
+}
+
+.registration-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-left: 40px;
+  width: 140px;
+  height: 35px;
+
+  @media screen and (max-width: 768px) {
+    width: 100px;
+  }
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  border-radius: 5px;
+  border: 1px solid #fff;
+  outline: none;
+  background-color: $bg-white-color;
+
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+
+  background-color: #0000;
+  color: #fff;
+  transition: color $animation, background-color $animation,
+    box-shadow $animation;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $txt-white-color;
+    background-color: $bg-active-color;
+    border: transparent;
+    box-shadow: $btn-shadow;
+  }
+}
+
+.registration-btn-icon {
+  fill: #fff;
+  padding: 0;
+  margin: 0;
+  width: 17;
+  height: 17;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
