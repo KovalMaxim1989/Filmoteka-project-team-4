@@ -178,62 +178,66 @@ export function pagination(data) {
 
   switch (data.total_pages) {
     case 1:
-      refs.plus2Page.classList.add('hidden');
-      refs.plus1Page.classList.add('hidden');
-      refs.minus1Page.classList.add('hidden');
-      refs.minus2Page.classList.add('hidden');
-      refs.lastPage.classList.add('hidden');
-      refs.activPage.classList.add('hidden');
+      refs.plus2Page.classList.add('visually-hidden');
+      refs.plus1Page.classList.add('visually-hidden');
+      refs.minus1Page.classList.add('visually-hidden');
+      refs.minus2Page.classList.add('visually-hidden');
+      refs.lastPage.classList.add('visually-hidden');
+      refs.activPage.classList.add('visually-hidden');
 
       break;
     case 2:
-      refs.plus2Page.classList.add('hidden');
-      refs.plus1Page.classList.add('hidden');
-      refs.minus1Page.classList.add('hidden');
-      refs.minus2Page.classList.remove('hidden');
-      refs.lastPage.classList.add('hidden');
-      refs.activPage.classList.add('hidden');
+      refs.plus2Page.classList.add('visually-hidden');
+      refs.plus1Page.classList.add('visually-hidden');
+      refs.minus1Page.classList.add('visually-hidden');
+      refs.minus2Page.classList.remove('visually-hidden');
+      refs.lastPage.classList.add('visually-hidden');
+      refs.activPage.classList.add('visually-hidden');
+      break;
     case 3:
-      refs.plus2Page.classList.add('hidden');
-      refs.plus1Page.classList.add('hidden');
-      refs.minus1Page.classList.remove('hidden');
-      refs.minus2Page.classList.remove('hidden');
-      refs.lastPage.classList.add('hidden');
-      refs.activPage.classList.add('hidden');
+      refs.plus2Page.classList.add('visually-hidden');
+      refs.plus1Page.classList.add('visually-hidden');
+      refs.minus1Page.classList.remove('visually-hidden');
+      refs.minus2Page.classList.remove('visually-hidden');
+      refs.lastPage.classList.add('visually-hidden');
+      refs.activPage.classList.add('visually-hidden');
+      break;
     case 4:
-      refs.plus2Page.classList.add('hidden');
-      refs.plus1Page.classList.add('hidden');
-      refs.minus1Page.classList.remove('hidden');
-      refs.minus2Page.classList.remove('hidden');
-      refs.lastPage.classList.add('hidden');
-      refs.activPage.classList.remove('hidden');
+      refs.plus2Page.classList.add('visually-hidden');
+      refs.plus1Page.classList.add('visually-hidden');
+      refs.minus1Page.classList.remove('visually-hidden');
+      refs.minus2Page.classList.remove('visually-hidden');
+      refs.lastPage.classList.add('visually-hidden');
+      refs.activPage.classList.remove('visually-hidden');
+      break;
     case 5:
-      refs.plus2Page.classList.add('hidden');
-      refs.plus1Page.classList.remove('hidden');
-      refs.minus1Page.classList.remove('hidden');
-      refs.minus2Page.classList.remove('hidden');
-      refs.lastPage.classList.add('hidden');
-      refs.activPage.classList.remove('hidden');
+      refs.plus2Page.classList.add('visually-hidden');
+      refs.plus1Page.classList.remove('visually-hidden');
+      refs.minus1Page.classList.remove('visually-hidden');
+      refs.minus2Page.classList.remove('visually-hidden');
+      refs.lastPage.classList.add('visually-hidden');
+      refs.activPage.classList.remove('visually-hidden');
+      break;
     case 6:
-      refs.plus2Page.classList.remove('hidden');
-      refs.plus1Page.classList.remove('hidden');
-      refs.minus1Page.classList.remove('hidden');
-      refs.minus2Page.classList.remove('hidden');
-      refs.lastPage.classList.add('hidden');
-      refs.activPage.classList.remove('hidden');
+      refs.plus2Page.classList.remove('visually-hidden');
+      refs.plus1Page.classList.remove('visually-hidden');
+      refs.minus1Page.classList.remove('visually-hidden');
+      refs.minus2Page.classList.remove('visually-hidden');
+      refs.lastPage.classList.add('visually-hidden');
+      refs.activPage.classList.remove('visually-hidden');
+      break;
 
     default:
-      refs.plus2Page.classList.remove('hidden');
-      refs.plus1Page.classList.remove('hidden');
-      refs.minus1Page.classList.remove('hidden');
-      refs.minus2Page.classList.remove('hidden');
-      refs.lastPage.classList.remove('hidden');
-      refs.activPage.classList.remove('hidden');
-
-      break;
+      refs.plus2Page.classList.remove('visually-hidden');
+      refs.plus1Page.classList.remove('visually-hidden');
+      refs.minus1Page.classList.remove('visually-hidden');
+      refs.minus2Page.classList.remove('visually-hidden');
+      refs.lastPage.classList.remove('visually-hidden');
+      refs.activPage.classList.remove('visually-hidden');
   }
 }
 let pageActive = 1;
+let totalPages = 1;
 export async function onClickIncrementPage() {
   pageActive += 1;
   const movieAPI = new MovieAPI();
@@ -259,6 +263,7 @@ export async function onClickIncrementPage() {
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
           refs.moviesList.innerHTML = markupTrendMovies;
           refs.minusQuery.disabled = false;
+          totalPages = data.total_pages;
         })
         .catch(err => Notify.failure(err));
       return;
@@ -266,12 +271,14 @@ export async function onClickIncrementPage() {
 
     refs.minusQuery.disabled = false;
     await movieAPI.getTrendMovie().then(data => {
+      totalPages = data.total_pages;
       if (pageActive >= data.total_pages) {
         refs.plusQuery.disabled = true;
       }
       if (pageActive < data.total_pages) {
         refs.plusQuery.disabled = false;
       }
+      console.log(data);
       const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
       refs.moviesList.innerHTML = markupTrendMovies;
@@ -288,6 +295,10 @@ export async function onClickDecrementPage() {
   const formValue = refs.searchForm.searchQuery.value.trim();
   movieAPI.query = formValue;
   movieAPI.page = pageActive;
+  if (pageActive < 0) {
+    return;
+  }
+
   try {
     if (!pageActive) {
       refs.minusQuery.disabled = true;
@@ -297,6 +308,7 @@ export async function onClickDecrementPage() {
       await movieAPI
         .getSearchMovies()
         .then(data => {
+          totalPages = data.total_pages;
           if (pageActive >= data.total_pages) {
             refs.plusQuery.disabled = true;
           }
@@ -307,6 +319,7 @@ export async function onClickDecrementPage() {
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
           refs.moviesList.innerHTML = markupTrendMovies;
           pagination(data);
+
           refs.minusQuery.disabled = false;
         })
         .catch(err => Notify.failure(err));
@@ -315,6 +328,7 @@ export async function onClickDecrementPage() {
 
     refs.minusQuery.disabled = false;
     await movieAPI.getTrendMovie().then(data => {
+      totalPages = data.total_pages;
       if (pageActive >= data.total_pages) {
         refs.plusQuery.disabled = true;
       }
@@ -324,7 +338,6 @@ export async function onClickDecrementPage() {
       const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
       refs.moviesList.innerHTML = markupTrendMovies;
-      console.log(data);
       pagination(data);
     });
   } catch {
@@ -344,10 +357,12 @@ export async function onClickPaginationBtnNumber(e) {
     const formValue = refs.searchForm.searchQuery.value.trim();
     movieAPI.query = formValue;
     movieAPI.page = pageActive;
+
     if (formValue !== '') {
       await movieAPI
         .getSearchMovies()
         .then(data => {
+          totalPages = data.total_pages;
           if (pageActive >= data.total_pages) {
             refs.plusQuery.disabled = true;
           }
@@ -366,12 +381,138 @@ export async function onClickPaginationBtnNumber(e) {
 
     refs.minusQuery.disabled = false;
     await movieAPI.getTrendMovie().then(data => {
+      totalPages = data.total_pages;
       if (pageActive >= data.total_pages) {
         refs.plusQuery.disabled = true;
       }
       if (pageActive < data.total_pages) {
         refs.plusQuery.disabled = false;
       }
+      const necessaryData = dataService.getDataTrendMovies(data.results);
+      const markupTrendMovies = createMarkupFilmsList(necessaryData);
+      refs.moviesList.innerHTML = markupTrendMovies;
+      pagination(data);
+    });
+  } catch {
+    err => Notify.failure(err);
+  }
+}
+
+export async function onClickDecrementTen() {
+  pageActive -= 10;
+  if (pageActive < 0) {
+    pageActive += 10;
+    return;
+  }
+  const movieAPI = new MovieAPI();
+  const dataService = new DataService();
+  const formValue = refs.searchForm.searchQuery.value.trim();
+  movieAPI.query = formValue;
+  movieAPI.page = pageActive;
+
+  try {
+    if (!pageActive) {
+      refs.minusQuery.disabled = true;
+      return;
+    }
+    if (formValue !== '') {
+      await movieAPI
+        .getSearchMovies()
+        .then(data => {
+          totalPages = data.total_pages;
+          if (pageActive <= 0) {
+            return;
+          }
+          if (pageActive >= data.total_pages) {
+            refs.plusQuery.disabled = true;
+          }
+          if (pageActive < data.total_pages) {
+            refs.plusQuery.disabled = false;
+          }
+          const necessaryData = dataService.getDataTrendMovies(data.results);
+          const markupTrendMovies = createMarkupFilmsList(necessaryData);
+          refs.moviesList.innerHTML = markupTrendMovies;
+          pagination(data);
+
+          refs.minusQuery.disabled = false;
+        })
+        .catch(err => Notify.failure(err));
+      return;
+    }
+
+    refs.minusQuery.disabled = false;
+    await movieAPI.getTrendMovie().then(data => {
+      totalPages = data.total_pages;
+      if (pageActive <= 0) {
+        return;
+      }
+      if (pageActive >= data.total_pages) {
+        refs.plusQuery.disabled = true;
+      }
+      if (pageActive < data.total_pages) {
+        refs.plusQuery.disabled = false;
+      }
+      const necessaryData = dataService.getDataTrendMovies(data.results);
+      const markupTrendMovies = createMarkupFilmsList(necessaryData);
+      refs.moviesList.innerHTML = markupTrendMovies;
+      pagination(data);
+    });
+  } catch {
+    err => Notify.failure(err);
+  }
+}
+export async function onClickIncrementTen() {
+  pageActive += 10;
+  if (pageActive > totalPages) {
+    pageActive -= 10;
+    return;
+  }
+  const movieAPI = new MovieAPI();
+  const dataService = new DataService();
+  const formValue = refs.searchForm.searchQuery.value.trim();
+  movieAPI.query = formValue;
+  movieAPI.page = pageActive;
+  if (pageActive > totalPages) {
+    return;
+  }
+  try {
+    if (formValue !== '') {
+      await movieAPI
+        .getSearchMovies()
+        .then(data => {
+          totalPages = data.total_pages;
+          if (pageActive > data.total_pages) {
+            return;
+          }
+          pagination(data);
+          console.log(data.total_pages);
+          if (pageActive >= data.total_pages) {
+            refs.plusQuery.disabled = true;
+          }
+          if (pageActive < data.total_pages) {
+            refs.plusQuery.disabled = false;
+          }
+
+          const necessaryData = dataService.getDataTrendMovies(data.results);
+          const markupTrendMovies = createMarkupFilmsList(necessaryData);
+          refs.moviesList.innerHTML = markupTrendMovies;
+          refs.minusQuery.disabled = false;
+        })
+        .catch(err => Notify.failure(err));
+      return;
+    }
+
+    refs.minusQuery.disabled = false;
+    await movieAPI.getTrendMovie().then(data => {
+      totalPages = data.total_pages;
+
+      if (pageActive >= data.total_pages) {
+        refs.plusQuery.disabled = true;
+      }
+      if (pageActive < data.total_pages) {
+        refs.plusQuery.disabled = false;
+      }
+      console.log(data);
       const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
       refs.moviesList.innerHTML = markupTrendMovies;
