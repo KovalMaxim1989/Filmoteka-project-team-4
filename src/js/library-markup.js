@@ -39,7 +39,6 @@ export function onWatched() {
 }
 
 export function onLoadLibrary() {
-  libraryQueue.classList.add('main-btn--library-active');
   if (queueFilms) {
     list.innerHTML = createMarkupLibraryList(JSON.parse(queueFilms));
   } else {
