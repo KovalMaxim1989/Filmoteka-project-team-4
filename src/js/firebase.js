@@ -17,6 +17,7 @@ import {
   limit,
   onSnapshot,
   setDoc,
+  getDoc,
   updateDoc,
   deleteDoc,
   doc,
@@ -34,6 +35,9 @@ import { refs } from '../js/refs';
 import { onCloseModal } from '../js/registr-modal';
 
 export class FireBaseService {
+  constructor() {
+    this.NAME_COLLECTION_FILESTORAGE = 'storage_filmoteka';
+  }
   // Signs-in Movie cabinet.
   async signIn() {
     // Sign in Firebase using popup auth and Google as the identity provider.
@@ -53,36 +57,59 @@ export class FireBaseService {
     onAuthStateChanged(getAuth(), authStateObserver);
   }
 
-  // Saves a new watched movie to Cloud Firestore.
-  async saveWatchedMovie(data) {
+  // Returns true if a user is signed-in.
+  isUserSignedIn() {
+    return !!getAuth().currentUser;
+  }
+
+  // Saves a new movie to Cloud Firestore.
+  async saveMovieData(obj, typeInfo) {
     // Add a new watched movie to the Firebase database.
+    if (!this.isUserSignedIn()) throw 'No autenteficate';
+    const uid = getAuth().currentUser.uid;
+
+    const db = getFirestore();
+    const docRef = doc(db, this.NAME_COLLECTION_FILESTORAGE, typeInfo + uid);
+    const data = {
+      name: getUserName(),
+      timestamp: serverTimestamp(),
+      arrFilms: [obj],
+    };
     try {
       console.log('😎 I am going to FireBase');
-      await addDoc(collection(getFirestore(), 'WatchedMovie'), {
-        name: getUserName(),
-        movieData: JSON.stringify([data]),
-
-        // profilePicUrl: getProfilePicUrl(),
-        // timestamp: serverTimestamp(),
-      });
+      await setDoc(docRef, data);
     } catch (error) {
-      console.error('Error writing new message to Firebase Database', error);
+      console.error('Error add new movie to Firebase Database', error);
     }
   }
 
-  // Saves a new queue movie to Cloud Firestore.
-  async saveQueueMovie(data) {
-    console.log('🤗 I go to FireBase');
-    // Add a new queue movie to the Firebase database.
-    try {
-      await addDoc(collection(getFirestore(), 'QueueMovie'), {
-        name: getUserName(),
-        movieData: JSON.stringify([data]),
-      });
-      // const docRef =
-    } catch (error) {
-      console.error('Error writing new message to Firebase Database', error);
+  // Read movie history and listens for upcoming ones.
+  async readMovieData(typeInfo) {
+    if (!this.isUserSignedIn()) throw 'No autenteficate';
+    const uid = getAuth().currentUser.uid;
+    const db = getFirestore();
+    const docRef = doc(db, this.NAME_COLLECTION_FILESTORAGE, typeInfo + uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      // console.log('Document data:', docSnap.data());
+      return docSnap.data();
+    } else {
+      // doc.data() will be undefined in this case
+      console.log('No such document!');
     }
+
+    // Start listening to the query.
+    // onSnapshot(getAllMovieByType, function (snapshot) {
+    //   snapshot.docChanges().forEach(function (change) {
+    //     if (change.type === 'removed') {
+    //       console.log(change.doc.id);
+    //     } else {
+    //       var message = change.doc.data();
+    //       console.log(change.doc.id, message.arrFilms);
+    //     }
+    //   });
+    // });
   }
 }
 
