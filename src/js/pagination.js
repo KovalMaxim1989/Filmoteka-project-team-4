@@ -1,6 +1,7 @@
 import { MovieAPI } from './MoviesApiServise';
 import { createMarkupFilmsList } from './markup';
 import { DataService } from './data-service';
+import { scrollTop } from './button';
 import { refs } from './refs';
 
 export function pagination(data) {
@@ -317,9 +318,6 @@ export async function onClickIncrementPage(e) {
     await movieAPI.getTrendMovie().then(data => {
       evtTarget.blur();
       totalPages = data.total_pages;
-
-      console.log(pageActive);
-      console.log(data.total_pages);
       if (pageActive > data.total_pages) {
         pageActive = 1;
         onClickIncrementPage(e);
