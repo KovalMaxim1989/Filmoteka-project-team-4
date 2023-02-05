@@ -30,6 +30,14 @@ export const refs = {
   openModalCard: document.querySelector('[data-modal-open]'),
   closeModalBtn: document.querySelector('[data-modal-close]'),
   trailerBtn: document.querySelector('.trailer-btn'),
+  // Refs for Footer Modal
+  openTeamModalBtn: document.querySelector('[data-modal-open-team]'),
+  closeTeamModalBtn: document.querySelector('[data-modal-close-team]'),
+  backdropFooter: document.querySelector('.backdrop-footer'),
+  // Refs for Registr Modal
+  openRegistrModalBtn: document.querySelector('[data-modal-open-registr]'),
+  closeRegistrModalBtn: document.querySelector('[data-modal-close-registr]'),
+  backdropRegistr: document.querySelector('.backdrop-registr'),
 
   // btnAddToQueue: document.querySelector('[data-add-to-queue]'),
   // btnAddToWatched: document.querySelector('[data-add-to-watched]'),
@@ -46,8 +54,8 @@ export const refs = {
   ),
 
   // // spiner
-  // backdropSpinner: document.querySelector('[data-load]'),
-  // spinner: document.querySelector('.js-spinner'),
+  backdropSpinner: document.querySelector('.backdrop-spin'),
+  spinner: document.querySelector('.js-spinner'),
 
   // // Library page
   // libraryList: document.querySelector('.js-library-list'),

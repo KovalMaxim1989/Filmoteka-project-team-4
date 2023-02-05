@@ -58,7 +58,7 @@
 
 .films__img {
   // position: relative;
-  min-height: 645px;
+  // min-height: 645px;
   object-fit: cover;
 
   @media screen and (min-width: 768px) {
@@ -142,19 +142,20 @@
 }
 
 .films__error {
-  width: 200px;
-  margin: auto;
-  padding: 30px 0 30px 0;
+  height: 1000px;
+  // width: 200px;
+  // margin: auto;
+  // padding: 30px 0 30px 0;
 
-  @media screen and (min-width: 768px) {
-    width: 400px;
-    padding: 50px 0 100px 0;
-  }
+  // @media screen and (min-width: 768px) {
+  //   width: 400px;
+  //   padding: 50px 0 100px 0;
+  // }
 
-  @media screen and (min-width: 1280px) {
-    width: 600px;
-    padding: 100px 0 100px 0;
-  }
+  // @media screen and (min-width: 1280px) {
+  //   width: 600px;
+  //   padding: 100px 0 100px 0;
+  // }
 }
 
 .films__not-correct-notification {
@@ -169,8 +170,15 @@
 
   width: 270px;
   height: 60px;
-  background-color: $orange-hover;
+  color: $txt-white-color;
+  background-color: transparent;
   border-radius: 10px;
+
+  text-shadow: 0 0 10px rgba($orange-hover, 0.8),
+    0 0 20px rgba($orange-hover, 0.8), 0 0 22px rgba($orange-hover, 0.8),
+    0 0 25px rgba($orange-hover, 0.8), 0 0 30px rgba($orange-hover, 0.8),
+    0 0 32px rgba($orange-hover, 0.8), 0 0 36px rgba($orange-hover, 0.8),
+    0 0 40px rgba($orange-hover, 0.8), 0 0 45px rgba($orange-hover, 0.8);
 
   &-show {
     top: 50%;
@@ -189,7 +197,7 @@
       width: 500px;
       height: 50px;
       padding: 8px;
-      font-size: 18px;
+      font-size: 25px;
     }
   }
 }
@@ -206,8 +214,15 @@
 
   width: 270px;
   height: 57px;
-  background-color: $orange-hover;
+  color: $txt-white-color;
+  background-color: transparent;
   border-radius: 10px;
+
+  text-shadow: 0 0 10px rgba($orange-hover, 0.8),
+    0 0 20px rgba($orange-hover, 0.8), 0 0 22px rgba($orange-hover, 0.8),
+    0 0 25px rgba($orange-hover, 0.8), 0 0 30px rgba($orange-hover, 0.8),
+    0 0 32px rgba($orange-hover, 0.8), 0 0 36px rgba($orange-hover, 0.8),
+    0 0 40px rgba($orange-hover, 0.8), 0 0 45px rgba($orange-hover, 0.8);
 
   &-show {
     top: 47%;
@@ -225,7 +240,7 @@
       transform: translate(-50%, -72%);
       width: 500px;
       padding: 8px;
-      font-size: 18px;
+      font-size: 23px;
     }
   }
 }
