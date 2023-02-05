@@ -1,7 +1,6 @@
 import { MovieAPI } from './MoviesApiServise';
 import { createMarkupFilmsList } from './markup';
 import { DataService } from './data-service';
-import { scrollTop } from './button';
 import { refs } from './refs';
 
 export function pagination(data) {
