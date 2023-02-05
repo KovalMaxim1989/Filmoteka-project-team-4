@@ -46,6 +46,14 @@
 .logo {
   display: none;
 
+  text-shadow: 0 0 10px rgba($orange-hover, 0.8),
+    0 0 20px rgba($orange-hover, 0.8), 0 0 22px rgba($orange-hover, 0.8),
+    0 0 25px rgba($orange-hover, 0.8), 0 0 30px rgba($orange-hover, 0.8),
+    0 0 32px rgba($orange-hover, 0.8), 0 0 36px rgba($orange-hover, 0.8),
+    0 0 40px rgba($orange-hover, 0.8), 0 0 45px rgba($orange-hover, 0.8);
+  animation: neon 5s infinite;
+  animation-timing-function: linear;
+
   transition: color $animation;
 
   @media screen and (min-width: 768px) {
@@ -59,6 +67,69 @@
     &:hover {
       animation: animeLogo 1s ease 0s 1 normal forwards;
     }
+  }
+}
+
+@keyframes neon {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+  }
+  12% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 1;
+  }
+  17% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  40% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0;
+  }
+  55% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -119,4 +190,13 @@
 
     background-color: $txt-current-color;
   }
+}
+
+.material-symbols-outlined {
+  color: #fff;
+  margin-left: 20px;
+}
+
+.dark {
+  background-color: #272d34;
 }

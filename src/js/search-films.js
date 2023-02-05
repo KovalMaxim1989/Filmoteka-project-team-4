@@ -6,7 +6,9 @@ import { DataService } from './data-service';
 import { pagination } from './pagination';
 import { refs } from './refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Spinner } from './spinner';
 
+const spinner = new Spinner();
 const dataService = new DataService();
 
 const movieAPI = new MovieAPI();
@@ -35,7 +37,7 @@ function onSearch(e) {
   //   MovieAPI.resetPage();
 
   movieAPI.query = formValue;
-
+  spinner.start();
   movieAPI
     .getSearchMovies()
     .then(data => {
@@ -62,5 +64,8 @@ function onSearch(e) {
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
       refs.moviesList.innerHTML = markupTrendMovies;
     })
-    .catch(err => Notify.failure(err));
+    .catch(err => Notify.failure(err))
+    .finally(() => {
+      spinner.stop();
+    });
 }

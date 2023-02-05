@@ -10,7 +10,6 @@ import { Spinner } from './spinner';
 const dataService = new DataService();
 const movieAPI = new MovieAPI();
 const spinner = new Spinner();
-console.log(spinner);
 
 // збереження жанрів у localStorage
 

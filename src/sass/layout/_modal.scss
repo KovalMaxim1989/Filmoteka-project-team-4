@@ -1,5 +1,24 @@
 // Button close style
 
+iframe {
+  width: 320px;
+  height: 180px;
+
+  @media screen and (min-width: 480px) {
+    width: 380px;
+    height: 215px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 560px;
+    height: 315px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 700px;
+    height: 395px;
+  }
+}
+
 .btn-close {
   width: 30px;
   height: 30px;
@@ -10,7 +29,7 @@
   justify-content: center;
   align-items: center;
   padding: 0;
-  transition: fill .25s cubic-bezier(.4, 0, .2, 1);
+  transition: fill 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   position: absolute;
   top: 8px;
@@ -120,7 +139,7 @@
   align-items: baseline;
 }
 
-.wrap-flex+.wrap-flex {
+.wrap-flex + .wrap-flex {
   margin-top: 8px;
 }
 
@@ -144,7 +163,6 @@
 
 .accent-detail {
   &__orange {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -166,9 +184,8 @@
     border-radius: 5px;
     width: 36px;
     height: 16px;
-    background-color: #F7F7F7;
+    background-color: #f7f7f7;
   }
-
 }
 
 .disc-wrap {
@@ -231,6 +248,7 @@
   justify-content: center;
   margin-top: 20px;
   box-shadow: 0px 0px 2px 2px #f27a09cc;
+  transition: background-color $animation, box-shadow $animation;
 }
 
 .modal__img-play {
@@ -241,7 +259,7 @@
 .modal__button-play:hover {
   background: radial-gradient(#f27a09cc 100%, #fff 62%);
   border: 2px #ff6b01;
-  box-shadow: inset 0 0 3px 3px #f27a09cc;
+  box-shadow: 0px 0px 1px 4px #f27a09cc;
 }
 
 .modal__button-play:active {
