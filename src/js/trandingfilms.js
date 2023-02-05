@@ -5,9 +5,12 @@ import { createMarkupFilmsList } from './markup';
 import { DataService } from './data-service';
 import { pagination } from './pagination';
 import { refs } from './refs';
+import { Spinner } from './spinner';
 
 const dataService = new DataService();
 const movieAPI = new MovieAPI();
+const spinner = new Spinner();
+console.log(spinner);
 
 // збереження жанрів у localStorage
 
@@ -49,10 +52,17 @@ export function getTrendMovieGenres(genreIds) {
 //підвантаження популярних фільмів
 
 export function renderTrendMovie() {
-  movieAPI.getTrendMovie().then(data => {
-    const necessaryData = dataService.getDataTrendMovies(data.results);
-    const markupTrendMovies = createMarkupFilmsList(necessaryData);
-    refs.moviesList.innerHTML = markupTrendMovies;
-    pagination(data);
-  });
+  spinner.start();
+  movieAPI
+    .getTrendMovie()
+    .then(data => {
+      const necessaryData = dataService.getDataTrendMovies(data.results);
+      const markupTrendMovies = createMarkupFilmsList(necessaryData);
+      refs.moviesList.innerHTML = markupTrendMovies;
+      pagination(data);
+    })
+    .catch(error => console.log(error))
+    .finally(() => {
+      spinner.stop();
+    });
 }
