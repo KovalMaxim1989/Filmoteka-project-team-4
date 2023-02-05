@@ -17,6 +17,7 @@ import {
   limit,
   onSnapshot,
   setDoc,
+  getDoc,
   updateDoc,
   deleteDoc,
   doc,
@@ -34,6 +35,9 @@ import { refs } from '../js/refs';
 import { onCloseModal } from '../js/registr-modal';
 
 export class FireBaseService {
+  constructor() {
+    this.NAME_COLLECTION_FILESTORAGE = 'storage_filmoteka';
+  }
   // Signs-in Movie cabinet.
   async signIn() {
     // Sign in Firebase using popup auth and Google as the identity provider.
@@ -52,6 +56,62 @@ export class FireBaseService {
     // Listen to auth state changes.
     onAuthStateChanged(getAuth(), authStateObserver);
   }
+
+  // Returns true if a user is signed-in.
+  isUserSignedIn() {
+    return !!getAuth().currentUser;
+  }
+
+  // Saves a new movie to Cloud Firestore.
+  async saveMovieData(obj, typeInfo) {
+    // Add a new watched movie to the Firebase database.
+    if (!this.isUserSignedIn()) throw 'No autenteficate';
+    const uid = getAuth().currentUser.uid;
+
+    const db = getFirestore();
+    const docRef = doc(db, this.NAME_COLLECTION_FILESTORAGE, typeInfo + uid);
+    const data = {
+      name: getUserName(),
+      timestamp: serverTimestamp(),
+      arrFilms: obj,
+    };
+    try {
+      await setDoc(docRef, data);
+    } catch (error) {
+      console.error('Error add new movie to Firebase Database', error);
+    }
+  }
+
+  // Read movie history and listens for upcoming ones.
+  async readMovieData(typeInfo) {
+    if (!this.isUserSignedIn()) {
+      // throw 'No autenteficate';
+      return [];
+    }
+    const uid = getAuth().currentUser.uid;
+    const db = getFirestore();
+    const docRef = doc(db, this.NAME_COLLECTION_FILESTORAGE, typeInfo + uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data();
+    } else {
+      // doc.data() will be undefined in this case
+      return [];
+    }
+
+    // Start listening to the query.
+    // onSnapshot(getAllMovieByType, function (snapshot) {
+    //   snapshot.docChanges().forEach(function (change) {
+    //     if (change.type === 'removed') {
+    //       console.log(change.doc.id);
+    //     } else {
+    //       var message = change.doc.data();
+    //       console.log(change.doc.id, message.arrFilms);
+    //     }
+    //   });
+    // });
+  }
 }
 
 // Triggers when the auth state change for instance when the user signs-in or signs-out.
@@ -68,8 +128,6 @@ function authStateObserver(user) {
     refs.userNameElement.textContent = userName;
 
     // Show user's profile and sign-out button.
-    // refs.userNameElement.removeAttribute('hidden');
-    // refs.userPicElement.removeAttribute('hidden');
     refs.userInfoElement.classList.remove('visually-hidden');
     refs.signOutButtonElement.classList.remove('visually-hidden');
 
@@ -81,8 +139,6 @@ function authStateObserver(user) {
   } else {
     // User is signed out!
     // Hide user's profile and sign-out button.
-    // refs.userNameElement.setAttribute('hidden', 'true');
-    // refs.userPicElement.setAttribute('hidden', 'true');
     refs.userInfoElement.classList.add('visually-hidden');
     refs.signOutButtonElement.classList.add('visually-hidden');
 
