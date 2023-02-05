@@ -24,6 +24,7 @@ export function onQueue() {
     } else {
       list.innerHTML =
         '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
+      paginationLib(0, 0);
       return;
     }
   });
@@ -42,6 +43,7 @@ export function onWatched() {
     } else {
       list.innerHTML =
         '<div style="height: 500px; font-size: 24px">Add films to your watched!</div>';
+      paginationLib(0, 0);
       return;
     }
   });
@@ -56,6 +58,7 @@ export function onLoadLibrary() {
   } else {
     list.innerHTML =
       '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
+    paginationLib(0, 0);
     return;
   }
 }

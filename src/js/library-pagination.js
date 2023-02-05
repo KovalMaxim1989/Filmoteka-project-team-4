@@ -163,7 +163,7 @@ export function paginationLib(data, page) {
 
   switch (data) {
     case 0:
-      refs.containerPag.classList.add('visually-hidde');
+      refsLib.containerPag.classList.add('visually-hidden');
       break;
     case 1:
       refsLib.plus2P.classList.add('visually-hidden');
