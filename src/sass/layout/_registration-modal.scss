@@ -1,0 +1,126 @@
+.registration-modal {
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  // max-width: 360px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: $bg-white-color;
+  border-radius: 5px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
+    0px 2px 1px rgb(0 0 0 / 20%);
+
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 480px) {
+    max-width: 400px;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+  }
+}
+
+.registration-form-title {
+  display: block;
+  text-align: center;
+  color: $txt-active-color;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.registration-form-field {
+  position: relative;
+  display: block;
+  margin-bottom: 10px;
+  color: $txt-secondary-color;
+}
+
+.registration-form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 400;
+  font-size: 14px;
+  color: $txt-secondary-color;
+}
+
+.registration-form-input {
+  width: 100%;
+  height: 30px;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 30px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  outline: transparent;
+  transition: border-color $animation;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    border-color: $bg-active-color;
+  }
+}
+
+.registration-form-support {
+  font-size: 12px;
+}
+
+.registration-form-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10 auto;
+  width: 140px;
+  height: 35px;
+
+  @media screen and (max-width: 768px) {
+    width: 100px;
+  }
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  border-radius: 5px;
+  border: 1px solid #fff;
+  outline: none;
+  color: $txt-white-color;
+  background-color: $bg-active-color;
+
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+
+  transition: color $animation, background-color $animation,
+    box-shadow $animation;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $txt-white-color;
+    background-color: $bg-active-color;
+    border: transparent;
+    box-shadow: $btn-shadow;
+  }
+}
+
+.registration-form-support {
+  color: $txt-footer-color;
+  transition: color $animation;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $txt-active-color;
+  }
+}
