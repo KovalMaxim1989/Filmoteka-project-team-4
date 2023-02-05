@@ -287,57 +287,6 @@ function onClickPaginationBtnNumber(e) {
   activePage = Number(evtTarget.textContent);
   paginationLibAllEvt(activePage, arreyWatched, beginPage, endPage, totalFilms);
 
-  // if (!activePage || activePage < 0) {
-  //   activePage = 1;
-  //   return;
-  // }
-
-  // if (libraryWatcehd.classList.contains('main-btn--library-active')) {
-  //   arreyWatched = JSON.parse(watchedFilms);
-  //   totalFilms = Number.parseInt(arreyWatched.length / 20 + 1);
-  //   if (activePage > totalFilms) {
-  //     activePage = totalFilms;
-  //   }
-  //   if (arreyWatched.length === 1) {
-  //     list.innerHTML = createMarkupLibraryList(arreyWatched);
-  //   }
-  //   if (activePage === 1) {
-  //     const arr = arreyWatched.slice(0, 20);
-  //     list.innerHTML = createMarkupLibraryList(arr);
-  //     paginationLib(totalFilms, activePage);
-
-  //     return;
-  //   }
-  //   beginPage = 20 * activePage - 20;
-  //   endPage = 20 * activePage;
-
-  //   const arr = arreyWatched.slice(beginPage, endPage);
-  //   list.innerHTML = createMarkupLibraryList(arr);
-  //   paginationLib(totalFilms, activePage);
-  // }
-
-  // if (libraryQueue.classList.contains('main-btn--library-active')) {
-  //   arreyWatched = JSON.parse(queueFilms);
-  //   totalFilms = Number.parseInt(arreyWatched.length / 20 + 1);
-
-  //   if (activePage > totalFilms) {
-  //     activePage = totalFilms;
-  //   }
-  //   if (arreyWatched.length === 1) {
-  //     list.innerHTML = createMarkupLibraryList(arreyWatched);
-  //   }
-  //   beginPage = 20 * activePage - 20;
-  //   endPage = 20 * activePage;
-  //   const arr = arreyWatched.slice(beginPage, endPage);
-  //   list.innerHTML = createMarkupLibraryList(arr);
-  //   if (activePage === 1) {
-  //     const arr = arreyWatched.slice(0, 20);
-  //     list.innerHTML = createMarkupLibraryList(arr);
-  //     paginationLib(totalFilms, activePage);
-  //     return;
-  //   }
-  //   paginationLib(totalFilms, activePage);
-  // }
   evtTarget.blur();
 }
 function onClickDecrementTen(e) {
@@ -404,57 +353,110 @@ function onClickIncrementTen(e) {
   // }
 }
 
-function paginationLibAllEvt(page, arr, begin, end, total) {
-  if (!activePage || activePage < 0) {
-    activePage = 1;
+function paginationLibAllEvt(page, arrey, begin, end, total) {
+  if (!page || page < 0) {
+    page = 1;
     return;
   }
 
   if (libraryWatcehd.classList.contains('main-btn--library-active')) {
-    arreyWatched = JSON.parse(watchedFilms);
-    totalFilms = Number.parseInt(arreyWatched.length / 20 + 1);
-    if (activePage > totalFilms) {
-      activePage = totalFilms;
+    arrey = JSON.parse(watchedFilms);
+    total = Number.parseInt(arrey.length / 20 + 1);
+    if (page > total) {
+      page = total;
     }
-    if (arreyWatched.length === 1) {
-      list.innerHTML = createMarkupLibraryList(arreyWatched);
-    }
-    if (activePage === 1) {
-      const arr = arreyWatched.slice(0, 20);
+    if (arrey.length === 1) {
       list.innerHTML = createMarkupLibraryList(arr);
+      paginationLib(total, page);
+    }
+    if (page === 1) {
+      const arr = arrey.slice(0, 20);
+      list.innerHTML = createMarkupLibraryList(arr);
+      paginationLib(total, page);
 
       return;
     }
-    beginPage = 20 * activePage - 20;
-    endPage = 20 * activePage;
+    begin = 20 * page - 20;
+    end = 20 * page;
 
-    const arr = arreyWatched.slice(beginPage, endPage);
+    const arr = arrey.slice(begin, end);
     list.innerHTML = createMarkupLibraryList(arr);
-    paginationLib(totalFilms, activePage);
+    paginationLib(total, page);
   }
 
   if (libraryQueue.classList.contains('main-btn--library-active')) {
-    arreyWatched = JSON.parse(queueFilms);
-    totalFilms = Number.parseInt(arreyWatched.length / 20 + 1);
+    arrey = JSON.parse(queueFilms);
+    total = Number.parseInt(arrey.length / 20 + 1);
 
-    if (activePage > totalFilms) {
-      activePage = totalFilms;
+    if (page > total) {
+      page = total;
     }
-    if (arreyWatched.length === 1) {
-      list.innerHTML = createMarkupLibraryList(arreyWatched);
-      paginationLib(totalFilms, activePage);
+    if (arrey.length === 1) {
+      list.innerHTML = createMarkupLibraryList(arrey);
+      paginationLib(total, page);
       return;
     }
-    beginPage = 20 * activePage - 20;
-    endPage = 20 * activePage;
-    const arr = arreyWatched.slice(beginPage, endPage);
+    begin = 20 * page - 20;
+    end = 20 * page;
+    const arr = arrey.slice(begin, end);
     list.innerHTML = createMarkupLibraryList(arr);
-    if (activePage === 1) {
-      const arr = arreyWatched.slice(0, 20);
+    if (page === 1) {
+      const arr = arrey.slice(0, 20);
       list.innerHTML = createMarkupLibraryList(arr);
-      paginationLib(totalFilms, activePage);
+      paginationLib(total, page);
       return;
     }
-    paginationLib(totalFilms, activePage);
+    paginationLib(total, page);
   }
 }
+// if (!activePage || activePage < 0) {
+//   activePage = 1;
+//   return;
+// }
+
+// if (libraryWatcehd.classList.contains('main-btn--library-active')) {
+//   arreyWatched = JSON.parse(watchedFilms);
+//   totalFilms = Number.parseInt(arreyWatched.length / 20 + 1);
+//   if (activePage > totalFilms) {
+//     activePage = totalFilms;
+//   }
+//   if (arreyWatched.length === 1) {
+//     list.innerHTML = createMarkupLibraryList(arreyWatched);
+//   }
+//   if (activePage === 1) {
+//     const arr = arreyWatched.slice(0, 20);
+//     list.innerHTML = createMarkupLibraryList(arr);
+//     paginationLib(totalFilms, activePage);
+
+//     return;
+//   }
+//   beginPage = 20 * activePage - 20;
+//   endPage = 20 * activePage;
+
+//   const arr = arreyWatched.slice(beginPage, endPage);
+//   list.innerHTML = createMarkupLibraryList(arr);
+//   paginationLib(totalFilms, activePage);
+// }
+
+// if (libraryQueue.classList.contains('main-btn--library-active')) {
+//   arreyWatched = JSON.parse(queueFilms);
+//   totalFilms = Number.parseInt(arreyWatched.length / 20 + 1);
+
+//   if (activePage > totalFilms) {
+//     activePage = totalFilms;
+//   }
+//   if (arreyWatched.length === 1) {
+//     list.innerHTML = createMarkupLibraryList(arreyWatched);
+//   }
+//   beginPage = 20 * activePage - 20;
+//   endPage = 20 * activePage;
+//   const arr = arreyWatched.slice(beginPage, endPage);
+//   list.innerHTML = createMarkupLibraryList(arr);
+//   if (activePage === 1) {
+//     const arr = arreyWatched.slice(0, 20);
+//     list.innerHTML = createMarkupLibraryList(arr);
+//     paginationLib(totalFilms, activePage);
+//     return;
+//   }
+//   paginationLib(totalFilms, activePage);
+// }
