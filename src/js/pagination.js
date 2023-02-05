@@ -1,7 +1,7 @@
 import { MovieAPI } from './MoviesApiServise';
 import { createMarkupFilmsList } from './markup';
 import { DataService } from './data-service';
-import { renderTrendMovie } from './trandingfilms';
+import { scrollTop } from './button';
 import { refs } from './refs';
 
 export function pagination(data) {
@@ -306,6 +306,7 @@ export async function onClickIncrementPage(e) {
             pageActive = 1;
             onClickIncrementPage(e);
           }
+          scrollTop();
         })
         .catch(err => {
           Notify.failure(err);
@@ -333,6 +334,7 @@ export async function onClickIncrementPage(e) {
       refs.moviesList.innerHTML = markupTrendMovies;
 
       pagination(data);
+      scrollTop();
     });
   } catch (error) {
     Notify.failure(error);
@@ -372,6 +374,7 @@ export async function onClickDecrementPage(e) {
           refs.moviesList.innerHTML = markupTrendMovies;
           evtTarget.blur();
           pagination(data);
+          scrollTop();
         })
         .catch(err => Notify.failure(err));
       return;
@@ -388,6 +391,7 @@ export async function onClickDecrementPage(e) {
       refs.moviesList.innerHTML = markupTrendMovies;
       evtTarget.blur();
       pagination(data);
+      scrollTop();
     });
   } catch (error) {
     Notify.failure(error);
@@ -418,6 +422,7 @@ export async function onClickPaginationBtnNumber(e) {
 
           evtTarget.blur();
           pagination(data);
+          scrollTop();
         })
         .catch(err => Notify.failure(err));
       return;
@@ -431,6 +436,7 @@ export async function onClickPaginationBtnNumber(e) {
 
       evtTarget.blur();
       pagination(data);
+      scrollTop();
     });
   } catch (error) {
     Notify.failure(error);
@@ -461,6 +467,7 @@ export async function onClickDecrementTen(e) {
           refs.moviesList.innerHTML = markupTrendMovies;
           evtTarget.blur();
           pagination(data);
+          scrollTop();
         })
         .catch(err => Notify.failure(err));
       return;
@@ -476,6 +483,7 @@ export async function onClickDecrementTen(e) {
       refs.moviesList.innerHTML = markupTrendMovies;
       evtTarget.blur();
       pagination(data);
+      scrollTop();
     });
   } catch (error) {
     Notify.failure(error);
@@ -508,6 +516,7 @@ export async function onClickIncrementTen(e) {
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
           refs.moviesList.innerHTML = markupTrendMovies;
           refs.minusQuery.disabled = false;
+          scrollTop();
         })
         .catch(err => Notify.failure(err));
       return;
@@ -523,6 +532,7 @@ export async function onClickIncrementTen(e) {
       refs.moviesList.innerHTML = markupTrendMovies;
       evtTarget.blur();
       pagination(data);
+      scrollTop();
     });
   } catch (error) {
     Notify.failure(error);
