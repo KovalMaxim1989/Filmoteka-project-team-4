@@ -1,5 +1,24 @@
 // Button close style
 
+iframe {
+  width: 320px;
+  height: 180px;
+
+  @media screen and (min-width: 480px) {
+    width: 380px;
+    height: 215px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 560px;
+    height: 315px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 700px;
+    height: 395px;
+  }
+}
+
 .btn-close {
   width: 30px;
   height: 30px;
