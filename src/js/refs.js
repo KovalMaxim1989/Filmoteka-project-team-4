@@ -22,7 +22,7 @@ export const refs = {
   minusTen: document.querySelector('.btn-decrement-ten'),
   containerPagAll: document.querySelector('.js-pagination'),
 
-  // ЯКЩО КОМУ ПОТРІБНІ РЕФИ АБО ШУКАЙТЕ ВЖЕ СТВОРЕНІ І РОЗКОМЕНТОВУЙТЕ АБО ДОДАВАЙТЕ СВОЇ
+  // ЯКЩО КОМУ ПОТРІБНІ РЕФИ АБО ШУКАЙТЕ ВЖЕ СТВОРЕ#НІ І РОЗКОМЕНТОВУЙТЕ АБО ДОДАВАЙТЕ СВОЇ
 
   // Refs for Modal Movies
   backdrop: document.querySelector('.backdrop'),
