@@ -5,6 +5,7 @@ import { scrollTop } from './button';
 import { refs } from './refs';
 
 export function pagination(data) {
+  scrollTop();
   switch (data.page) {
     case 1:
       pageActive = 1;
@@ -306,7 +307,6 @@ export async function onClickIncrementPage(e) {
             pageActive = 1;
             onClickIncrementPage(e);
           }
-          scrollTop();
         })
         .catch(err => {
           Notify.failure(err);
@@ -334,7 +334,6 @@ export async function onClickIncrementPage(e) {
       refs.moviesList.innerHTML = markupTrendMovies;
 
       pagination(data);
-      scrollTop();
     });
   } catch (error) {
     Notify.failure(error);
@@ -353,6 +352,7 @@ export async function onClickDecrementPage(e) {
   movieAPI.page = pageActive;
   if (pageActive === 0) {
     pageActive = 1;
+    evtTarget.blur();
     return;
   }
 
@@ -362,8 +362,6 @@ export async function onClickDecrementPage(e) {
         .getSearchMovies()
         .then(data => {
           totalPages = data.total_pages;
-
-          console.log(data.total_pages);
           if (pageActive > data.total_pages) {
             pageActive = 2;
             onClickDecrementPage(e);
@@ -374,7 +372,6 @@ export async function onClickDecrementPage(e) {
           refs.moviesList.innerHTML = markupTrendMovies;
           evtTarget.blur();
           pagination(data);
-          scrollTop();
         })
         .catch(err => Notify.failure(err));
       return;
@@ -391,7 +388,6 @@ export async function onClickDecrementPage(e) {
       refs.moviesList.innerHTML = markupTrendMovies;
       evtTarget.blur();
       pagination(data);
-      scrollTop();
     });
   } catch (error) {
     Notify.failure(error);
@@ -422,7 +418,6 @@ export async function onClickPaginationBtnNumber(e) {
 
           evtTarget.blur();
           pagination(data);
-          scrollTop();
         })
         .catch(err => Notify.failure(err));
       return;
@@ -436,7 +431,6 @@ export async function onClickPaginationBtnNumber(e) {
 
       evtTarget.blur();
       pagination(data);
-      scrollTop();
     });
   } catch (error) {
     Notify.failure(error);
@@ -467,7 +461,6 @@ export async function onClickDecrementTen(e) {
           refs.moviesList.innerHTML = markupTrendMovies;
           evtTarget.blur();
           pagination(data);
-          scrollTop();
         })
         .catch(err => Notify.failure(err));
       return;
@@ -483,7 +476,6 @@ export async function onClickDecrementTen(e) {
       refs.moviesList.innerHTML = markupTrendMovies;
       evtTarget.blur();
       pagination(data);
-      scrollTop();
     });
   } catch (error) {
     Notify.failure(error);
@@ -516,7 +508,6 @@ export async function onClickIncrementTen(e) {
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
           refs.moviesList.innerHTML = markupTrendMovies;
           refs.minusQuery.disabled = false;
-          scrollTop();
         })
         .catch(err => Notify.failure(err));
       return;
@@ -532,7 +523,6 @@ export async function onClickIncrementTen(e) {
       refs.moviesList.innerHTML = markupTrendMovies;
       evtTarget.blur();
       pagination(data);
-      scrollTop();
     });
   } catch (error) {
     Notify.failure(error);
