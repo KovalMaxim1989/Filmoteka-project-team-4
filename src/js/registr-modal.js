@@ -1,27 +1,19 @@
-const refs = {
-  openModalBtn: document.querySelector('[data-modal-open-registr]'),
-  closeModalBtn: document.querySelector('[data-modal-close-registr]'),
-  backdrop: document.querySelector('.backdrop-registr'),
-};
+import { refs } from './refs';
+import { bodyScrollOff } from './modal';
 
-refs.openModalBtn.addEventListener('click', onOpenModal);
-refs.closeModalBtn.addEventListener('click', onCloseModal);
-refs.backdrop.addEventListener('click', onClickBackdrop);
+refs.openRegistrModalBtn.addEventListener('click', onOpenModal);
+refs.closeRegistrModalBtn.addEventListener('click', onCloseModal);
+refs.backdropRegistr.addEventListener('click', onClickBackdrop);
 
 function onOpenModal() {
-  refs.backdrop.classList.remove('is-hidden');
+  refs.backdropRegistr.classList.remove('is-hidden');
   window.addEventListener('keydown', onPressESC);
 
-  let scrollX = window.scrollX;
-  let scrollY = window.scrollY;
-  window.onscroll = function () {
-    window.scrollTo(scrollX, scrollY);
-  };
+  bodyScrollOff();
 }
 
 export function onCloseModal() {
-  refs.backdrop.classList.add('is-hidden');
-  document.body.classList.remove('scroll__lock');
+  refs.backdropRegistr.classList.add('is-hidden');
   window.removeEventListener('keydown', onPressESC);
 
   window.onscroll = function () {
@@ -32,19 +24,11 @@ export function onCloseModal() {
 function onClickBackdrop(e) {
   if (e.currentTarget === e.target) {
     onCloseModal();
-
-    window.onscroll = function () {
-      window.scrollTo();
-    };
   }
 }
 
 function onPressESC(e) {
   if (e.code === 'Escape') {
     onCloseModal();
-
-    window.onscroll = function () {
-      window.scrollTo();
-    };
   }
 }
