@@ -73,10 +73,9 @@ export class FireBaseService {
     const data = {
       name: getUserName(),
       timestamp: serverTimestamp(),
-      arrFilms: [obj],
+      arrFilms: obj,
     };
     try {
-      console.log('😎 I am going to FireBase');
       await setDoc(docRef, data);
     } catch (error) {
       console.error('Error add new movie to Firebase Database', error);
@@ -85,18 +84,22 @@ export class FireBaseService {
 
   // Read movie history and listens for upcoming ones.
   async readMovieData(typeInfo) {
-    if (!this.isUserSignedIn()) throw 'No autenteficate';
+    if (!this.isUserSignedIn()) {
+      // throw 'No autenteficate';
+      return [];
+    }
     const uid = getAuth().currentUser.uid;
     const db = getFirestore();
     const docRef = doc(db, this.NAME_COLLECTION_FILESTORAGE, typeInfo + uid);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      // console.log('Document data:', docSnap.data());
+      console.log('Document data:', docSnap.data());
       return docSnap.data();
     } else {
       // doc.data() will be undefined in this case
       console.log('No such document!');
+      return [];
     }
 
     // Start listening to the query.
