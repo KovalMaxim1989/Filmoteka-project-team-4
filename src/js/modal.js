@@ -3,7 +3,7 @@ import axios from 'axios';
 import { createMarkupSelectedMovie } from './markup';
 import { fetchTrailerKey } from './modal-trailer';
 import { onAddToLocalStorage } from './addToLocalStorage';
-import { onAddToFirebase } from './addToFirebase';
+// import { onAddToFirebase } from './addToFirebase';
 
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
