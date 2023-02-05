@@ -54,8 +54,8 @@ export const refs = {
   ),
 
   // // spiner
-  // backdropSpinner: document.querySelector('[data-load]'),
-  // spinner: document.querySelector('.js-spinner'),
+  backdropSpinner: document.querySelector('.backdrop-spin'),
+  spinner: document.querySelector('.js-spinner'),
 
   // // Library page
   // libraryList: document.querySelector('.js-library-list'),
