@@ -94,11 +94,9 @@ export class FireBaseService {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log('Document data:', docSnap.data());
       return docSnap.data();
     } else {
       // doc.data() will be undefined in this case
-      console.log('No such document!');
       return [];
     }
 
@@ -130,8 +128,6 @@ function authStateObserver(user) {
     refs.userNameElement.textContent = userName;
 
     // Show user's profile and sign-out button.
-    // refs.userNameElement.removeAttribute('hidden');
-    // refs.userPicElement.removeAttribute('hidden');
     refs.userInfoElement.classList.remove('visually-hidden');
     refs.signOutButtonElement.classList.remove('visually-hidden');
 
@@ -143,8 +139,6 @@ function authStateObserver(user) {
   } else {
     // User is signed out!
     // Hide user's profile and sign-out button.
-    // refs.userNameElement.setAttribute('hidden', 'true');
-    // refs.userPicElement.setAttribute('hidden', 'true');
     refs.userInfoElement.classList.add('visually-hidden');
     refs.signOutButtonElement.classList.add('visually-hidden');
 
