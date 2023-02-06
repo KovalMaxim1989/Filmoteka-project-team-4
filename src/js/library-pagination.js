@@ -14,6 +14,7 @@ const refsLib = {
   plusT: document.querySelector('.btn-increment-ten-library'),
   minusT: document.querySelector('.btn-decrement-ten-library'),
   containerPag: document.querySelector('.js-pagination-library'),
+  libraryScroll: document.querySelector('#logo'),
 };
 
 refsLib.minusQu.addEventListener('click', onClickDecrementPage);
@@ -409,54 +410,3 @@ function paginationLibAllEvt(page, arrey, begin, end, total) {
     paginationLib(total, page);
   }
 }
-// if (!activePage || activePage < 0) {
-//   activePage = 1;
-//   return;
-// }
-
-// if (libraryWatcehd.classList.contains('main-btn--library-active')) {
-//   arreyWatched = JSON.parse(watchedFilms);
-//   totalFilms = Number.parseInt(arreyWatched.length / 20 + 1);
-//   if (activePage > totalFilms) {
-//     activePage = totalFilms;
-//   }
-//   if (arreyWatched.length === 1) {
-//     list.innerHTML = createMarkupLibraryList(arreyWatched);
-//   }
-//   if (activePage === 1) {
-//     const arr = arreyWatched.slice(0, 20);
-//     list.innerHTML = createMarkupLibraryList(arr);
-//     paginationLib(totalFilms, activePage);
-
-//     return;
-//   }
-//   beginPage = 20 * activePage - 20;
-//   endPage = 20 * activePage;
-
-//   const arr = arreyWatched.slice(beginPage, endPage);
-//   list.innerHTML = createMarkupLibraryList(arr);
-//   paginationLib(totalFilms, activePage);
-// }
-
-// if (libraryQueue.classList.contains('main-btn--library-active')) {
-//   arreyWatched = JSON.parse(queueFilms);
-//   totalFilms = Number.parseInt(arreyWatched.length / 20 + 1);
-
-//   if (activePage > totalFilms) {
-//     activePage = totalFilms;
-//   }
-//   if (arreyWatched.length === 1) {
-//     list.innerHTML = createMarkupLibraryList(arreyWatched);
-//   }
-//   beginPage = 20 * activePage - 20;
-//   endPage = 20 * activePage;
-//   const arr = arreyWatched.slice(beginPage, endPage);
-//   list.innerHTML = createMarkupLibraryList(arr);
-//   if (activePage === 1) {
-//     const arr = arreyWatched.slice(0, 20);
-//     list.innerHTML = createMarkupLibraryList(arr);
-//     paginationLib(totalFilms, activePage);
-//     return;
-//   }
-//   paginationLib(totalFilms, activePage);
-// }

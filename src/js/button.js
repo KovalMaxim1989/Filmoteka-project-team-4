@@ -1,3 +1,5 @@
+import { onAddToLocalStorage } from './addToLocalStorage';
+
 const button = document.querySelector('#top');
 
 window.addEventListener('scroll', function () {
@@ -9,6 +11,7 @@ button.addEventListener('click', scrollTop);
 export function scrollTop() {
   window.scrollTo({
     top: 10,
+    left: 0,
     behavior: 'smooth',
   });
 }

@@ -45,7 +45,7 @@ export function openModal(evt) {
   fetchModal(currentId).then(data => {
     createMarkupSelectedMovie(data);
     onAddToLocalStorage(data);
-    onAddToFirebase(data);
+    // onAddToFirebase(data);
   });
 
   fetchTrailerKey(currentId).then(key => {
@@ -81,8 +81,8 @@ export function openModal(evt) {
 }
 
 export function bodyScrollOff() {
-  let scrollX = window.scrollX;
-  let scrollY = window.scrollY;
+  scrollX = window.scrollX;
+  scrollY = window.scrollY;
   window.onscroll = function () {
     window.scrollTo(scrollX, scrollY);
   };
