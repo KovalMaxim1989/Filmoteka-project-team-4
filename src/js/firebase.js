@@ -46,9 +46,9 @@ export class FireBaseService {
   }
 
   // Signs-out of Friendly Chat.
-  signOutUser() {
+  async signOutUser() {
     // Sign out of Firebase.
-    signOut(getAuth());
+    await signOut(getAuth());
   }
 
   // Initialize firebase auth

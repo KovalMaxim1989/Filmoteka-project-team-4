@@ -107,6 +107,7 @@
   &:hover,
   &:focus {
     color: $txt-active-color;
+    cursor: pointer;
 
     &::after {
       transform: scaleX(1);

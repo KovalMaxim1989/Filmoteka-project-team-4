@@ -21,6 +21,7 @@ export const refs = {
   plusTen: document.querySelector('.btn-increment-ten'),
   minusTen: document.querySelector('.btn-decrement-ten'),
   containerPagAll: document.querySelector('.js-pagination'),
+  libraryLink: document.querySelector('#library-link'),
 
   // ЯКЩО КОМУ ПОТРІБНІ РЕФИ АБО ШУКАЙТЕ ВЖЕ СТВОРЕ#НІ І РОЗКОМЕНТОВУЙТЕ АБО ДОДАВАЙТЕ СВОЇ
 
