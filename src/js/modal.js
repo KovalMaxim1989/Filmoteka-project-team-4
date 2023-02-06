@@ -37,9 +37,9 @@ export function openModal(evt) {
   if (evt.currentTarget === evt.target) {
     return;
   }
-  let libraryPage = 'queue';
-
+  let libraryPage;
   if (refs.watchedLibraryBtn) {
+    libraryPage = 'queue';
     if (
       refs.watchedLibraryBtn.className
         .split(' ')
@@ -59,12 +59,16 @@ export function openModal(evt) {
       createMarkupSelectedMovie(data);
       onAddToLocalStorage(data);
       onAddToFirebase(data);
+
       const queuedBtn = document.querySelector('.js-btn-queue');
       const watchedBtn = document.querySelector('.js-btn-watched');
+      const delite = document.querySelector('.js-btn-d');
 
       if (libraryPage === 'queue') {
+        delite.classList.remove('visually-hidden');
         queuedBtn.classList.add('visually-hidden');
       } else if (libraryPage === 'watched') {
+        delite.classList.remove('visually-hidden');
         watchedBtn.classList.add('visually-hidden');
       }
     })
