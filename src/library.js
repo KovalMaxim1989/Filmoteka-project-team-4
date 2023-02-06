@@ -3,6 +3,7 @@ import { refsLib } from './js/library-pagination';
 import { scrollTop } from './js/button';
 
 import './js/modal';
+import './js/footer-modal';
 
 window.onload = onLoadLibrary();
 
