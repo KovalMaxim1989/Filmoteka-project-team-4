@@ -1,5 +1,10 @@
-import { refs } from './refs';
 import { bodyScrollOff } from './modal';
+
+const refs = {
+  openTeamModalBtn: document.querySelector('[data-modal-open-team]'),
+  closeTeamModalBtn: document.querySelector('[data-modal-close-team]'),
+  backdropFooter: document.querySelector('.backdrop-footer'),
+};
 
 refs.openTeamModalBtn.addEventListener('click', onOpenModal);
 refs.closeTeamModalBtn.addEventListener('click', onCloseModal);
