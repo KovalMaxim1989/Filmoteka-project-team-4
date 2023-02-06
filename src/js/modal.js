@@ -16,6 +16,7 @@ const refs = {
   openModalCard: document.querySelector('[data-modal-open]'),
   closeModalBtn: document.querySelector('[data-modal-close]'),
   trailerBtn: document.querySelector('.trailer-btn'),
+  watchedLibraryBtn: document.querySelector('.js-btn-library-watched'),
 };
 
 // Тимчасово пам'ятка в продакшн видалити
@@ -37,6 +38,15 @@ export function openModal(evt) {
     return;
   }
 
+  let libraryPage = 'queue';
+  if (
+    refs.watchedLibraryBtn.className
+      .split(' ')
+      .some(btn => btn === 'main-btn--library-active')
+  ) {
+    libraryPage = 'watched';
+  }
+
   document.querySelector('.wrap-disc').innerHTML = '';
 
   const currentMovie = evt.target.closest('.js-target');
@@ -47,6 +57,15 @@ export function openModal(evt) {
       createMarkupSelectedMovie(data);
       onAddToLocalStorage(data);
       onAddToFirebase(data);
+      const queuedBtn = document.querySelector('.js-btn-queue');
+      const watchedBtn = document.querySelector('.js-btn-watched');
+
+      console.log('delite: ', libraryPage);
+      if (libraryPage === 'queue') {
+        queuedBtn.classList.add('visually-hidden');
+      } else if (libraryPage === 'watched') {
+        watchedBtn.classList.add('visually-hidden');
+      }
     })
     .catch(error => console.log(error));
 
