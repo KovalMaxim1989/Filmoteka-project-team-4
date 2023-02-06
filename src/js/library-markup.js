@@ -14,10 +14,12 @@ let totalFilms = 0;
 
 export function onQueue() {
   libraryQueue.addEventListener('click', onQueueClick);
+  checkLocalStorage(queueFilms);
 }
 
 export function onWatched() {
   libraryWatcehd.addEventListener('click', onWatchedClick);
+  checkLocalStorage(watchedFilms);
 }
 
 export function onLoadLibrary() {
@@ -44,7 +46,9 @@ function checkLocalStorage(key) {
   } else {
     list.innerHTML = createMarkupLibraryList(JSON.parse(key));
     arr = JSON.parse(key);
-    totalFilms = Number.parseInt(arr.length / 20 + 1);
+    console.log(arr);
+    totalFilms = Number.parseInt(arr.length / 18 + 1);
+
     paginationLib(totalFilms, 1);
     return;
   }
