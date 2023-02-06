@@ -56,16 +56,6 @@ body.scroll__lock {
   }
 }
 
-// .disable-scroll {
-//   position: relative;
-//   overflow: hidden;
-//   height: 100vh;
-//   position: fixed;
-//   left: 0;
-//   top: 0;
-//   width: 100%;
-// }
-
 .title-box {
   width: auto;
   position: sticky;
@@ -230,5 +220,37 @@ body.scroll__lock {
   &:focus {
     fill: $orange-hover;
     scale: 1.15;
+  }
+}
+.footer-icon__modal {
+  stroke: $txt-active-color;
+  fill: $txt-active-color;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  animation: animate360 3000ms cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+  @media screen and (max-width: 479px) {
+    width: 0;
+    height: 0;
+  }
+
+  @media screen and (min-width: 480px) {
+    margin-left: 8px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-left: 10px;
+  }
+}
+
+@keyframes animate360 {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateY(360deg);
   }
 }
