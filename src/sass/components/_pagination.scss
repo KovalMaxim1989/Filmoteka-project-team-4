@@ -58,6 +58,15 @@
     box-shadow: $btn-shadow;
   }
 }
+.dark .btn-pagination {
+  color: $txt-white-color;
+  @media screen and (min-width: 400px) {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+    line-height: calc(16 / 12);
+  }
+}
 .btn-incremention {
   display: block;
   padding: 0;
@@ -65,18 +74,28 @@
   width: 25px;
   height: 25px;
   border: none;
+
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: calc(12 / 10);
   border-radius: 5px;
+  fill: $txt-black-color;
   background-color: $bg-footer-color;
-  transition: background-color $animation, box-shadow $animation;
+  cursor: pointer;
+  transition: fill $animation, background-color $animation,
+    box-shadow $animation;
 
   @media screen and (min-width: 400px) {
     width: 40px;
     height: 40px;
+    font-size: 12px;
+    line-height: calc(16 / 12);
   }
 
   &:hover,
   &:focus {
-    cursor: pointer;
+    fill: $txt-white-color;
     background-color: $bg-active-color;
     border: transparent;
     box-shadow: $btn-shadow;
@@ -102,6 +121,15 @@
       border: transparent;
       box-shadow: $btn-shadow;
     }
+  }
+}
+.dark .btn--ten {
+  color: $txt-white-color;
+  @media screen and (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+    line-height: calc(16 / 12);
   }
 }
 .btn-active {

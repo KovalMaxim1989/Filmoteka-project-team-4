@@ -71,10 +71,3 @@ export const refs = {
   signInWithEmail: document.querySelector('[data-modal-sign-in-email]'),
   signInWithGoogle: document.querySelector('[data-modal-sign-in-google]'),
 };
-refs.minusQuery.addEventListener('click', onClickDecrementPage);
-refs.plusQuery.addEventListener('click', onClickIncrementPage);
-refs.containerPage.addEventListener('click', onClickPaginationBtnNumber);
-refs.minusTen.addEventListener('click', onClickDecrementTen);
-refs.plusTen.addEventListener('click', onClickIncrementTen);
-refs.lastPage.addEventListener('click', onClickPaginationBtnNumber);
-refs.firstPage.addEventListener('click', onClickPaginationBtnNumber);
