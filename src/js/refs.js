@@ -23,7 +23,7 @@ export const refs = {
   containerPagAll: document.querySelector('.js-pagination'),
   libraryLink: document.querySelector('#library-link'),
 
-  // ЯКЩО КОМУ ПОТРІБНІ РЕФИ АБО ШУКАЙТЕ ВЖЕ СТВОРЕНІ І РОЗКОМЕНТОВУЙТЕ АБО ДОДАВАЙТЕ СВОЇ
+  // ЯКЩО КОМУ ПОТРІБНІ РЕФИ АБО ШУКАЙТЕ ВЖЕ СТВОРЕ#НІ І РОЗКОМЕНТОВУЙТЕ АБО ДОДАВАЙТЕ СВОЇ
 
   // Refs for Modal Movies
   backdrop: document.querySelector('.backdrop'),

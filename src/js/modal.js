@@ -3,12 +3,20 @@ import axios from 'axios';
 import { createMarkupSelectedMovie } from './markup';
 import { fetchTrailerKey } from './modal-trailer';
 import { onAddToLocalStorage } from './addToLocalStorage';
-import { onAddToFirebase } from './addToFirebase';
+// import { onAddToFirebase } from './addToFirebase';
 
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
-import { refs } from './refs';
+// import { refs } from './refs';
+
+const refs = {
+  backdrop: document.querySelector('.backdrop'),
+  modalMovies: document.querySelector('[data-modal]'),
+  openModalCard: document.querySelector('[data-modal-open]'),
+  closeModalBtn: document.querySelector('[data-modal-close]'),
+  trailerBtn: document.querySelector('.trailer-btn'),
+};
 
 // Тимчасово пам'ятка в продакшн видалити
 // References to DOM
