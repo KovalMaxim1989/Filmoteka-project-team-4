@@ -28,7 +28,6 @@ export function onAddToLocalStorage(data) {
           movies.splice(indexOfMovie, 1);
           localStorage.setItem(watchedKey, JSON.stringify(movies));
           savedData = localStorage.getItem(watchedKey);
-          console.log('savedData: ', savedData);
 
           if (savedData === '[]') {
             list.innerHTML =
