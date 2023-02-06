@@ -16,6 +16,10 @@ export function onCloseModal() {
   refs.backdropRegistr.classList.add('is-hidden');
   window.removeEventListener('keydown', onPressESC);
 
+  refs.openRegistrModalBtn.removeEventListener('click', onOpenModal);
+  refs.closeRegistrModalBtn.removeEventListener('click', onCloseModal);
+  refs.backdropRegistr.removeEventListener('click', onClickBackdrop);
+
   window.onscroll = function () {
     window.scrollTo();
   };

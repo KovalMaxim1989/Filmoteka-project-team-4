@@ -1,4 +1,5 @@
-#user-container {
+#user-container,
+#lib-user-container {
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -10,7 +11,8 @@
   padding-right: 10px;
 }
 
-#user-pic {
+#user-pic,
+#lib-user-pic {
   top: -3px;
   position: relative;
   display: inline-block;
@@ -22,7 +24,12 @@
   border-radius: 20px;
 }
 
-#user-name {
+#user-name,
+#lib-user-name {
+  @media screen and (max-width: 479px) {
+    display: none;
+  }
+  display: inline;
   color: $txt-white-color;
   font-size: 16px;
   line-height: 2;
