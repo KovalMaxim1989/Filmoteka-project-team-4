@@ -173,22 +173,8 @@ body.scroll__lock {
 .card-member__role {
   text-align: center;
   font-weight: 500;
-  color: $txt-black-color;
-}
-
-.card-member__text {
-  display: flex;
-  color: $txt-footer-color;
-
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  padding: 3px;
-
   margin-bottom: 10px;
-  border: 2px solid $bg-footer-color;
-  border-radius: 5px;
-  height: 100px;
+  color: $txt-black-color;
 }
 
 .social-list {
