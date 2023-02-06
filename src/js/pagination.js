@@ -29,9 +29,14 @@ refsPag.lastPage.addEventListener('click', onClickPaginationBtnNumber);
 refsPag.firstPage.addEventListener('click', onClickPaginationBtnNumber);
 
 const spinner = new Spinner();
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 
 export function pagination(data) {
   scrollTop();
+  topFunction();
   switch (data.page) {
     case 1:
       pageActive = 1;
