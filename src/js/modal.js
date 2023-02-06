@@ -63,7 +63,7 @@ export function openModal(evt) {
       const queuedBtn = document.querySelector('.js-btn-queue');
       const watchedBtn = document.querySelector('.js-btn-watched');
       const delite = document.querySelector('.js-btn-d');
-
+      delite.classList.add('visually-hidden');
       if (libraryPage === 'queue') {
         delite.classList.remove('visually-hidden');
         queuedBtn.classList.add('visually-hidden');
