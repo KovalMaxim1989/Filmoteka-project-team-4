@@ -32,7 +32,6 @@ const spinner = new Spinner();
 
 export function pagination(data) {
   scrollTop();
-  topFunction();
   switch (data.page) {
     case 1:
       pageActive = 1;
