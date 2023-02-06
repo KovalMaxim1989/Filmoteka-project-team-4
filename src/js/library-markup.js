@@ -37,15 +37,15 @@ function onQueueClick() {
 }
 
 function checkLocalStorage(key) {
-  if (key) {
+  if (key === '[]') {
+    list.innerHTML =
+      '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
+    paginationLib(0, 0);
+  } else {
     list.innerHTML = createMarkupLibraryList(JSON.parse(key));
     arr = JSON.parse(key);
     totalFilms = Number.parseInt(arr.length / 20 + 1);
     paginationLib(totalFilms, 1);
-  } else {
-    list.innerHTML =
-      '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
-    paginationLib(0, 0);
     return;
   }
 }
