@@ -37,14 +37,16 @@ export function openModal(evt) {
   if (evt.currentTarget === evt.target) {
     return;
   }
-
   let libraryPage = 'queue';
-  if (
-    refs.watchedLibraryBtn.className
-      .split(' ')
-      .some(btn => btn === 'main-btn--library-active')
-  ) {
-    libraryPage = 'watched';
+
+  if (refs.watchedLibraryBtn) {
+    if (
+      refs.watchedLibraryBtn.className
+        .split(' ')
+        .some(btn => btn === 'main-btn--library-active')
+    ) {
+      libraryPage = 'watched';
+    }
   }
 
   document.querySelector('.wrap-disc').innerHTML = '';
@@ -60,7 +62,6 @@ export function openModal(evt) {
       const queuedBtn = document.querySelector('.js-btn-queue');
       const watchedBtn = document.querySelector('.js-btn-watched');
 
-      console.log('delite: ', libraryPage);
       if (libraryPage === 'queue') {
         queuedBtn.classList.add('visually-hidden');
       } else if (libraryPage === 'watched') {
