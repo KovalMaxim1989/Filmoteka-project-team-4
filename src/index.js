@@ -19,7 +19,7 @@ import { scrollTop } from './js/button';
 // import { refs } from './js/refs';
 
 // filters
-// import './js/filter-search-films';
+import './js/filter-search-films';
 
 // ! Section for create new Class instances:
 // here you create new Class instances

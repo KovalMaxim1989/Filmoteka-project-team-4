@@ -1,108 +1,107 @@
-// import { MovieAPI } from './MoviesApiServise';
-// import { createMarkupFilmsList } from './markup';
-// import { DataService } from './data-service';
-// import { pagination } from './pagination';
-// import { refs } from './refs';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { Spinner } from './spinner';
+import { MovieAPI } from './MoviesApiServise';
+import { createMarkupFilmsList } from './markup';
+import { DataService } from './data-service';
+import { pagination } from './pagination';
+import { refs } from './refs';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Spinner } from './spinner';
 
-// const spinner = new Spinner();
-// const dataService = new DataService();
-// console.log(111);
-// const movieAPI = new MovieAPI();
+const spinner = new Spinner();
+const dataService = new DataService();
+const movieAPI = new MovieAPI();
 
-// refs.filterNowPlaying.addEventListener('click', getNowPlaying);
+refs.filterNowPlaying.addEventListener('click', getNowPlaying);
 
-// function getNowPlaying(e) {
-//   e.preventDefault();
+function getNowPlaying(e) {
+  e.preventDefault();
 
-//   refs.moviesList.innerHTML = '';
+  refs.moviesList.innerHTML = '';
 
-//   spinner.start();
+  spinner.start();
 
-//   movieAPI
-//     .getNowPlaying()
-//     .then(data => {
-//       pagination(data);
+  movieAPI
+    .getNowPlaying()
+    .then(data => {
+      pagination(data);
 
-//       const necessaryData = dataService.getDataTrendMovies(data.results);
-//       const markupTrendMovies = createMarkupFilmsList(necessaryData);
-//       refs.moviesList.innerHTML = markupTrendMovies;
-//     })
-//     .catch(err => Notify.failure(err))
-//     .finally(() => {
-//       spinner.stop();
-//     });
-// }
+      const necessaryData = dataService.getDataTrendMovies(data.results);
+      const markupTrendMovies = createMarkupFilmsList(necessaryData);
+      refs.moviesList.innerHTML = markupTrendMovies;
+    })
+    .catch(err => Notify.failure(err))
+    .finally(() => {
+      spinner.stop();
+    });
+}
 
-// refs.filterPopular.addEventListener('click', getPopular);
+refs.filterPopular.addEventListener('click', getPopular);
 
-// function getPopular(e) {
-//   e.preventDefault();
+function getPopular(e) {
+  e.preventDefault();
 
-//   refs.moviesList.innerHTML = '';
+  refs.moviesList.innerHTML = '';
 
-//   spinner.start();
+  spinner.start();
 
-//   movieAPI
-//     .getPopular()
-//     .then(data => {
-//       pagination(data);
+  movieAPI
+    .getPopular()
+    .then(data => {
+      pagination(data);
 
-//       const necessaryData = dataService.getDataTrendMovies(data.results);
-//       const markupTrendMovies = createMarkupFilmsList(necessaryData);
-//       refs.moviesList.innerHTML = markupTrendMovies;
-//     })
-//     .catch(err => Notify.failure(err))
-//     .finally(() => {
-//       spinner.stop();
-//     });
-// }
+      const necessaryData = dataService.getDataTrendMovies(data.results);
+      const markupTrendMovies = createMarkupFilmsList(necessaryData);
+      refs.moviesList.innerHTML = markupTrendMovies;
+    })
+    .catch(err => Notify.failure(err))
+    .finally(() => {
+      spinner.stop();
+    });
+}
 
-// refs.filterTopRated.addEventListener('click', getTopRated);
+refs.filterTopRated.addEventListener('click', getTopRated);
 
-// function getTopRated(e) {
-//   e.preventDefault();
+function getTopRated(e) {
+  e.preventDefault();
 
-//   refs.moviesList.innerHTML = '';
+  refs.moviesList.innerHTML = '';
 
-//   spinner.start();
+  spinner.start();
 
-//   movieAPI
-//     .getTopRated()
-//     .then(data => {
-//       pagination(data);
+  movieAPI
+    .getTopRated()
+    .then(data => {
+      pagination(data);
 
-//       const necessaryData = dataService.getDataTrendMovies(data.results);
-//       const markupTrendMovies = createMarkupFilmsList(necessaryData);
-//       refs.moviesList.innerHTML = markupTrendMovies;
-//     })
-//     .catch(err => Notify.failure(err))
-//     .finally(() => {
-//       spinner.stop();
-//     });
-// }
+      const necessaryData = dataService.getDataTrendMovies(data.results);
+      const markupTrendMovies = createMarkupFilmsList(necessaryData);
+      refs.moviesList.innerHTML = markupTrendMovies;
+    })
+    .catch(err => Notify.failure(err))
+    .finally(() => {
+      spinner.stop();
+    });
+}
 
-// refs.filterUpcoming.addEventListener('click', getUpcoming);
+refs.filterUpcoming.addEventListener('click', getUpcoming);
 
-// function getUpcoming(e) {
-//   e.preventDefault();
+function getUpcoming(e) {
+  e.preventDefault();
 
-//   refs.moviesList.innerHTML = '';
+  refs.moviesList.innerHTML = '';
 
-//   spinner.start();
+  spinner.start();
 
-//   movieAPI
-//     .getUpcoming()
-//     .then(data => {
-//       pagination(data);
+  movieAPI
+    .getUpcoming()
+    .then(data => {
+      pagination(data);
 
-//       const necessaryData = dataService.getDataTrendMovies(data.results);
-//       const markupTrendMovies = createMarkupFilmsList(necessaryData);
-//       refs.moviesList.innerHTML = markupTrendMovies;
-//     })
-//     .catch(err => Notify.failure(err))
-//     .finally(() => {
-//       spinner.stop();
-//     });
-// }
+      const necessaryData = dataService.getDataTrendMovies(data.results);
+      const markupTrendMovies = createMarkupFilmsList(necessaryData);
+      refs.moviesList.innerHTML = markupTrendMovies;
+    })
+    .catch(err => Notify.failure(err))
+    .finally(() => {
+      spinner.stop();
+    });
+}
