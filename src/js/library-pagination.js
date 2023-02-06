@@ -34,10 +34,8 @@ const queuedKey = 'queueMovies';
 const watchedFilms = localStorage.getItem(watchedKey);
 const queueFilms = localStorage.getItem(queuedKey);
 function scrollTop() {
-  window.scrollTo({
-    top: 10,
-    behavior: 'smooth',
-  });
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 export function paginationLib(data, page) {
   scrollTop();
