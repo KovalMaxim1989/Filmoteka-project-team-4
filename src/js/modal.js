@@ -47,7 +47,6 @@ export function openModal(evt) {
       createMarkupSelectedMovie(data);
       onAddToLocalStorage(data);
       onAddToFirebase(data);
-      console.log('hello');
     })
     .catch(error => console.log(error));
 
