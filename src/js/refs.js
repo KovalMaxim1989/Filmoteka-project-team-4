@@ -1,10 +1,10 @@
-import {
-  onClickIncrementPage,
-  onClickDecrementPage,
-  onClickPaginationBtnNumber,
-  onClickDecrementTen,
-  onClickIncrementTen,
-} from './pagination';
+// import {
+//   onClickIncrementPage,
+//   onClickDecrementPage,
+//   onClickPaginationBtnNumber,
+//   onClickDecrementTen,
+//   onClickIncrementTen,
+// } from './pagination';
 
 export const refs = {
   moviesList: document.querySelector('.js-films-list'),

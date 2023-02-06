@@ -3,7 +3,7 @@ import axios from 'axios';
 import { createMarkupSelectedMovie } from './markup';
 import { fetchTrailerKey } from './modal-trailer';
 import { onAddToLocalStorage } from './addToLocalStorage';
-// import { onAddToFirebase } from './addToFirebase';
+import { onAddToFirebase } from './addToFirebase';
 
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
@@ -42,11 +42,14 @@ export function openModal(evt) {
   const currentMovie = evt.target.closest('.js-target');
   const currentId = Number(currentMovie.dataset.id);
 
-  fetchModal(currentId).then(data => {
-    createMarkupSelectedMovie(data);
-    onAddToLocalStorage(data);
-    // onAddToFirebase(data);
-  });
+  fetchModal(currentId)
+    .then(data => {
+      createMarkupSelectedMovie(data);
+      onAddToLocalStorage(data);
+      onAddToFirebase(data);
+      console.log('hello');
+    })
+    .catch(error => console.log(error));
 
   fetchTrailerKey(currentId).then(key => {
     refs.trailerBtn.onclick = () => {

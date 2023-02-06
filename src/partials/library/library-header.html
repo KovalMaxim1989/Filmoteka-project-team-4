@@ -9,17 +9,10 @@
       </a>
       <ul class="nav__list">
         <li class="nav__item">
-          <a href="./index.html" class="nav__title nav__title--redirect"
-            >HOME</a
-          >
+          <a href="./index.html" class="nav__title nav__title--redirect">HOME</a>
         </li>
         <li class="nav__item">
-          <a
-            href="./library.html"
-            id="logo"
-            class="nav__title nav__title--current"
-            >MY LIBRARY</a
-          >
+          <a href="./library.html" id="logo" class="nav__title nav__title--current">MY LIBRARY</a>
         </li>
 
         <li>
@@ -28,14 +21,30 @@
           </a>
         </li>
       </ul>
+
+      <div class="registration-btn-wrap">
+        <button type="button" class="registration-btn js-sign-in" data-modal-open-registr>
+          <span>sign in</span>
+          <svg class="registration-btn-icon" width="16" height="16">
+            <use href="./images/sprite/icons.svg#icon-enter"></use>
+          </svg>
+        </button>
+        <button type="button" class="registration-btn js-sign-out visually-hidden">
+          <span>sign out</span>
+          <svg class="registration-btn-icon" width="16" height="16">
+            <use href="./images/sprite/icons.svg#icon-exit"></use>
+          </svg>
+        </button>
+      </div>
+
+
+
     </nav>
     <div class="button-wrapper button-wrapper--library">
       <button class="main-btn main-btn--library js-btn-library-watched">
         WATCHED
       </button>
-      <button
-        class="main-btn main-btn--library main-btn--library-active js-btn-library-queue"
-      >
+      <button class="main-btn main-btn--library main-btn--library-active js-btn-library-queue">
         QUEUE
       </button>
     </div>

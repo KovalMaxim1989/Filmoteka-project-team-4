@@ -4,6 +4,7 @@ import { scrollTop } from './js/button';
 
 import './js/modal';
 import './js/footer-modal';
+import './js/registr-modal';
 
 window.onload = onLoadLibrary();
 
