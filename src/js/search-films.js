@@ -7,7 +7,6 @@ import { pagination } from './pagination';
 import { refs } from './refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Spinner } from './spinner';
-
 const spinner = new Spinner();
 const dataService = new DataService();
 
