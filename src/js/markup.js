@@ -96,6 +96,9 @@ export function createMarkupSelectedMovie(moviesData) {
    </div>
    <div class='button-container'>
      <button type='button'  class='modal-btn btn-watched js-btn-watched'>add to watched</button>
+    <button type='button'class='modal-btn btn-queue visually-hidden js-btn-d'>
+      remove
+     </button>
      <button type='button'class='modal-btn btn-queue js-btn-queue'>
        add to queue
      </button>
@@ -140,14 +143,20 @@ export function createMarkupLibraryList(moviesData) {
       return `<li class="films__item js-target" data-id="${id}">
                   <div class="films__img-wrapper">
                    <img
-                    src="${poster_path? `https://image.tmdb.org/t/p/w500${poster_path}` : defaultImg}"
+                    src="${
+                      poster_path
+                        ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                        : defaultImg
+                    }"
                     alt="${title}"
                     class="films__img" loading="lazy"
                    />
                    <div class="rating">
                      <p class="films__desk">
                        <span class="films__rating--text"> Rating: </span>
-                       <span class="films__rating">${vote_average.toFixed(1)}</span>
+                       <span class="films__rating">${vote_average.toFixed(
+                         1
+                       )}</span>
                      </p>
                     </div>
                   </div>
@@ -155,7 +164,9 @@ export function createMarkupLibraryList(moviesData) {
                  <p class="films__name">${title}</p>
                  <p class="films__desk">
                    <span class="films__genre">${filterGenres}</span> |
-                    <span class="films__year">${Number.parseInt(release_date)}</span>
+                    <span class="films__year">${Number.parseInt(
+                      release_date
+                    )}</span>
                   </p>
                </div>
              </li>`;
