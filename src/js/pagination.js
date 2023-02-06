@@ -562,7 +562,8 @@ export async function onClickIncrementTen(e) {
   if (pageActive > totalPages) {
     pageActive = totalPages;
   }
-
+  const movieAPI = new MovieAPI();
+  const dataService = new DataService();
   const formValue = refs.searchForm.searchQuery.value.trim();
   movieAPI.query = formValue;
   movieAPI.page = pageActive;
