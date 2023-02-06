@@ -144,7 +144,7 @@
 }
 .nav {
   position: relative; // for user-data container
-  margin-bottom: 54px;
+  margin-bottom: 10px;
 
   display: flex;
   align-items: center;
@@ -194,7 +194,8 @@
 
 .material-symbols-outlined {
   color: #fff;
-  margin-left: 20px;
+  margin-bottom: 20px;
+  z-index: 100;
 }
 
 .dark {
