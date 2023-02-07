@@ -1,44 +1,26 @@
 import { FireBaseService } from './firebase';
 const firebase = new FireBaseService();
 
-export function onAddToFirebase(data) {
-  const watchedBtn = document.querySelector('.js-btn-watched');
-  const queuedBtn = document.querySelector('.js-btn-queue');
+export class AddToFirebase {
+  // const watchedBtn = document.querySelector('.js-btn-watched');
+  // const queuedBtn = document.querySelector('.js-btn-queue');
 
-  watchedBtn.addEventListener('click', () => {
-    const typeInfo = 'Watched';
-    firebase.readMovieData(typeInfo).then(({ arrFilms }) => {
+  addMovieToFireBase(data, movieType) {
+    firebase.readMovieData(movieType).then(({ arrFilms }) => {
       if (!arrFilms) {
-        return firebase.saveMovieData([data], typeInfo);
+        return firebase.saveMovieData([data], movieType);
       }
 
       const isUnique = arrFilms.some(elem => elem.id === data.id);
 
       if (!isUnique) {
+        console.log('go to FireBase 😁', movieType);
+
         arrFilms.push(data);
-        firebase.saveMovieData(arrFilms, typeInfo);
+        firebase.saveMovieData(arrFilms, movieType);
       } else {
         console.log('This film in your collection 😂😋😍🤩');
       }
     });
-  });
-
-  queuedBtn.addEventListener('click', () => {
-    const typeInfo = 'Queue';
-
-    firebase.readMovieData(typeInfo).then(({ arrFilms }) => {
-      if (!arrFilms) {
-        return firebase.saveMovieData([data], typeInfo);
-      }
-
-      const isUnique = arrFilms.some(elem => elem.id === data.id);
-
-      if (!isUnique) {
-        arrFilms.push(data);
-        firebase.saveMovieData(arrFilms, typeInfo);
-      } else {
-        console.log('This film in your collection 😂😋😍🤩');
-      }
-    });
-  });
+  }
 }
