@@ -23,6 +23,13 @@ function getNowPlaying(e) {
   refs.filterTopRated.disabled = false;
   refs.filterUpcoming.disabled = false;
 
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
+
   movieAPI
     .getNowPlaying()
     .then(data => {
@@ -54,6 +61,13 @@ function getPopular(e) {
   refs.filterPopular.disabled = true;
   refs.filterTopRated.disabled = false;
   refs.filterUpcoming.disabled = false;
+
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
 
   movieAPI
     .getPopular()
@@ -88,6 +102,13 @@ function getTopRated(e) {
   refs.filterTopRated.disabled = true;
   refs.filterUpcoming.disabled = false;
 
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
+
   movieAPI
     .getTopRated()
     .then(data => {
@@ -119,6 +140,13 @@ function getUpcoming(e) {
   refs.filterPopular.disabled = false;
   refs.filterTopRated.disabled = false;
   refs.filterUpcoming.disabled = true;
+
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
 
   movieAPI
     .getUpcoming()
