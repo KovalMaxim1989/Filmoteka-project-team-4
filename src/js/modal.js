@@ -65,7 +65,6 @@ export function openModal(evt) {
     .then(data => {
       createMarkupSelectedMovie(data);
       onAddToLocalStorage(data, firebaseObj);
-      // onAddToFirebase(data);
 
       const queuedBtn = document.querySelector('.js-btn-queue');
       const watchedBtn = document.querySelector('.js-btn-watched');
