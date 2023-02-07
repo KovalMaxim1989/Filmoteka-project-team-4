@@ -8,6 +8,7 @@ refs.backdropRegistr.addEventListener('click', onClickBackdrop);
 function onOpenModal() {
   refs.backdropRegistr.classList.remove('is-hidden');
   window.addEventListener('keydown', onPressESC);
+  document.body.classList.toggle('disable-scroll');
 
   // bodyScrollOff();
 }
@@ -15,6 +16,7 @@ function onOpenModal() {
 export function onCloseModal() {
   refs.backdropRegistr.classList.add('is-hidden');
   window.removeEventListener('keydown', onPressESC);
+  document.body.classList.remove('disable-scroll');
 
   refs.openRegistrModalBtn.removeEventListener('click', onOpenModal);
   refs.closeRegistrModalBtn.removeEventListener('click', onCloseModal);
