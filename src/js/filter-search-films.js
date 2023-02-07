@@ -22,6 +22,7 @@ function getNowPlaying(e) {
   refs.filterPopular.disabled = false;
   refs.filterTopRated.disabled = false;
   refs.filterUpcoming.disabled = false;
+  console.log(refs.filterNowPlaying.disabled);
 
   movieAPI
     .getNowPlaying()
