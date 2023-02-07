@@ -2,7 +2,7 @@ import { createMarkupLibraryList } from './markup';
 import { paginationLib } from './library-pagination';
 import { Pagination } from 'swiper';
 
-const list = document.querySelector('.js-films-list');
+const list = document.querySelector('.js-films-list-library');
 const libraryWatcehd = document.querySelector('.js-btn-library-watched');
 const libraryQueue = document.querySelector('.js-btn-library-queue');
 

@@ -1,8 +1,8 @@
 import { createMarkupLibraryList } from './markup';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-const list = document.querySelector('.js-films-list');
-const watchedHeaderBtn = document.querySelector('.js-btn-library-watched');
+const list = document.querySelector('.js-films-list-library');
+const headerLibrary = document.querySelector('.header-library');
 const watchedKey = 'watchedMovies';
 const queuedKey = 'queueMovies';
 
@@ -16,56 +16,22 @@ export function onAddToLocalStorage(data, firebaseObj) {
     removeQueueBtn.classList.add('visually-hidden');
     queuedBtn.classList.remove('visually-hidden');
 
-    if (
-      watchedHeaderBtn.className
-        .split(' ')
-        .some(btn => btn === 'main-btn--library-active')
-    ) {
-      try {
-        console.log('w');
-        removeWatchedeBtn.classList.add('visually-hidden');
-        watchedBtn.classList.remove('visually-hidden');
+    try {
+      console.log('q');
+      removeQueueBtn.classList.add('visually-hidden');
+      queuedBtn.classList.remove('visually-hidden');
+      let savedData = localStorage.getItem(queuedKey);
 
-        let savedData = localStorage.getItem(watchedKey);
-        let movies = JSON.parse(savedData);
-        const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
+      let movies = JSON.parse(savedData);
+      const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
 
-        if (indexOfMovie === -1) {
-          return;
-        } else {
-          movies.splice(indexOfMovie, 1);
-          localStorage.setItem(watchedKey, JSON.stringify(movies));
-          savedData = localStorage.getItem(watchedKey);
-
-          if (savedData === '[]') {
-            list.innerHTML =
-              '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
-            return;
-          }
-
-          list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
-        }
-        removeWatchedeBtn.classList.add('visually-hidden');
-        watchedBtn.classList.remove('visually-hidden');
-      } catch (error) {
-        console.error('Set state error: ', error.message);
-      }
-    } else {
-      try {
-        console.log('q');
-        removeQueueBtn.classList.add('visually-hidden');
-        queuedBtn.classList.remove('visually-hidden');
-        let savedData = localStorage.getItem(queuedKey);
-
-        let movies = JSON.parse(savedData);
-        const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
-
-        if (indexOfMovie === -1) {
-          return;
-        } else {
-          movies.splice(indexOfMovie, 1);
-          localStorage.setItem(queuedKey, JSON.stringify(movies));
-          savedData = localStorage.getItem(queuedKey);
+      if (indexOfMovie === -1) {
+        return;
+      } else {
+        movies.splice(indexOfMovie, 1);
+        localStorage.setItem(queuedKey, JSON.stringify(movies));
+        savedData = localStorage.getItem(queuedKey);
+        if (headerLibrary) {
           if (savedData === '[]') {
             list.innerHTML =
               '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
@@ -73,59 +39,29 @@ export function onAddToLocalStorage(data, firebaseObj) {
           }
           list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
         }
-      } catch (error) {
-        console.error('Set state error: ', error.message);
       }
+    } catch (error) {
+      console.error('Set state error: ', error.message);
     }
   });
+
   removeWatchedeBtn.addEventListener('click', () => {
     removeWatchedeBtn.classList.add('visually-hidden');
     watchedBtn.classList.remove('visually-hidden');
 
-    if (
-      watchedHeaderBtn.className
-        .split(' ')
-        .some(btn => btn === 'main-btn--library-active')
-    ) {
-      try {
-        console.log('w');
+    try {
+      let savedData = localStorage.getItem(watchedKey);
+      let movies = JSON.parse(savedData);
+      const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
 
-        let savedData = localStorage.getItem(watchedKey);
-        let movies = JSON.parse(savedData);
-        const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
+      if (indexOfMovie === -1) {
+        return;
+      } else {
+        movies.splice(indexOfMovie, 1);
+        localStorage.setItem(watchedKey, JSON.stringify(movies));
+        savedData = localStorage.getItem(watchedKey);
 
-        if (indexOfMovie === -1) {
-          return;
-        } else {
-          movies.splice(indexOfMovie, 1);
-          localStorage.setItem(watchedKey, JSON.stringify(movies));
-          savedData = localStorage.getItem(watchedKey);
-
-          if (savedData === '[]') {
-            list.innerHTML =
-              '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
-            return;
-          }
-
-          list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
-        }
-      } catch (error) {
-        console.error('Set state error: ', error.message);
-      }
-    } else {
-      try {
-        console.log('q');
-        let savedData = localStorage.getItem(queuedKey);
-
-        let movies = JSON.parse(savedData);
-        const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
-
-        if (indexOfMovie === -1) {
-          return;
-        } else {
-          movies.splice(indexOfMovie, 1);
-          localStorage.setItem(queuedKey, JSON.stringify(movies));
-          savedData = localStorage.getItem(queuedKey);
+        if (headerLibrary) {
           if (savedData === '[]') {
             list.innerHTML =
               '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
@@ -133,9 +69,9 @@ export function onAddToLocalStorage(data, firebaseObj) {
           }
           list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
         }
-      } catch (error) {
-        console.error('Set state error: ', error.message);
       }
+    } catch (error) {
+      console.error('Set state error: ', error.message);
     }
   });
 
