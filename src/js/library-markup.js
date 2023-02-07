@@ -43,8 +43,9 @@ function onQueueClick() {
 
 function checkLocalStorage(key) {
   if (key === '[]') {
-    list.innerHTML =
-      '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
+    list.innerHTML = `<li class="empty-storage">
+    <div>Sorry, this storage is empty.</div>
+  </li>`;
     paginationLib(0, 0);
   } else {
     arr = JSON.parse(key);
