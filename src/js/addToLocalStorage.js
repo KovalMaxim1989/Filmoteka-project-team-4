@@ -32,8 +32,9 @@ export function onAddToLocalStorage(data, firebaseObj) {
         savedData = localStorage.getItem(queuedKey);
         if (headerLibrary) {
           if (savedData === '[]') {
-            list.innerHTML =
-              '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
+            list.innerHTML = `<li class="empty-storage">
+            <div>Sorry, this storage is empty.</div>
+          </li>`;
             return;
           }
           list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
@@ -62,8 +63,9 @@ export function onAddToLocalStorage(data, firebaseObj) {
 
         if (headerLibrary) {
           if (savedData === '[]') {
-            list.innerHTML =
-              '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
+            list.innerHTML = `<li class="empty-storage">
+            <div>Sorry, this storage is empty.</div>
+          </li>`;
             return;
           }
           list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
