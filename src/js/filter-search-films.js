@@ -30,7 +30,7 @@ function getNowPlaying(e) {
   refs.noMoviesNotification.classList.remove(
     'films__no-movies-notification-show'
   );
-
+  refs.searchErrorImg.classList.add('visually-hidden');
   movieAPI
     .getNowPlaying()
     .then(data => {
@@ -70,7 +70,7 @@ function getPopular(e) {
   refs.noMoviesNotification.classList.remove(
     'films__no-movies-notification-show'
   );
-
+  refs.searchErrorImg.classList.add('visually-hidden');
   movieAPI
     .getPopular()
     .then(data => {
@@ -111,7 +111,7 @@ function getTopRated(e) {
   refs.noMoviesNotification.classList.remove(
     'films__no-movies-notification-show'
   );
-
+  refs.searchErrorImg.classList.add('visually-hidden');
   movieAPI
     .getTopRated()
     .then(data => {
@@ -151,7 +151,7 @@ function getUpcoming(e) {
   refs.noMoviesNotification.classList.remove(
     'films__no-movies-notification-show'
   );
-
+  refs.searchErrorImg.classList.add('visually-hidden');
   movieAPI
     .getUpcoming()
     .then(data => {
