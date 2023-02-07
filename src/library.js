@@ -11,22 +11,18 @@ window.onload = onLoadLibrary();
 onQueue();
 onWatched();
 
-// ! FireBase logic authentification *******************************************
+// ! FireBase initialization *******************************************
 import { initializeApp } from 'firebase/app';
 import { getFirebaseConfig } from './js/firebase-config';
 import { FireBaseService } from './js/firebase';
 // import { refs } from './js/refs';
 const signOutLibraryButton = document.querySelector('.js-sign-out-lib');
-console.log(signOutLibraryButton);
-console.log(1);
 
 const firebaseAppConfig = getFirebaseConfig();
 const firebase = new FireBaseService();
 
 // add listeners
 signOutLibraryButton.addEventListener('click', () => {
-  console.log('🥱');
-
   firebase.signOutUser();
   window.location.href = './index.html';
 });

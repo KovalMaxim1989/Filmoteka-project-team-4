@@ -55,5 +55,6 @@ async function onGoToLibrary() {
   if (!isUser) {
     return Report.warning('Please sign in to your account!', '', 'Okay');
   }
-  refs.libraryLink.setAttribute('href', './library.html');
+  window.location.href = './library.html';
+  // refs.libraryLink.setAttribute('href', './library.html');
 }
