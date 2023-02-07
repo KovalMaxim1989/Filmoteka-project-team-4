@@ -53,7 +53,9 @@ export class MovieAPI {
   async getNowPlaying() {
     try {
       const response = await axios.get(
-        `${this.#BASE_URL}/movie/now_playing?api_key=${this.#API_KEY}`
+        `${this.#BASE_URL}/movie/now_playing?api_key=${this.#API_KEY}&page=${
+          this.#page
+        }`
       );
       return response.data;
     } catch (error) {
@@ -65,7 +67,9 @@ export class MovieAPI {
   async getPopular() {
     try {
       const response = await axios.get(
-        `${this.#BASE_URL}/movie/popular?api_key=${this.#API_KEY}`
+        `${this.#BASE_URL}/movie/popular?api_key=${this.#API_KEY}&page=${
+          this.#page
+        }`
       );
       return response.data;
     } catch (error) {
@@ -77,7 +81,9 @@ export class MovieAPI {
   async getTopRated() {
     try {
       const response = await axios.get(
-        `${this.#BASE_URL}/movie/top_rated?api_key=${this.#API_KEY}`
+        `${this.#BASE_URL}/movie/top_rated?api_key=${this.#API_KEY}&page=${
+          this.#page
+        }`
       );
       return response.data;
     } catch (error) {
@@ -89,7 +95,9 @@ export class MovieAPI {
   async getUpcoming() {
     try {
       const response = await axios.get(
-        `${this.#BASE_URL}/movie/upcoming?api_key=${this.#API_KEY}`
+        `${this.#BASE_URL}/movie/upcoming?api_key=${this.#API_KEY}&page=${
+          this.#page
+        }`
       );
       return response.data;
     } catch (error) {
