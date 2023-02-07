@@ -9,7 +9,7 @@ import { Spinner } from './spinner';
 const spinner = new Spinner();
 const dataService = new DataService();
 const movieAPI = new MovieAPI();
-
+console.log(111);
 refs.filterNowPlaying.addEventListener('click', getNowPlaying);
 
 function getNowPlaying(e) {
