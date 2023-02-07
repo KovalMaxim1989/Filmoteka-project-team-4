@@ -13,6 +13,7 @@ refs.backdropFooter.addEventListener('click', onClickBackdrop);
 function onOpenModal() {
   refs.backdropFooter.classList.remove('is-hidden');
   window.addEventListener('keydown', onPressESC);
+  document.body.classList.toggle('disable-scroll');
 
   // bodyScrollOff();
 }
@@ -20,6 +21,7 @@ function onOpenModal() {
 function onCloseModal() {
   refs.backdropFooter.classList.add('is-hidden');
   window.removeEventListener('keydown', onPressESC);
+  document.body.classList.remove('disable-scroll');
 
   // window.onscroll = function () {
   //   window.scrollTo();
