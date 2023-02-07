@@ -1,10 +1,8 @@
 import { FireBaseService } from './firebase';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const firebase = new FireBaseService();
 
 export class AddToFirebase {
-  // const watchedBtn = document.querySelector('.js-btn-watched');
-  // const queuedBtn = document.querySelector('.js-btn-queue');
-
   addMovieToFireBase(data, movieType) {
     firebase.readMovieData(movieType).then(({ arrFilms }) => {
       if (!arrFilms) {
@@ -14,13 +12,21 @@ export class AddToFirebase {
       const isUnique = arrFilms.some(elem => elem.id === data.id);
 
       if (!isUnique) {
-        console.log('go to FireBase 😁', movieType);
-
         arrFilms.push(data);
         firebase.saveMovieData(arrFilms, movieType);
       } else {
-        console.log('This film in your collection 😂😋😍🤩');
+        Notify.info('This movie in your collection');
       }
+    });
+  }
+
+  deleteMovieFromFireBase(data, movieType) {
+    firebase.readMovieData(movieType).then(({ arrFilms }) => {
+      if (!arrFilms) {
+        return;
+      }
+      const filmsAfterDelete = arrFilms.filter(elem => elem.id !== data.id);
+      firebase.saveMovieData(filmsAfterDelete, movieType);
     });
   }
 }
