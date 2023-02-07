@@ -3,12 +3,13 @@ import axios from 'axios';
 import { createMarkupSelectedMovie } from './markup';
 import { fetchTrailerKey } from './modal-trailer';
 import { onAddToLocalStorage } from './addToLocalStorage';
-import { onAddToFirebase } from './addToFirebase';
+import { AddToFirebase } from './addToFirebase';
 
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
 // import { refs } from './refs';
+const addToFirebase = new AddToFirebase();
 
 const refs = {
   backdrop: document.querySelector('.backdrop'),
@@ -18,6 +19,7 @@ const refs = {
   trailerBtn: document.querySelector('.trailer-btn'),
   watchedLibraryBtn: document.querySelector('.js-btn-library-watched'),
 };
+
 // create copy FireBase obj
 let firebaseObj = null;
 
@@ -63,11 +65,14 @@ export function openModal(evt) {
     .then(data => {
       createMarkupSelectedMovie(data);
       onAddToLocalStorage(data, firebaseObj);
-      onAddToFirebase(data);
+      // onAddToFirebase(data);
 
       const queuedBtn = document.querySelector('.js-btn-queue');
       const watchedBtn = document.querySelector('.js-btn-watched');
       const delite = document.querySelector('.js-btn-d');
+      watchedBtn.addEventListener('click', handleWathedBtnClick);
+      queuedBtn.addEventListener('click', handleQueueBtnClick);
+
       delite.classList.add('visually-hidden');
       if (libraryPage === 'queue') {
         delite.classList.remove('visually-hidden');
@@ -78,6 +83,21 @@ export function openModal(evt) {
       }
     })
     .catch(error => console.log(error));
+
+  function handleWathedBtnClick() {
+    fetchModal(currentId)
+      .then(data => {
+        addToFirebase.addMovieToFireBase(data, 'Watched');
+      })
+      .catch(error => console.log(error));
+  }
+  function handleQueueBtnClick() {
+    fetchModal(currentId)
+      .then(data => {
+        addToFirebase.addMovieToFireBase(data, 'Queue');
+      })
+      .catch(error => console.log(error));
+  }
 
   fetchTrailerKey(currentId).then(key => {
     refs.trailerBtn.onclick = () => {
