@@ -36,6 +36,7 @@ renderTrendMovie();
 import { FireBaseService } from './js/firebase';
 import { refs } from './js/refs';
 import { Report } from 'notiflix/build/notiflix-report-aio';
+import { toFirebase } from './js/modal';
 
 const firebaseAppConfig = getFirebaseConfig();
 const firebase = new FireBaseService();
@@ -49,6 +50,8 @@ refs.libraryLink.addEventListener('click', onGoToLibrary);
 initializeApp(firebaseAppConfig);
 // * Initialize Firebase Performance Monitoring
 firebase.initFirebaseAuth();
+
+toFirebase(firebase);
 
 async function onGoToLibrary() {
   const isUser = await firebase.isUserSignedIn();

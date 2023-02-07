@@ -15,7 +15,8 @@ onWatched();
 import { initializeApp } from 'firebase/app';
 import { getFirebaseConfig } from './js/firebase-config';
 import { FireBaseService } from './js/firebase';
-// import { refs } from './js/refs';
+import { toFirebase } from './js/modal';
+
 const signOutLibraryButton = document.querySelector('.js-sign-out-lib');
 
 const firebaseAppConfig = getFirebaseConfig();
@@ -30,3 +31,5 @@ signOutLibraryButton.addEventListener('click', () => {
 initializeApp(firebaseAppConfig);
 // * Initialize Firebase Performance Monitoring
 firebase.initFirebaseAuth();
+
+toFirebase(firebase);

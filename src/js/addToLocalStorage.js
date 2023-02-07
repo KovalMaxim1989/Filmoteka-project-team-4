@@ -1,9 +1,10 @@
 import { createMarkupLibraryList } from './markup';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 const list = document.querySelector('.js-films-list');
 const watchedHeaderBtn = document.querySelector('.js-btn-library-watched');
 
-export function onAddToLocalStorage(data) {
+export function onAddToLocalStorage(data, firebaseObj) {
   const watchedBtn = document.querySelector('.js-btn-watched');
   const queuedBtn = document.querySelector('.js-btn-queue');
   const delite = document.querySelector('.js-btn-d');
@@ -67,6 +68,10 @@ export function onAddToLocalStorage(data) {
   });
 
   watchedBtn.addEventListener('click', () => {
+    if (!firebaseObj.isUserSignedIn()) {
+      return Report.warning('Please sign in to your account!', '', 'Okay');
+    }
+
     try {
       let savedData = localStorage.getItem(watchedKey);
 
@@ -89,6 +94,9 @@ export function onAddToLocalStorage(data) {
   });
 
   queuedBtn.addEventListener('click', () => {
+    if (!firebaseObj.isUserSignedIn()) {
+      return Report.warning('Please sign in to your account!', '', 'Okay');
+    }
     try {
       let savedData = localStorage.getItem(queuedKey);
 
