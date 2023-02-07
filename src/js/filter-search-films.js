@@ -1,7 +1,7 @@
 import { MovieAPI } from './MoviesApiServise';
 import { createMarkupFilmsList } from './markup';
 import { DataService } from './data-service';
-import { pagination } from './pagination';
+import { pagination, onFilterObj } from './pagination';
 import { refs } from './refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Spinner } from './spinner';
@@ -26,6 +26,11 @@ function getNowPlaying(e) {
   movieAPI
     .getNowPlaying()
     .then(data => {
+      if (data.total_pages > 500) {
+        onFilterObj(data);
+        evtTarget.blur();
+        return;
+      }
       pagination(data);
 
       const necessaryData = dataService.getDataTrendMovies(data.results);
@@ -54,6 +59,11 @@ function getPopular(e) {
   movieAPI
     .getPopular()
     .then(data => {
+      if (data.total_pages > 500) {
+        onFilterObj(data);
+        evtTarget.blur();
+        return;
+      }
       pagination(data);
 
       const necessaryData = dataService.getDataTrendMovies(data.results);
@@ -82,6 +92,11 @@ function getTopRated(e) {
   movieAPI
     .getTopRated()
     .then(data => {
+      if (data.total_pages > 500) {
+        onFilterObj(data);
+        evtTarget.blur();
+        return;
+      }
       pagination(data);
 
       const necessaryData = dataService.getDataTrendMovies(data.results);
@@ -110,6 +125,11 @@ function getUpcoming(e) {
   movieAPI
     .getUpcoming()
     .then(data => {
+      if (data.total_pages > 500) {
+        onFilterObj(data);
+        evtTarget.blur();
+        return;
+      }
       pagination(data);
 
       const necessaryData = dataService.getDataTrendMovies(data.results);
