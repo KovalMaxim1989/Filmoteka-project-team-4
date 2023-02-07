@@ -28,7 +28,6 @@ function getNowPlaying(e) {
     .then(data => {
       if (data.total_pages > 500) {
         onFilterObj(data);
-        evtTarget.blur();
         return;
       }
       pagination(data);
@@ -61,7 +60,7 @@ function getPopular(e) {
     .then(data => {
       if (data.total_pages > 500) {
         onFilterObj(data);
-        evtTarget.blur();
+
         return;
       }
       pagination(data);
@@ -94,7 +93,6 @@ function getTopRated(e) {
     .then(data => {
       if (data.total_pages > 500) {
         onFilterObj(data);
-        evtTarget.blur();
         return;
       }
       pagination(data);
@@ -127,7 +125,6 @@ function getUpcoming(e) {
     .then(data => {
       if (data.total_pages > 500) {
         onFilterObj(data);
-        evtTarget.blur();
         return;
       }
       pagination(data);
