@@ -46,6 +46,7 @@ export function openModal(evt) {
   }
 
   let libraryPage;
+
   if (refs.watchedLibraryBtn) {
     libraryPage = 'queue';
     if (
@@ -66,19 +67,19 @@ export function openModal(evt) {
     .then(data => {
       createMarkupSelectedMovie(data);
       onAddToLocalStorage(data, firebaseObj);
-
       const queuedBtn = document.querySelector('.js-btn-queue');
       const watchedBtn = document.querySelector('.js-btn-watched');
       const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
       const removeWatchedeBtn = document.querySelector(
         '.js-btn-remove-watched'
       );
+      checkKeyInLocal(data);
 
       watchedBtn.addEventListener('click', handleWathedBtnClick);
       queuedBtn.addEventListener('click', handleQueueBtnClick);
 
-      removeWatchedeBtn.classList.add('visually-hidden');
-      removeQueueBtn.classList.add('visually-hidden');
+      // removeWatchedeBtn.classList.add('visually-hidden');
+      // removeQueueBtn.classList.add('visually-hidden');
 
       if (libraryPage === 'queue') {
         removeQueueBtn.classList.remove('visually-hidden');
@@ -188,5 +189,33 @@ async function fetchModal(movie_id) {
     return response.data;
   } catch (error) {
     console.log(error);
+  }
+}
+
+function checkKeyInLocal(data) {
+  const queuedBtn = document.querySelector('.js-btn-queue');
+  const watchedBtn = document.querySelector('.js-btn-watched');
+  const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
+  const removeWatchedeBtn = document.querySelector('.js-btn-remove-watched');
+
+  const valueOfWatchedKey = localStorage.getItem('watchedMovies');
+  const valueOfQueueKey = localStorage.getItem('queueMovies');
+
+  if (valueOfWatchedKey) {
+    let movies = JSON.parse(valueOfWatchedKey);
+    const isUnique = movies.some(value => value.id === data.id);
+    if (isUnique) {
+      watchedBtn.classList.add('visually-hidden');
+      removeWatchedeBtn.classList.remove('visually-hidden');
+    }
+  }
+
+  if (valueOfQueueKey) {
+    let movies = JSON.parse(valueOfQueueKey);
+    const isUnique = movies.some(value => value.id === data.id);
+    if (isUnique) {
+      queuedBtn.classList.add('visually-hidden');
+      removeQueueBtn.classList.remove('visually-hidden');
+    }
   }
 }

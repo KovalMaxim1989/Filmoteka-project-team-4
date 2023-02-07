@@ -17,7 +17,6 @@ export function onAddToLocalStorage(data, firebaseObj) {
     queuedBtn.classList.remove('visually-hidden');
 
     try {
-      console.log('q');
       removeQueueBtn.classList.add('visually-hidden');
       queuedBtn.classList.remove('visually-hidden');
       let savedData = localStorage.getItem(queuedKey);
