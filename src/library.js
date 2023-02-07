@@ -8,8 +8,8 @@ import './js/registr-modal';
 
 window.onload = onLoadLibrary();
 
-onQueue();
-onWatched();
+// onQueue();
+// onWatched();
 
 // ! FireBase logic authentification *******************************************
 import { initializeApp } from 'firebase/app';
