@@ -333,11 +333,7 @@ export async function onClickIncrementPage(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -363,11 +359,7 @@ export async function onClickIncrementPage(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -392,11 +384,7 @@ export async function onClickIncrementPage(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -421,11 +409,7 @@ export async function onClickIncrementPage(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -525,11 +509,7 @@ export async function onClickDecrementPage(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -551,11 +531,7 @@ export async function onClickDecrementPage(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -577,11 +553,7 @@ export async function onClickDecrementPage(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -603,11 +575,7 @@ export async function onClickDecrementPage(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -624,11 +592,7 @@ export async function onClickDecrementPage(e) {
             onClickDecrementPage(e);
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => {
           Notify.failure(err);
@@ -646,11 +610,7 @@ export async function onClickDecrementPage(e) {
             pageActive = 1;
             onClickDecrementPage(e);
           }
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => {
           Notify.failure(err);
@@ -689,11 +649,7 @@ export async function onClickPaginationBtnNumber(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -711,11 +667,7 @@ export async function onClickPaginationBtnNumber(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -733,11 +685,7 @@ export async function onClickPaginationBtnNumber(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -755,11 +703,7 @@ export async function onClickPaginationBtnNumber(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -771,12 +715,7 @@ export async function onClickPaginationBtnNumber(e) {
         .getSearchMovies()
         .then(data => {
           totalPages = data.total_pages;
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => {
           Notify.failure(err);
@@ -790,12 +729,7 @@ export async function onClickPaginationBtnNumber(e) {
         .getTrendMovie()
         .then(data => {
           totalPages = data.total_pages;
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => {
           Notify.failure(err);
@@ -838,11 +772,7 @@ export async function onClickDecrementTen(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -863,11 +793,7 @@ export async function onClickDecrementTen(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -888,11 +814,7 @@ export async function onClickDecrementTen(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -913,11 +835,7 @@ export async function onClickDecrementTen(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -929,11 +847,7 @@ export async function onClickDecrementTen(e) {
         .getSearchMovies()
         .then(data => {
           totalPages = data.total_pages;
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => {
           Notify.failure(err);
@@ -950,11 +864,7 @@ export async function onClickDecrementTen(e) {
           if (pageActive <= 0) {
             return;
           }
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => {
           Notify.failure(err);
@@ -994,11 +904,7 @@ export async function onClickIncrementTen(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -1019,11 +925,7 @@ export async function onClickIncrementTen(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -1044,11 +946,7 @@ export async function onClickIncrementTen(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -1069,11 +967,7 @@ export async function onClickIncrementTen(e) {
             return;
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -1111,11 +1005,7 @@ export async function onClickIncrementTen(e) {
           if (!data.total_pages) {
             refsPag.containerPage.classList.add('visually-hidden');
           }
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-          evtTarget.blur();
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => {
           Notify.failure(err);
@@ -1137,5 +1027,13 @@ export function onFilterObj(obj) {
   const necessaryData = dataService.getDataTrendMovies(dataObj.results);
   const markupTrendMovies = createMarkupFilmsList(necessaryData);
   refs.moviesList.innerHTML = markupTrendMovies;
+  pagination(dataObj);
+}
+
+function onCreateListFilmPagination(firstAPI, dataObj, taget) {
+  const necessaryData = firstAPI.getDataTrendMovies(dataObj.results);
+  const markupTrendMovies = createMarkupFilmsList(necessaryData);
+  refs.moviesList.innerHTML = markupTrendMovies;
+  taget.blur();
   pagination(dataObj);
 }
