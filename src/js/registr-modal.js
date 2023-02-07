@@ -2,10 +2,12 @@ import { refs } from './refs';
 import { bodyScrollOff } from './modal';
 
 refs.openRegistrModalBtn.addEventListener('click', onOpenModal);
-refs.closeRegistrModalBtn.addEventListener('click', onCloseModal);
-refs.backdropRegistr.addEventListener('click', onClickBackdrop);
 
 function onOpenModal() {
+  refs.openRegistrModalBtn.removeEventListener('click', onOpenModal);
+  refs.closeRegistrModalBtn.addEventListener('click', onCloseModal);
+  refs.backdropRegistr.addEventListener('click', onClickBackdrop);
+
   refs.backdropRegistr.classList.remove('is-hidden');
   window.addEventListener('keydown', onPressESC);
   document.body.classList.toggle('disable-scroll');
@@ -18,10 +20,9 @@ export function onCloseModal() {
   window.removeEventListener('keydown', onPressESC);
   document.body.classList.remove('disable-scroll');
 
-  refs.openRegistrModalBtn.removeEventListener('click', onOpenModal);
   refs.closeRegistrModalBtn.removeEventListener('click', onCloseModal);
   refs.backdropRegistr.removeEventListener('click', onClickBackdrop);
-
+  refs.openRegistrModalBtn.addEventListener('click', onOpenModal);
   // window.onscroll = function () {
   //   window.scrollTo();
   // };
