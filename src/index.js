@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirebaseConfig } from './js/firebase-config';
 
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import axios from 'axios';
 // import {Spinner} from 'spin.js';
@@ -56,5 +56,4 @@ async function onGoToLibrary() {
     return Report.warning('Please sign in to your account!', '', 'Okay');
   }
   window.location.href = './library.html';
-  // refs.libraryLink.setAttribute('href', './library.html');
 }

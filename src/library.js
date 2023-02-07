@@ -24,7 +24,6 @@ const firebase = new FireBaseService();
 // add listeners
 signOutLibraryButton.addEventListener('click', () => {
   firebase.signOutUser();
-  window.location.href = './index.html';
 });
 
 // * Initialize Firebase
