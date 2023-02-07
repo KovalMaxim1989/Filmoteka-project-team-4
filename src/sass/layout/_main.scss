@@ -41,23 +41,26 @@
     width: 394px;
   }
 
-  transition: transform $animation;
+  transition: color $animation, background-color $animation,
+    box-shadow $animation, transform $animation;
+
   &:hover,
   &:focus {
     cursor: pointer;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 10px 20px 10px,
+      rgba(0, 0, 0, 0.3) 0px 10px 7px -2px;
     transform: scale(1.03);
   }
 }
 
 .dark .films__item {
-  transition: transform $animation;
+  transition: color $animation, background-color $animation,
+    box-shadow $animation, transform $animation;
   &:hover,
   &:focus {
     cursor: pointer;
-    box-shadow: rgba(255, 107, 8, 0.25) 0px 6px 12px -2px,
-      rgba(255, 107, 8, 0.3) 0px 3px 7px -3px;
+    box-shadow: rgba(255, 107, 8, 0.25) 0px 10px 20px 10px,
+      rgba(255, 107, 8, 0.3) 0px 10px 7px -2px;
     transform: scale(1.03);
   }
 }

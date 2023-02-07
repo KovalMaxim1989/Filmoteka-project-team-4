@@ -54,7 +54,7 @@
   animation: neon 5s infinite;
   animation-timing-function: linear;
 
-  transition: color $animation;
+  transition: transform $animation;
 
   @media screen and (min-width: 768px) {
     display: inline-block;
@@ -65,7 +65,7 @@
     color: $txt-white-color;
 
     &:hover {
-      animation: animeLogo 1s ease 0s 1 normal forwards;
+      transform: scale(1.1);
     }
   }
 }
@@ -133,15 +133,6 @@
   }
 }
 
-@keyframes animeLogo {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(1.1);
-  }
-}
 .nav {
   position: relative; // for user-data container
   margin-bottom: 10px;

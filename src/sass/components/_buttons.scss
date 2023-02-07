@@ -131,7 +131,7 @@
   font-size: 12px;
   line-height: calc(16 / 12);
   border-radius: 5px;
-  border: 1px solid #fff;
+  border: 1px solid $txt-white-color;
   outline: none;
   background-color: $bg-white-color;
 
@@ -140,7 +140,7 @@
   text-transform: uppercase;
 
   background-color: #0000;
-  color: #fff;
+  color: $txt-white-color;
   transition: color $animation, background-color $animation,
     box-shadow $animation;
 
@@ -155,7 +155,7 @@
 }
 
 .registration-btn-icon {
-  fill: #fff;
+  fill: $txt-white-color;
   padding: 0;
   margin: 0;
   width: 17;
@@ -197,7 +197,7 @@
   font-size: 12px;
   line-height: calc(16 / 12);
   border-radius: 5px;
-  border: 1px solid #fff;
+  border: 1px solid $txt-black-color;
   outline: none;
   background-color: $bg-white-color;
 
@@ -206,7 +206,7 @@
   text-transform: uppercase;
 
   background-color: #0000;
-  color: #fff;
+  color: $txt-black-color;
   transition: color $animation, background-color $animation,
     box-shadow $animation;
 
@@ -218,11 +218,16 @@
     border: transparent;
     box-shadow: $btn-shadow;
   }
-  &:active {
+  &:disabled {
     cursor: pointer;
     color: $txt-white-color;
     background-color: $bg-active-color;
     border: transparent;
     box-shadow: $btn-shadow;
   }
+}
+
+.dark .movies-section-btn {
+  color: $txt-white-color;
+  border: 1px solid $txt-white-color;
 }

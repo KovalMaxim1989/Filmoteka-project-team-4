@@ -17,6 +17,12 @@ refs.searchForm.addEventListener('submit', onSearch);
 
 function onSearch(e) {
   e.preventDefault();
+
+  refs.filterNowPlaying.disabled = false;
+  refs.filterPopular.disabled = false;
+  refs.filterTopRated.disabled = false;
+  refs.filterUpcoming.disabled = false;
+
   const formValue = e.currentTarget.elements.searchQuery.value.trim();
   refs.notCorrectNotification.classList.remove(
     'films__not-correct-notification-show'
@@ -33,8 +39,6 @@ function onSearch(e) {
   }
 
   refs.moviesList.innerHTML = '';
-
-  //   MovieAPI.resetPage();
 
   movieAPI.query = formValue;
   spinner.start();
