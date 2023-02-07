@@ -50,6 +50,54 @@ export class MovieAPI {
     }
   }
 
+  async getNowPlaying() {
+    try {
+      const response = await axios.get(
+        `${this.#BASE_URL}/movie/now_playing?api_key=${this.#API_KEY}`
+      );
+      return response.data;
+    } catch (error) {
+      refs.containerPage.classList.add('visually-hidden');
+      Notify.failure(error);
+    }
+  }
+
+  async getPopular() {
+    try {
+      const response = await axios.get(
+        `${this.#BASE_URL}/movie/popular?api_key=${this.#API_KEY}`
+      );
+      return response.data;
+    } catch (error) {
+      refs.containerPage.classList.add('visually-hidden');
+      Notify.failure(error);
+    }
+  }
+
+  async getTopRated() {
+    try {
+      const response = await axios.get(
+        `${this.#BASE_URL}/movie/top_rated?api_key=${this.#API_KEY}`
+      );
+      return response.data;
+    } catch (error) {
+      refs.containerPage.classList.add('visually-hidden');
+      Notify.failure(error);
+    }
+  }
+
+  async getUpcoming() {
+    try {
+      const response = await axios.get(
+        `${this.#BASE_URL}/movie/upcoming?api_key=${this.#API_KEY}`
+      );
+      return response.data;
+    } catch (error) {
+      refs.containerPage.classList.add('visually-hidden');
+      Notify.failure(error);
+    }
+  }
+
   resetPage() {
     this.#page = 1;
   }
