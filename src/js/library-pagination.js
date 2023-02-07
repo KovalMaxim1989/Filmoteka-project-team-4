@@ -1,6 +1,6 @@
 import { createMarkupLibraryList } from './markup';
 const refsLib = {
-  moviesL: document.querySelector('.js-films-list'),
+  moviesL: document.querySelector('.js-films-list-library'),
   firstP: document.querySelector('.js-pagination--firstPage-library'),
   minus2P: document.querySelector('.js-pagination--minus2Page-library'),
   minus1P: document.querySelector('.js-pagination--minus1Page-library'),
@@ -25,7 +25,7 @@ refsLib.plusT.addEventListener('click', onClickIncrementTen);
 refsLib.lastP.addEventListener('click', onClickPaginationBtnNumber);
 refsLib.firstP.addEventListener('click', onClickPaginationBtnNumber);
 
-const list = document.querySelector('.js-films-list');
+const list = document.querySelector('.js-films-list-library');
 const libraryWatcehd = document.querySelector('.js-btn-library-watched');
 const libraryQueue = document.querySelector('.js-btn-library-queue');
 

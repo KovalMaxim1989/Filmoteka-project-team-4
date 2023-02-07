@@ -2,7 +2,7 @@ import { createMarkupLibraryList } from './markup';
 import { paginationLib } from './library-pagination';
 import { Pagination } from 'swiper';
 
-const list = document.querySelector('.js-films-list');
+const list = document.querySelector('.js-films-list-library');
 const libraryWatcehd = document.querySelector('.js-btn-library-watched');
 const libraryQueue = document.querySelector('.js-btn-library-queue');
 
@@ -53,7 +53,6 @@ function checkLocalStorage(key) {
       paginationLib(1, 1);
       return;
     }
-    console.log(arr);
     totalFilms = Number.parseInt(arr.length / 18 + 1);
     list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
 
