@@ -63,6 +63,12 @@ export const refs = {
   // btnQueue: document.querySelector('.js-btn-queue'),
   // btnWatched: document.querySelector('.js-btn-watched'),
 
+  // filter
+  filterNowPlaying: document.querySelector('.get-now-playing'),
+  filterPopular: document.querySelector('.get-popular'),
+  filterTopRated: document.querySelector('.get-top-rated'),
+  filterUpcoming: document.querySelector('.get-upcoming'),
+
   // FireBase
   signInButtonElement: document.querySelector('.js-sign-in'),
   signOutButtonElement: document.querySelector('.js-sign-out'),
