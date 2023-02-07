@@ -74,7 +74,7 @@
   }
 }
 
-.main-btn--library-active{
+.main-btn--library-active {
   background-color: $bg-active-color;
   border: transparent;
   box-shadow: $btn-shadow;
@@ -131,7 +131,7 @@
   font-size: 12px;
   line-height: calc(16 / 12);
   border-radius: 5px;
-  border: 1px solid #fff;
+  border: 1px solid $txt-white-color;
   outline: none;
   background-color: $bg-white-color;
 
@@ -140,7 +140,7 @@
   text-transform: uppercase;
 
   background-color: #0000;
-  color: #fff;
+  color: $txt-white-color;
   transition: color $animation, background-color $animation,
     box-shadow $animation;
 
@@ -155,7 +155,7 @@
 }
 
 .registration-btn-icon {
-  fill: #fff;
+  fill: $txt-white-color;
   padding: 0;
   margin: 0;
   width: 17;
@@ -173,4 +173,61 @@
 
 .register-modal__btn-icon {
   margin-right: 10px;
+}
+
+.filter-list-bnt {
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 0 15px 0;
+}
+
+.movies-section-btn {
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 35px;
+
+  @media screen and (max-width: 768px) {
+    width: 100px;
+  }
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  border-radius: 5px;
+  border: 1px solid $txt-black-color;
+  outline: none;
+  background-color: $bg-white-color;
+
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+
+  background-color: #0000;
+  color: $txt-black-color;
+  transition: color $animation, background-color $animation,
+    box-shadow $animation;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $txt-white-color;
+    background-color: $bg-active-color;
+    border: transparent;
+    box-shadow: $btn-shadow;
+  }
+  &:disabled {
+    cursor: pointer;
+    color: $txt-white-color;
+    background-color: $bg-active-color;
+    border: transparent;
+    box-shadow: $btn-shadow;
+  }
+}
+
+.dark .movies-section-btn {
+  color: $txt-white-color;
+  border: 1px solid $txt-white-color;
 }
