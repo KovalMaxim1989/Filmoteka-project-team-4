@@ -14,6 +14,7 @@ refs.filterNowPlaying.addEventListener('click', getNowPlaying);
 
 function getNowPlaying(e) {
   e.preventDefault();
+  refs.containerPagAll.classList.remove('visually-hidden');
 
   refs.moviesList.innerHTML = '';
 
@@ -54,6 +55,7 @@ refs.filterPopular.addEventListener('click', getPopular);
 
 function getPopular(e) {
   e.preventDefault();
+  refs.containerPagAll.classList.remove('visually-hidden');
 
   refs.moviesList.innerHTML = '';
 
@@ -69,7 +71,6 @@ function getPopular(e) {
   refs.noMoviesNotification.classList.remove(
     'films__no-movies-notification-show'
   );
-
   refs.searchErrorImg.classList.add('visually-hidden');
 
   movieAPI
@@ -97,6 +98,7 @@ refs.filterTopRated.addEventListener('click', getTopRated);
 
 function getTopRated(e) {
   e.preventDefault();
+  refs.containerPagAll.classList.remove('visually-hidden');
 
   refs.moviesList.innerHTML = '';
 
@@ -137,6 +139,7 @@ refs.filterUpcoming.addEventListener('click', getUpcoming);
 
 function getUpcoming(e) {
   e.preventDefault();
+  refs.containerPagAll.classList.remove('visually-hidden');
 
   refs.moviesList.innerHTML = '';
 
