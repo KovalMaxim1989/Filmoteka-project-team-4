@@ -9,7 +9,7 @@ import { Spinner } from './spinner';
 const spinner = new Spinner();
 const dataService = new DataService();
 const movieAPI = new MovieAPI();
-console.log(111);
+
 refs.filterNowPlaying.addEventListener('click', getNowPlaying);
 
 function getNowPlaying(e) {
@@ -18,6 +18,10 @@ function getNowPlaying(e) {
   refs.moviesList.innerHTML = '';
 
   spinner.start();
+  refs.filterNowPlaying.disabled = true;
+  refs.filterPopular.disabled = false;
+  refs.filterTopRated.disabled = false;
+  refs.filterUpcoming.disabled = false;
 
   movieAPI
     .getNowPlaying()
@@ -42,6 +46,10 @@ function getPopular(e) {
   refs.moviesList.innerHTML = '';
 
   spinner.start();
+  refs.filterNowPlaying.disabled = false;
+  refs.filterPopular.disabled = true;
+  refs.filterTopRated.disabled = false;
+  refs.filterUpcoming.disabled = false;
 
   movieAPI
     .getPopular()
@@ -66,6 +74,10 @@ function getTopRated(e) {
   refs.moviesList.innerHTML = '';
 
   spinner.start();
+  refs.filterNowPlaying.disabled = false;
+  refs.filterPopular.disabled = false;
+  refs.filterTopRated.disabled = true;
+  refs.filterUpcoming.disabled = false;
 
   movieAPI
     .getTopRated()
@@ -90,6 +102,10 @@ function getUpcoming(e) {
   refs.moviesList.innerHTML = '';
 
   spinner.start();
+  refs.filterNowPlaying.disabled = false;
+  refs.filterPopular.disabled = false;
+  refs.filterTopRated.disabled = false;
+  refs.filterUpcoming.disabled = true;
 
   movieAPI
     .getUpcoming()
