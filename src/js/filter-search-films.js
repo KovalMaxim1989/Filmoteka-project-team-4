@@ -23,6 +23,14 @@ function getNowPlaying(e) {
   refs.filterTopRated.disabled = false;
   refs.filterUpcoming.disabled = false;
 
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
+  refs.searchErrorImg.classList.add('visually-hidden');
+
   movieAPI
     .getNowPlaying()
     .then(data => {
@@ -55,6 +63,15 @@ function getPopular(e) {
   refs.filterTopRated.disabled = false;
   refs.filterUpcoming.disabled = false;
 
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
+
+  refs.searchErrorImg.classList.add('visually-hidden');
+
   movieAPI
     .getPopular()
     .then(data => {
@@ -67,6 +84,7 @@ function getPopular(e) {
 
       const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
+
       refs.moviesList.innerHTML = markupTrendMovies;
     })
     .catch(err => Notify.failure(err))
@@ -87,6 +105,14 @@ function getTopRated(e) {
   refs.filterPopular.disabled = false;
   refs.filterTopRated.disabled = true;
   refs.filterUpcoming.disabled = false;
+
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
+  refs.searchErrorImg.classList.add('visually-hidden');
 
   movieAPI
     .getTopRated()
@@ -119,6 +145,14 @@ function getUpcoming(e) {
   refs.filterPopular.disabled = false;
   refs.filterTopRated.disabled = false;
   refs.filterUpcoming.disabled = true;
+
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
+  refs.searchErrorImg.classList.add('visually-hidden');
 
   movieAPI
     .getUpcoming()

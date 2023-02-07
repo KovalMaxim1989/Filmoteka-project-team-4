@@ -139,6 +139,7 @@ export function openModal(evt) {
       }
     };
   });
+  document.body.classList.toggle('disable-scroll');
   // bodyScrollOff();
   toggleModal();
 }
@@ -154,8 +155,10 @@ export function bodyScrollOff() {
 function toggleModal() {
   window.addEventListener('keydown', onEscPress);
   refs.modalMovies.classList.toggle('is-hidden');
+
   if (refs.modalMovies.classList.contains('is-hidden')) {
     window.removeEventListener('keydown', onEscPress);
+    document.body.classList.remove('disable-scroll');
 
     // window.onscroll = function () {
     //   window.scrollTo();

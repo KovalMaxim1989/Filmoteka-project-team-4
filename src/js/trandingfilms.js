@@ -60,7 +60,12 @@ export function renderTrendMovie() {
       refs.moviesList.innerHTML = markupTrendMovies;
       pagination(data);
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error);
+      refs.moviesList.innerHTML = `<li class="empty-storage">
+    <div>Please wait while the minions do their work...</div>
+  </li>`;
+    })
     .finally(() => {
       spinner.stop();
     });

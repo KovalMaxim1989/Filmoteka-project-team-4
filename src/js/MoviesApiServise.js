@@ -19,6 +19,9 @@ export class MovieAPI {
       return data;
     } catch (error) {
       refs.containerPagAll.classList.add('visually-hidden');
+      refs.moviesList.innerHTML = `<li class="empty-storage">
+    <div>Please wait while the minions do their work...</div>
+  </li>`;
       console.error(error);
     }
   }
@@ -60,7 +63,9 @@ export class MovieAPI {
       return response.data;
     } catch (error) {
       refs.containerPage.classList.add('visually-hidden');
-      Notify.failure(error);
+      refs.moviesList.innerHTML = `<li class="empty-storage">
+    <div>Please wait while the minions do their work...</div>
+  </li>`;
     }
   }
 
@@ -74,7 +79,9 @@ export class MovieAPI {
       return response.data;
     } catch (error) {
       refs.containerPage.classList.add('visually-hidden');
-      Notify.failure(error);
+      refs.moviesList.innerHTML = `<li class="empty-storage">
+    <div>Please wait while the minions do their work...</div>
+  </li>`;
     }
   }
 
@@ -88,7 +95,9 @@ export class MovieAPI {
       return response.data;
     } catch (error) {
       refs.containerPage.classList.add('visually-hidden');
-      Notify.failure(error);
+      refs.moviesList.innerHTML = `<li class="empty-storage">
+    <div>Please wait while the minions do their work...</div>
+  </li>`;
     }
   }
 
@@ -102,7 +111,9 @@ export class MovieAPI {
       return response.data;
     } catch (error) {
       refs.containerPage.classList.add('visually-hidden');
-      Notify.failure(error);
+      refs.moviesList.innerHTML = `<li class="empty-storage">
+    <div>Please wait while the minions do their work...</div>
+  </li>`;
     }
   }
 
