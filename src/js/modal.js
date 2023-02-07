@@ -44,6 +44,7 @@ export function openModal(evt) {
   if (evt.currentTarget === evt.target) {
     return;
   }
+
   let libraryPage;
   if (refs.watchedLibraryBtn) {
     libraryPage = 'queue';
@@ -69,16 +70,21 @@ export function openModal(evt) {
 
       const queuedBtn = document.querySelector('.js-btn-queue');
       const watchedBtn = document.querySelector('.js-btn-watched');
-      const delite = document.querySelector('.js-btn-d');
+      const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
+      const removeWatchedeBtn = document.querySelector(
+        '.js-btn-remove-watched'
+      );
+
       watchedBtn.addEventListener('click', handleWathedBtnClick);
       queuedBtn.addEventListener('click', handleQueueBtnClick);
+      removeWatchedeBtn.classList.add('visually-hidden');
 
-      delite.classList.add('visually-hidden');
+      removeQueueBtn.classList.add('visually-hidden');
       if (libraryPage === 'queue') {
-        delite.classList.remove('visually-hidden');
+        removeQueueBtn.classList.remove('visually-hidden');
         queuedBtn.classList.add('visually-hidden');
       } else if (libraryPage === 'watched') {
-        delite.classList.remove('visually-hidden');
+        removeWatchedeBtn.classList.remove('visually-hidden');
         watchedBtn.classList.add('visually-hidden');
       }
     })

@@ -7,12 +7,12 @@ const watchedHeaderBtn = document.querySelector('.js-btn-library-watched');
 export function onAddToLocalStorage(data, firebaseObj) {
   const watchedBtn = document.querySelector('.js-btn-watched');
   const queuedBtn = document.querySelector('.js-btn-queue');
-  const delite = document.querySelector('.js-btn-d');
+  const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
 
   const watchedKey = 'watchedMovies';
   const queuedKey = 'queueMovies';
 
-  delite.addEventListener('click', () => {
+  removeQueueBtn.addEventListener('click', () => {
     if (
       watchedHeaderBtn.className
         .split(' ')

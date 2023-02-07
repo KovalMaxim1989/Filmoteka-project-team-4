@@ -53,7 +53,6 @@ function checkLocalStorage(key) {
       paginationLib(1, 1);
       return;
     }
-    console.log(arr);
     totalFilms = Number.parseInt(arr.length / 18 + 1);
     list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
 

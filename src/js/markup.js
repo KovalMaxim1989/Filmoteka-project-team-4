@@ -95,9 +95,11 @@ export function createMarkupSelectedMovie(moviesData) {
      <p class='disc-text'>${overview}</p>
    </div>
    <div class='button-container'>
-     <button type='button'  class='modal-btn btn-watched js-btn-watched'>add to watched</button>
-    <button type='button'class='modal-btn btn-queue visually-hidden js-btn-d'>
-      remove
+      <button type='button'  class='modal-btn btn-watched js-btn-watched'>add to watched</button>
+      <button type='button'  class='modal-btn btn-watched visually-hidden js-btn-remove-watched'>remove from watched</button>
+
+      <button type='button'class='modal-btn btn-queue visually-hidden js-btn-remove-queue'>
+      remove from queue
      </button>
      <button type='button'class='modal-btn btn-queue js-btn-queue'>
        add to queue
