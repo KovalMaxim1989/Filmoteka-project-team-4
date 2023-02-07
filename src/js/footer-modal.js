@@ -14,16 +14,16 @@ function onOpenModal() {
   refs.backdropFooter.classList.remove('is-hidden');
   window.addEventListener('keydown', onPressESC);
 
-  bodyScrollOff();
+  // bodyScrollOff();
 }
 
 function onCloseModal() {
   refs.backdropFooter.classList.add('is-hidden');
   window.removeEventListener('keydown', onPressESC);
 
-  window.onscroll = function () {
-    window.scrollTo();
-  };
+  // window.onscroll = function () {
+  //   window.scrollTo();
+  // };
 }
 
 function onClickBackdrop(e) {
