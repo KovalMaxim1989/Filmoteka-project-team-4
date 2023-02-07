@@ -150,12 +150,19 @@ body.scroll__lock {
 .card-team__item {
   box-shadow: $card-developers-shadow;
   border-radius: 3px;
+  transition: box-shadow $animation;
+  &:hover,
+  &:focus {
+    box-shadow: $btn-shadow;
+  }
 }
 
 .card-team__img {
   width: 225px;
   object-fit: cover;
   height: 250px;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
 }
 
 .card-team__wrap {
