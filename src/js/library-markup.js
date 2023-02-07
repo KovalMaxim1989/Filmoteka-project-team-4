@@ -1,5 +1,6 @@
 import { createMarkupLibraryList } from './markup';
 import { paginationLib } from './library-pagination';
+import { Pagination } from 'swiper';
 
 const list = document.querySelector('.js-films-list');
 const libraryWatcehd = document.querySelector('.js-btn-library-watched');
@@ -12,17 +13,19 @@ const queueFilms = localStorage.getItem(queuedKey);
 let arr = [];
 let totalFilms = 0;
 
-export function onQueue() {
-  libraryQueue.addEventListener('click', onQueueClick);
-  checkLocalStorage(queueFilms);
-}
+// export function onQueue() {
+//   libraryQueue.addEventListener('click', onQueueClick);
+//   checkLocalStorage(queueFilms);
+// }
 
-export function onWatched() {
-  libraryWatcehd.addEventListener('click', onWatchedClick);
-  checkLocalStorage(watchedFilms);
-}
+// export function onWatched() {
+//   libraryWatcehd.addEventListener('click', onWatchedClick);
+//   checkLocalStorage(watchedFilms);
+// }
 
 export function onLoadLibrary() {
+  libraryQueue.addEventListener('click', onQueueClick);
+  libraryWatcehd.addEventListener('click', onWatchedClick);
   checkLocalStorage(queueFilms);
 }
 
@@ -44,10 +47,15 @@ function checkLocalStorage(key) {
       '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
     paginationLib(0, 0);
   } else {
-    list.innerHTML = createMarkupLibraryList(JSON.parse(key));
     arr = JSON.parse(key);
+    if (arr.length === 18) {
+      list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
+      paginationLib(1, 1);
+      return;
+    }
     console.log(arr);
     totalFilms = Number.parseInt(arr.length / 18 + 1);
+    list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
 
     paginationLib(totalFilms, 1);
     return;
