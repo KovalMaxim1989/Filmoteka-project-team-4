@@ -18,6 +18,8 @@ const refs = {
   trailerBtn: document.querySelector('.trailer-btn'),
   watchedLibraryBtn: document.querySelector('.js-btn-library-watched'),
 };
+// create copy FireBase obj
+let firebaseObj = null;
 
 // Тимчасово пам'ятка в продакшн видалити
 // References to DOM
@@ -31,7 +33,10 @@ refs.openModalCard.addEventListener('click', openModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
 refs.backdrop.addEventListener('click', onBackdropClick);
 
-// debugger;
+// Function write firebase to firebaseObj
+export function toFirebase(firebase) {
+  firebaseObj = firebase;
+}
 
 export function openModal(evt) {
   if (evt.currentTarget === evt.target) {
@@ -57,7 +62,7 @@ export function openModal(evt) {
   fetchModal(currentId)
     .then(data => {
       createMarkupSelectedMovie(data);
-      onAddToLocalStorage(data);
+      onAddToLocalStorage(data, firebaseObj);
       onAddToFirebase(data);
 
       const queuedBtn = document.querySelector('.js-btn-queue');
