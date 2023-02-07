@@ -20,9 +20,9 @@ export function onCloseModal() {
   refs.closeRegistrModalBtn.removeEventListener('click', onCloseModal);
   refs.backdropRegistr.removeEventListener('click', onClickBackdrop);
 
-  window.onscroll = function () {
-    window.scrollTo();
-  };
+  // window.onscroll = function () {
+  //   window.scrollTo();
+  // };
 }
 
 function onClickBackdrop(e) {

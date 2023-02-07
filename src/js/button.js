@@ -9,6 +9,10 @@ window.addEventListener('scroll', function () {
 button.addEventListener('click', scrollTop);
 
 export function scrollTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+  // document.body.scrollTop = 0;
+  // document.documentElement.scrollTop = 0;
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
 }

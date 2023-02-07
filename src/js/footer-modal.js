@@ -21,9 +21,9 @@ function onCloseModal() {
   refs.backdropFooter.classList.add('is-hidden');
   window.removeEventListener('keydown', onPressESC);
 
-  window.onscroll = function () {
-    window.scrollTo();
-  };
+  // window.onscroll = function () {
+  //   window.scrollTo();
+  // };
 }
 
 function onClickBackdrop(e) {

@@ -144,11 +144,11 @@ export function openModal(evt) {
 }
 
 export function bodyScrollOff() {
-  scrollX = window.scrollX;
-  scrollY = window.scrollY;
-  window.onscroll = function () {
-    window.scrollTo(scrollX, scrollY);
-  };
+  // scrollX = window.scrollX;
+  // scrollY = window.scrollY;
+  // window.onscroll = function () {
+  //   window.scrollTo(scrollX, scrollY);
+  // };
 }
 
 function toggleModal() {
@@ -157,9 +157,9 @@ function toggleModal() {
   if (refs.modalMovies.classList.contains('is-hidden')) {
     window.removeEventListener('keydown', onEscPress);
 
-    window.onscroll = function () {
-      window.scrollTo();
-    };
+    // window.onscroll = function () {
+    //   window.scrollTo();
+    // };
   }
 }
 
@@ -167,9 +167,9 @@ function onBackdropClick(evt) {
   if (evt.currentTarget === evt.target) {
     toggleModal();
 
-    window.onscroll = function () {
-      window.scrollTo();
-    };
+    // window.onscroll = function () {
+    //   window.scrollTo();
+    // };
   }
 }
 
@@ -177,9 +177,9 @@ function onEscPress(evt) {
   if (evt.key === 'Escape') {
     toggleModal();
 
-    window.onscroll = function () {
-      window.scrollTo();
-    };
+    // window.onscroll = function () {
+    //   window.scrollTo();
+    // };
   }
 }
 
