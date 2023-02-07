@@ -107,17 +107,36 @@ body.scroll__lock {
 
   @media screen and (max-width: 479px) {
     font-weight: 500;
-    font-size: 24px;
+    font-size: 22px;
   }
 
   @media screen and (min-width: 480px) {
     font-weight: 400;
-    font-size: 28px;
+    font-size: 24px;
   }
 
   @media screen and (min-width: 1280px) {
     font-weight: 600;
     font-size: 30px;
+  }
+}
+
+.modal-team__title--letter {
+  color: $orange-hover;
+  font-size: 34px;
+
+  animation: animate_grow 2s infinite;
+}
+
+@keyframes animate_grow {
+  0% {
+    transform: scale3d(2, 2, 2);
+  }
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
   }
 }
 
@@ -150,12 +169,19 @@ body.scroll__lock {
 .card-team__item {
   box-shadow: $card-developers-shadow;
   border-radius: 3px;
+  transition: box-shadow $animation;
+  &:hover,
+  &:focus {
+    box-shadow: $btn-shadow;
+  }
 }
 
 .card-team__img {
   width: 225px;
   object-fit: cover;
   height: 250px;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
 }
 
 .card-team__wrap {
