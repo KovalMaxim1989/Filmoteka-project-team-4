@@ -31,6 +31,7 @@ function getNowPlaying(e) {
     'films__no-movies-notification-show'
   );
   refs.searchErrorImg.classList.add('visually-hidden');
+
   movieAPI
     .getNowPlaying()
     .then(data => {
@@ -71,6 +72,7 @@ function getPopular(e) {
     'films__no-movies-notification-show'
   );
   refs.searchErrorImg.classList.add('visually-hidden');
+
   movieAPI
     .getPopular()
     .then(data => {
@@ -83,6 +85,7 @@ function getPopular(e) {
 
       const necessaryData = dataService.getDataTrendMovies(data.results);
       const markupTrendMovies = createMarkupFilmsList(necessaryData);
+
       refs.moviesList.innerHTML = markupTrendMovies;
     })
     .catch(err => Notify.failure(err))
@@ -112,6 +115,7 @@ function getTopRated(e) {
     'films__no-movies-notification-show'
   );
   refs.searchErrorImg.classList.add('visually-hidden');
+
   movieAPI
     .getTopRated()
     .then(data => {
@@ -152,6 +156,7 @@ function getUpcoming(e) {
     'films__no-movies-notification-show'
   );
   refs.searchErrorImg.classList.add('visually-hidden');
+
   movieAPI
     .getUpcoming()
     .then(data => {
