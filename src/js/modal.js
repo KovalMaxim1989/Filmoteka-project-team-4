@@ -139,7 +139,7 @@ export function openModal(evt) {
       }
     };
   });
-  bodyScrollOff();
+  // bodyScrollOff();
   toggleModal();
 }
 

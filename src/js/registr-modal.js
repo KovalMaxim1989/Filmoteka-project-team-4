@@ -9,7 +9,7 @@ function onOpenModal() {
   refs.backdropRegistr.classList.remove('is-hidden');
   window.addEventListener('keydown', onPressESC);
 
-  bodyScrollOff();
+  // bodyScrollOff();
 }
 
 export function onCloseModal() {
