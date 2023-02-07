@@ -327,6 +327,11 @@ export async function onClickIncrementPage(e) {
           if (pageActive >= data.total_pages) {
             refsPag.lastPage.classList.add('btn-active');
           }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -352,6 +357,11 @@ export async function onClickIncrementPage(e) {
           if (pageActive >= data.total_pages) {
             refsPag.lastPage.classList.add('btn-active');
           }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -376,6 +386,11 @@ export async function onClickIncrementPage(e) {
           if (pageActive >= data.total_pages) {
             refsPag.lastPage.classList.add('btn-active');
           }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -399,6 +414,11 @@ export async function onClickIncrementPage(e) {
           }
           if (pageActive >= data.total_pages) {
             refsPag.lastPage.classList.add('btn-active');
+          }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
           }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
@@ -499,6 +519,11 @@ export async function onClickDecrementPage(e) {
             pageActive = 1;
             onClickDecrementPage(e);
           }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -519,6 +544,11 @@ export async function onClickDecrementPage(e) {
           if (pageActive > data.total_pages) {
             pageActive = 1;
             onClickDecrementPage(e);
+          }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
           }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
@@ -541,6 +571,11 @@ export async function onClickDecrementPage(e) {
             pageActive = 1;
             onClickDecrementPage(e);
           }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -561,6 +596,11 @@ export async function onClickDecrementPage(e) {
           if (pageActive > data.total_pages) {
             pageActive = 1;
             onClickDecrementPage(e);
+          }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
           }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
@@ -643,6 +683,11 @@ export async function onClickPaginationBtnNumber(e) {
         .getNowPlaying()
         .then(data => {
           totalPages = data.total_pages;
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -660,6 +705,11 @@ export async function onClickPaginationBtnNumber(e) {
         .getPopular()
         .then(data => {
           totalPages = data.total_pages;
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -677,6 +727,11 @@ export async function onClickPaginationBtnNumber(e) {
         .getTopRated()
         .then(data => {
           totalPages = data.total_pages;
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -694,6 +749,11 @@ export async function onClickPaginationBtnNumber(e) {
         .getUpcoming()
         .then(data => {
           totalPages = data.total_pages;
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -772,6 +832,11 @@ export async function onClickDecrementTen(e) {
           if (pageActive <= 0) {
             return;
           }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -790,6 +855,11 @@ export async function onClickDecrementTen(e) {
         .then(data => {
           totalPages = data.total_pages;
           if (pageActive <= 0) {
+            return;
+          }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
             return;
           }
 
@@ -812,6 +882,11 @@ export async function onClickDecrementTen(e) {
           if (pageActive <= 0) {
             return;
           }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -830,6 +905,11 @@ export async function onClickDecrementTen(e) {
         .then(data => {
           totalPages = data.total_pages;
           if (pageActive <= 0) {
+            return;
+          }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
             return;
           }
 
@@ -908,6 +988,11 @@ export async function onClickIncrementTen(e) {
           if (!data.total_pages) {
             refsPag.containerPage.classList.add('visually-hidden');
           }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -927,6 +1012,11 @@ export async function onClickIncrementTen(e) {
           totalPages = data.total_pages;
           if (!data.total_pages) {
             refsPag.containerPage.classList.add('visually-hidden');
+          }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
           }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
@@ -948,6 +1038,11 @@ export async function onClickIncrementTen(e) {
           if (!data.total_pages) {
             refsPag.containerPage.classList.add('visually-hidden');
           }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
+          }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
           const markupTrendMovies = createMarkupFilmsList(necessaryData);
@@ -967,6 +1062,11 @@ export async function onClickIncrementTen(e) {
           totalPages = data.total_pages;
           if (!data.total_pages) {
             refsPag.containerPage.classList.add('visually-hidden');
+          }
+          if (data.total_pages > 500) {
+            onFilterObj(data);
+            evtTarget.blur();
+            return;
           }
 
           const necessaryData = dataService.getDataTrendMovies(data.results);
@@ -1027,4 +1127,15 @@ export async function onClickIncrementTen(e) {
   } catch (error) {
     Notify.failure(error);
   }
+}
+
+export function onFilterObj(obj) {
+  const dataService = new DataService();
+  const dataObj = obj;
+  dataObj.total_pages = 500;
+  totalPages = dataObj.total_pages;
+  const necessaryData = dataService.getDataTrendMovies(dataObj.results);
+  const markupTrendMovies = createMarkupFilmsList(necessaryData);
+  refs.moviesList.innerHTML = markupTrendMovies;
+  pagination(dataObj);
 }
