@@ -1,4 +1,5 @@
 import { createMarkupLibraryList } from './markup';
+import { scrollTop } from './button';
 const refsLib = {
   moviesL: document.querySelector('.js-films-list-library'),
   firstP: document.querySelector('.js-pagination--firstPage-library'),
@@ -33,10 +34,10 @@ const watchedKey = 'watchedMovies';
 const queuedKey = 'queueMovies';
 const watchedFilms = localStorage.getItem(watchedKey);
 const queueFilms = localStorage.getItem(queuedKey);
-function scrollTop() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
+// function scrollTop() {
+//   document.body.scrollTop = 0; // For Safari
+//   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+// }
 export function paginationLib(data, page) {
   scrollTop();
   switch (page) {

@@ -14,6 +14,7 @@ refs.filterNowPlaying.addEventListener('click', getNowPlaying);
 
 function getNowPlaying(e) {
   e.preventDefault();
+  refs.containerPagAll.classList.remove('visually-hidden');
 
   refs.moviesList.innerHTML = '';
 
@@ -22,6 +23,13 @@ function getNowPlaying(e) {
   refs.filterPopular.disabled = false;
   refs.filterTopRated.disabled = false;
   refs.filterUpcoming.disabled = false;
+
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
 
   movieAPI
     .getNowPlaying()
@@ -46,6 +54,7 @@ refs.filterPopular.addEventListener('click', getPopular);
 
 function getPopular(e) {
   e.preventDefault();
+  refs.containerPagAll.classList.remove('visually-hidden');
 
   refs.moviesList.innerHTML = '';
 
@@ -54,6 +63,13 @@ function getPopular(e) {
   refs.filterPopular.disabled = true;
   refs.filterTopRated.disabled = false;
   refs.filterUpcoming.disabled = false;
+
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
 
   movieAPI
     .getPopular()
@@ -79,6 +95,7 @@ refs.filterTopRated.addEventListener('click', getTopRated);
 
 function getTopRated(e) {
   e.preventDefault();
+  refs.containerPagAll.classList.remove('visually-hidden');
 
   refs.moviesList.innerHTML = '';
 
@@ -87,6 +104,13 @@ function getTopRated(e) {
   refs.filterPopular.disabled = false;
   refs.filterTopRated.disabled = true;
   refs.filterUpcoming.disabled = false;
+
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
 
   movieAPI
     .getTopRated()
@@ -111,6 +135,7 @@ refs.filterUpcoming.addEventListener('click', getUpcoming);
 
 function getUpcoming(e) {
   e.preventDefault();
+  refs.containerPagAll.classList.remove('visually-hidden');
 
   refs.moviesList.innerHTML = '';
 
@@ -119,6 +144,13 @@ function getUpcoming(e) {
   refs.filterPopular.disabled = false;
   refs.filterTopRated.disabled = false;
   refs.filterUpcoming.disabled = true;
+
+  refs.notCorrectNotification.classList.remove(
+    'films__not-correct-notification-show'
+  );
+  refs.noMoviesNotification.classList.remove(
+    'films__no-movies-notification-show'
+  );
 
   movieAPI
     .getUpcoming()
