@@ -12,18 +12,21 @@ const queueFilms = localStorage.getItem(queuedKey);
 let arr = [];
 let totalFilms = 0;
 
-export function onQueue() {
-  libraryQueue.addEventListener('click', onQueueClick);
-  checkLocalStorage(queueFilms);
-}
+// export function onQueue() {
+//   libraryQueue.addEventListener('click', onQueueClick);
+//   checkLocalStorage(queueFilms);
+// }
 
-export function onWatched() {
-  libraryWatcehd.addEventListener('click', onWatchedClick);
-  checkLocalStorage(watchedFilms);
-}
+// export function onWatched() {
+//   libraryWatcehd.addEventListener('click', onWatchedClick);
+//   checkLocalStorage(watchedFilms);
+// }
 
 export function onLoadLibrary() {
-  checkLocalStorage(queueFilms);
+  libraryWatcehd.addEventListener('click', onWatchedClick);
+  libraryQueue.addEventListener('click', onQueueClick);
+  onQueueClick();
+  // checkLocalStorage(queueFilms);
 }
 
 function onWatchedClick() {
@@ -40,10 +43,14 @@ function onQueueClick() {
 
 function checkLocalStorage(key) {
   if (key) {
-    list.innerHTML = createMarkupLibraryList(JSON.parse(key));
     arr = JSON.parse(key);
-    console.log(arr);
+    if (arr.length === 18) {
+      list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
+      paginationLib(1, 1);
+      return;
+    }
     totalFilms = Number.parseInt(arr.length / 18 + 1);
+    list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
 
     paginationLib(totalFilms, 1);
   } else {

@@ -8,5 +8,5 @@ import './js/registr-modal';
 
 window.onload = onLoadLibrary();
 
-onQueue();
-onWatched();
+// onQueue();
+// onWatched();
