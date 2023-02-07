@@ -23,14 +23,6 @@ const refs = {
 // create copy FireBase obj
 let firebaseObj = null;
 
-// Тимчасово пам'ятка в продакшн видалити
-// References to DOM
-// const backdrop = document.querySelector('.backdrop');
-// const modalMovies = document.querySelector('[data-modal]');
-// const openModalCard = document.querySelector('[data-modal-open]');
-// const closeModalBtn = document.querySelector('[data-modal-close]');
-// const trailerBtn = document.querySelector('.trailer-btn')
-
 refs.openModalCard.addEventListener('click', openModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
 refs.backdrop.addEventListener('click', onBackdropClick);
@@ -77,9 +69,8 @@ export function openModal(evt) {
 
       watchedBtn.addEventListener('click', handleWathedBtnClick);
       queuedBtn.addEventListener('click', handleQueueBtnClick);
-
-      // removeWatchedeBtn.classList.add('visually-hidden');
-      // removeQueueBtn.classList.add('visually-hidden');
+      removeWatchedeBtn.addEventListener('click', handleRemoveWatched);
+      removeQueueBtn.addEventListener('click', handleRemoveQueue);
 
       if (libraryPage === 'queue') {
         removeQueueBtn.classList.remove('visually-hidden');
@@ -102,6 +93,20 @@ export function openModal(evt) {
     fetchModal(currentId)
       .then(data => {
         addToFirebase.addMovieToFireBase(data, 'Queue');
+      })
+      .catch(error => console.log(error));
+  }
+  function handleRemoveQueue() {
+    fetchModal(currentId)
+      .then(data => {
+        addToFirebase.deleteMovieFromFireBase(data, 'Queue');
+      })
+      .catch(error => console.log(error));
+  }
+  function handleRemoveWatched() {
+    fetchModal(currentId)
+      .then(data => {
+        addToFirebase.deleteMovieFromFireBase(data, 'Watched');
       })
       .catch(error => console.log(error));
   }
