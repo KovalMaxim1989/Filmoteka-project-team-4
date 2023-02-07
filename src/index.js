@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirebaseConfig } from './js/firebase-config';
 
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import axios from 'axios';
 // import {Spinner} from 'spin.js';
@@ -39,6 +39,7 @@ renderTrendMovie();
 import { FireBaseService } from './js/firebase';
 import { refs } from './js/refs';
 import { Report } from 'notiflix/build/notiflix-report-aio';
+import { toFirebase } from './js/modal';
 
 const firebaseAppConfig = getFirebaseConfig();
 const firebase = new FireBaseService();
@@ -53,10 +54,12 @@ initializeApp(firebaseAppConfig);
 // * Initialize Firebase Performance Monitoring
 firebase.initFirebaseAuth();
 
+toFirebase(firebase);
+
 async function onGoToLibrary() {
   const isUser = await firebase.isUserSignedIn();
   if (!isUser) {
     return Report.warning('Please sign in to your account!', '', 'Okay');
   }
-  refs.libraryLink.setAttribute('href', './library.html');
+  window.location.href = './library.html';
 }

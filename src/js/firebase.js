@@ -33,6 +33,7 @@ import {
 // import { getFirebaseConfig } from '../js/firebase-config';
 import { refs } from '../js/refs';
 import { onCloseModal } from '../js/registr-modal';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 export class FireBaseService {
   constructor() {
@@ -49,6 +50,7 @@ export class FireBaseService {
   async signOutUser() {
     // Sign out of Firebase.
     await signOut(getAuth());
+    window.location.href = './index.html';
   }
 
   // Initialize firebase auth
@@ -65,7 +67,10 @@ export class FireBaseService {
   // Saves a new movie to Cloud Firestore.
   async saveMovieData(obj, typeInfo) {
     // Add a new watched movie to the Firebase database.
-    if (!this.isUserSignedIn()) throw 'No autenteficate';
+    if (!this.isUserSignedIn()) {
+      return Report.warning('Please sign in to your account!', '', 'Okay');
+      throw 'No autenteficate';
+    }
     const uid = getAuth().currentUser.uid;
 
     const db = getFirestore();
@@ -82,7 +87,7 @@ export class FireBaseService {
     }
   }
 
-  // Read movie history and listens for upcoming ones.
+  // Read movie history
   async readMovieData(typeInfo) {
     if (!this.isUserSignedIn()) {
       // throw 'No autenteficate';
