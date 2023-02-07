@@ -77,9 +77,10 @@ export function openModal(evt) {
 
       watchedBtn.addEventListener('click', handleWathedBtnClick);
       queuedBtn.addEventListener('click', handleQueueBtnClick);
-      removeWatchedeBtn.classList.add('visually-hidden');
 
+      removeWatchedeBtn.classList.add('visually-hidden');
       removeQueueBtn.classList.add('visually-hidden');
+
       if (libraryPage === 'queue') {
         removeQueueBtn.classList.remove('visually-hidden');
         queuedBtn.classList.add('visually-hidden');

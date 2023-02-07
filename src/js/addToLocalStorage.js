@@ -3,6 +3,8 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 
 const list = document.querySelector('.js-films-list');
 const watchedHeaderBtn = document.querySelector('.js-btn-library-watched');
+const watchedKey = 'watchedMovies';
+const queuedKey = 'queueMovies';
 
 export function onAddToLocalStorage(data, firebaseObj) {
   const watchedBtn = document.querySelector('.js-btn-watched');
@@ -10,14 +12,131 @@ export function onAddToLocalStorage(data, firebaseObj) {
   const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
   const removeWatchedeBtn = document.querySelector('.js-btn-remove-watched');
 
-  const watchedKey = 'watchedMovies';
-  const queuedKey = 'queueMovies';
-
   removeQueueBtn.addEventListener('click', () => {
-    console.log(2);
+    removeQueueBtn.classList.add('visually-hidden');
+    queuedBtn.classList.remove('visually-hidden');
+
+    if (
+      watchedHeaderBtn.className
+        .split(' ')
+        .some(btn => btn === 'main-btn--library-active')
+    ) {
+      try {
+        console.log('w');
+        removeWatchedeBtn.classList.add('visually-hidden');
+        watchedBtn.classList.remove('visually-hidden');
+
+        let savedData = localStorage.getItem(watchedKey);
+        let movies = JSON.parse(savedData);
+        const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
+
+        if (indexOfMovie === -1) {
+          return;
+        } else {
+          movies.splice(indexOfMovie, 1);
+          localStorage.setItem(watchedKey, JSON.stringify(movies));
+          savedData = localStorage.getItem(watchedKey);
+
+          if (savedData === '[]') {
+            list.innerHTML =
+              '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
+            return;
+          }
+
+          list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
+        }
+        removeWatchedeBtn.classList.add('visually-hidden');
+        watchedBtn.classList.remove('visually-hidden');
+      } catch (error) {
+        console.error('Set state error: ', error.message);
+      }
+    } else {
+      try {
+        console.log('q');
+        removeQueueBtn.classList.add('visually-hidden');
+        queuedBtn.classList.remove('visually-hidden');
+        let savedData = localStorage.getItem(queuedKey);
+
+        let movies = JSON.parse(savedData);
+        const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
+
+        if (indexOfMovie === -1) {
+          return;
+        } else {
+          movies.splice(indexOfMovie, 1);
+          localStorage.setItem(queuedKey, JSON.stringify(movies));
+          savedData = localStorage.getItem(queuedKey);
+          if (savedData === '[]') {
+            list.innerHTML =
+              '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
+            return;
+          }
+          list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
+        }
+      } catch (error) {
+        console.error('Set state error: ', error.message);
+      }
+    }
   });
   removeWatchedeBtn.addEventListener('click', () => {
-    console.log('1');
+    removeWatchedeBtn.classList.add('visually-hidden');
+    watchedBtn.classList.remove('visually-hidden');
+
+    if (
+      watchedHeaderBtn.className
+        .split(' ')
+        .some(btn => btn === 'main-btn--library-active')
+    ) {
+      try {
+        console.log('w');
+
+        let savedData = localStorage.getItem(watchedKey);
+        let movies = JSON.parse(savedData);
+        const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
+
+        if (indexOfMovie === -1) {
+          return;
+        } else {
+          movies.splice(indexOfMovie, 1);
+          localStorage.setItem(watchedKey, JSON.stringify(movies));
+          savedData = localStorage.getItem(watchedKey);
+
+          if (savedData === '[]') {
+            list.innerHTML =
+              '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
+            return;
+          }
+
+          list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
+        }
+      } catch (error) {
+        console.error('Set state error: ', error.message);
+      }
+    } else {
+      try {
+        console.log('q');
+        let savedData = localStorage.getItem(queuedKey);
+
+        let movies = JSON.parse(savedData);
+        const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
+
+        if (indexOfMovie === -1) {
+          return;
+        } else {
+          movies.splice(indexOfMovie, 1);
+          localStorage.setItem(queuedKey, JSON.stringify(movies));
+          savedData = localStorage.getItem(queuedKey);
+          if (savedData === '[]') {
+            list.innerHTML =
+              '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
+            return;
+          }
+          list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
+        }
+      } catch (error) {
+        console.error('Set state error: ', error.message);
+      }
+    }
   });
 
   watchedBtn.addEventListener('click', () => {
@@ -44,6 +163,8 @@ export function onAddToLocalStorage(data, firebaseObj) {
     } catch (error) {
       console.error('Set state error: ', error.message);
     }
+    removeWatchedeBtn.classList.remove('visually-hidden');
+    watchedBtn.classList.add('visually-hidden');
   });
 
   queuedBtn.addEventListener('click', () => {
@@ -69,60 +190,7 @@ export function onAddToLocalStorage(data, firebaseObj) {
     } catch (error) {
       console.error('Set state error: ', error.message);
     }
+    removeQueueBtn.classList.remove('visually-hidden');
+    queuedBtn.classList.add('visually-hidden');
   });
-}
-
-function removeFilm() {
-  if (
-    watchedHeaderBtn.className
-      .split(' ')
-      .some(btn => btn === 'main-btn--library-active')
-  ) {
-    try {
-      let savedData = localStorage.getItem(watchedKey);
-      let movies = JSON.parse(savedData);
-      const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
-
-      if (indexOfMovie === -1) {
-        return;
-      } else {
-        movies.splice(indexOfMovie, 1);
-        localStorage.setItem(watchedKey, JSON.stringify(movies));
-        savedData = localStorage.getItem(watchedKey);
-
-        if (savedData === '[]') {
-          list.innerHTML =
-            '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
-          return;
-        }
-
-        list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
-      }
-    } catch (error) {
-      console.error('Set state error: ', error.message);
-    }
-  } else {
-    try {
-      let savedData = localStorage.getItem(queuedKey);
-
-      let movies = JSON.parse(savedData);
-      const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
-
-      if (indexOfMovie === -1) {
-        return;
-      } else {
-        movies.splice(indexOfMovie, 1);
-        localStorage.setItem(queuedKey, JSON.stringify(movies));
-        savedData = localStorage.getItem(queuedKey);
-        if (savedData === '[]') {
-          list.innerHTML =
-            '<div style="height: 500px; font-size: 24px">Add films to your queue!</div>';
-          return;
-        }
-        list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
-      }
-    } catch (error) {
-      console.error('Set state error: ', error.message);
-    }
-  }
 }
