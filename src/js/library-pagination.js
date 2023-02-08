@@ -323,7 +323,7 @@ function paginationLibAllEvt(page, arrey, begin, end, total) {
       page = total;
     }
     if (arrey.length === 1) {
-      list.innerHTML = createMarkupLibraryList(arr);
+      list.innerHTML = createMarkupLibraryList(arrey);
       paginationLib(total, page);
     }
     if (page === 1) {
@@ -391,7 +391,7 @@ export function paginationOnModal(page) {
       return;
     }
     if (arrey.length === 1) {
-      list.innerHTML = createMarkupLibraryList(arr);
+      list.innerHTML = createMarkupLibraryList(arrey);
       paginationLib(total, page);
     }
     if (page === 1) {
