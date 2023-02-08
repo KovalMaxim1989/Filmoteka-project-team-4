@@ -116,6 +116,7 @@ export function openModal(evt) {
     //   .catch(error => console.log(error));
   }
   function handleQueueBtnClick() {
+    queueFilms = localStorage.getItem(queuedKey);
     arrQueue = JSON.parse(queueFilms);
     if (!arrQueue) {
       arrQueue = [];
