@@ -104,18 +104,6 @@ export class FireBaseService {
       // doc.data() will be undefined in this case
       return [];
     }
-
-    // Start listening to the query.
-    // onSnapshot(getAllMovieByType, function (snapshot) {
-    //   snapshot.docChanges().forEach(function (change) {
-    //     if (change.type === 'removed') {
-    //       console.log(change.doc.id);
-    //     } else {
-    //       var message = change.doc.data();
-    //       console.log(change.doc.id, message.arrFilms);
-    //     }
-    //   });
-    // });
   }
 }
 

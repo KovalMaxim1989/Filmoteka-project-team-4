@@ -169,6 +169,20 @@
 .main-btn--register {
   padding: 10px;
   width: 200px;
+  height: 44px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  border-radius: 5px;
+  border: 1px solid $txt-black-color;
+  outline: none;
+  background-color: $bg-white-color;
 }
 
 .register-modal__btn-icon {

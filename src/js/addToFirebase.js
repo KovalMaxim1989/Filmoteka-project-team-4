@@ -1,5 +1,5 @@
 import { FireBaseService } from './firebase';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const firebase = new FireBaseService();
 
 export class AddToFirebase {
@@ -14,8 +14,6 @@ export class AddToFirebase {
       if (!isUnique) {
         arrFilms.push(data);
         firebase.saveMovieData(arrFilms, movieType);
-      } else {
-        Notify.info('This movie in your collection');
       }
     });
   }

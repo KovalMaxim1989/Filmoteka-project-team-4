@@ -13,6 +13,10 @@ export function onAddToLocalStorage(data, firebaseObj) {
   const removeWatchedeBtn = document.querySelector('.js-btn-remove-watched');
 
   removeQueueBtn.addEventListener('click', () => {
+    if (!firebaseObj.isUserSignedIn()) {
+      return Report.warning('Please sign in to your account!', '', 'Okay');
+    }
+
     removeQueueBtn.classList.add('visually-hidden');
     queuedBtn.classList.remove('visually-hidden');
 
@@ -46,6 +50,10 @@ export function onAddToLocalStorage(data, firebaseObj) {
   });
 
   removeWatchedeBtn.addEventListener('click', () => {
+    if (!firebaseObj.isUserSignedIn()) {
+      return Report.warning('Please sign in to your account!', '', 'Okay');
+    }
+
     removeWatchedeBtn.classList.add('visually-hidden');
     watchedBtn.classList.remove('visually-hidden');
 
