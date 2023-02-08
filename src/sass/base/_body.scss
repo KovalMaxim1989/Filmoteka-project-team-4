@@ -3,6 +3,11 @@ body {
   color: $txt-black-color;
 }
 
+html {
+  transition: color $animation, background-color $animation,
+    box-shadow $animation, transform $animation;
+}
+
 .container {
   margin: 0 auto;
   padding: 0 20px;
