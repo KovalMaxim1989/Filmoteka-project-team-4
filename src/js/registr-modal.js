@@ -1,5 +1,4 @@
 import { refs } from './refs';
-import { bodyScrollOff } from './modal';
 
 refs.openRegistrModalBtn.addEventListener('click', onOpenModal);
 
