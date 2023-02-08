@@ -1,5 +1,4 @@
 import { refs } from './refs';
-import { bodyScrollOff } from './modal';
 
 export class Spinner {
   start() {
