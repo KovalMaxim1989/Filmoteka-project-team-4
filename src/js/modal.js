@@ -7,8 +7,8 @@ import { AddToFirebase } from './addToFirebase';
 
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
-// import { refs } from './refs';
 const addToFirebase = new AddToFirebase();
 
 const refs = {
@@ -97,6 +97,9 @@ export function openModal(evt) {
       .catch(error => console.log(error));
   }
   function handleRemoveQueue() {
+    if (!firebaseObj.isUserSignedIn()) {
+      return Report.warning('Please sign in to your account!', '', 'Okay');
+    }
     fetchModal(currentId)
       .then(data => {
         addToFirebase.deleteMovieFromFireBase(data, 'Queue');
@@ -104,6 +107,9 @@ export function openModal(evt) {
       .catch(error => console.log(error));
   }
   function handleRemoveWatched() {
+    if (!firebaseObj.isUserSignedIn()) {
+      return Report.warning('Please sign in to your account!', '', 'Okay');
+    }
     fetchModal(currentId)
       .then(data => {
         addToFirebase.deleteMovieFromFireBase(data, 'Watched');
