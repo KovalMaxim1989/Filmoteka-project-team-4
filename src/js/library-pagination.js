@@ -166,6 +166,7 @@ export function paginationLib(data, page) {
       refsLib.containerPag.classList.add('visually-hidden');
       break;
     case 1:
+      refsLib.containerPag.classList.remove('visually-hidden');
       refsLib.plus2P.classList.add('visually-hidden');
       refsLib.plus1P.classList.add('visually-hidden');
       refsLib.minus1P.classList.add('visually-hidden');
@@ -180,6 +181,7 @@ export function paginationLib(data, page) {
 
       break;
     case 2:
+      refsLib.containerPag.classList.remove('visually-hidden');
       refsLib.plus2P.classList.add('visually-hidden');
       refsLib.plus1P.classList.add('visually-hidden');
       refsLib.minus1P.classList.add('visually-hidden');
@@ -193,6 +195,7 @@ export function paginationLib(data, page) {
       refsLib.plusQu.classList.add('visually-hidden');
       break;
     case 3:
+      refsLib.containerPag.classList.remove('visually-hidden');
       refsLib.plus2P.classList.add('visually-hidden');
       refsLib.plus1P.classList.add('visually-hidden');
       refsLib.minus1P.classList.remove('visually-hidden');
@@ -207,6 +210,7 @@ export function paginationLib(data, page) {
 
       break;
     case 4:
+      refsLib.containerPag.classList.remove('visually-hidden');
       refsLib.plus2P.classList.add('visually-hidden');
       refsLib.plus1P.classList.add('visually-hidden');
       refsLib.minus1P.classList.remove('visually-hidden');
@@ -220,6 +224,7 @@ export function paginationLib(data, page) {
 
       break;
     case 5:
+      refsLib.containerPag.classList.remove('visually-hidden');
       refsLib.plus2P.classList.add('visually-hidden');
       refsLib.plus1P.classList.add('visually-hidden');
       refsLib.minus1P.classList.remove('visually-hidden');
@@ -233,6 +238,7 @@ export function paginationLib(data, page) {
       refsLib.plusQu.classList.remove('visually-hidden');
       break;
     case 6:
+      refsLib.containerPag.classList.remove('visually-hidden');
       refsLib.plus2P.classList.add('visually-hidden');
       refsLib.plus1P.classList.remove('visually-hidden');
       refsLib.minus1P.classList.remove('visually-hidden');
@@ -246,6 +252,7 @@ export function paginationLib(data, page) {
       break;
 
     default:
+      refsLib.containerPag.classList.remove('visually-hidden');
       refsLib.plus2P.classList.remove('visually-hidden');
       refsLib.plus1P.classList.remove('visually-hidden');
       refsLib.minus1P.classList.remove('visually-hidden');
@@ -264,8 +271,6 @@ let totalFilms = 1;
 let activePage = 1;
 let beginPage = 0;
 let endPage = 0;
-let arrWatched = [];
-let arrQueue = [];
 export function onClickDecrementPage(e) {
   activePage -= 1;
   const evtTarget = e.target;
@@ -381,6 +386,10 @@ export function paginationOnModal(page) {
     if (page > total) {
       page = total;
     }
+    if (arrey.length === 0 && page === 1) {
+      paginationLib(0, page);
+      return;
+    }
     if (arrey.length === 1) {
       list.innerHTML = createMarkupLibraryList(arr);
       paginationLib(total, page);
@@ -407,6 +416,10 @@ export function paginationOnModal(page) {
 
     if (page > total) {
       page = total;
+    }
+    if (arrey.length === 0 && page === 1) {
+      paginationLib(0, page);
+      return;
     }
     if (arrey.length === 1) {
       list.innerHTML = createMarkupLibraryList(arrey);

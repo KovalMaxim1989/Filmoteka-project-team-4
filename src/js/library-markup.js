@@ -46,6 +46,7 @@ function onQueueClick() {
 
 export function checkLocalStorage(key) {
   arr = JSON.parse(key);
+  totalFilms = Number.parseInt(arr.length / 18 + 1);
   if (arr.length === 0) {
     list.innerHTML = `<li class="empty-storage">
     <div>Sorry, this storage is empty.</div>
@@ -58,7 +59,7 @@ export function checkLocalStorage(key) {
       paginationLib(1, 1);
       return;
     }
-    totalFilms = Number.parseInt(arr.length / 18 + 1);
+
     list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
 
     paginationLib(totalFilms, 1);
