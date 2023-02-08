@@ -8,8 +8,8 @@ const libraryQueue = document.querySelector('.js-btn-library-queue');
 
 const watchedKey = 'watchedMovies';
 const queuedKey = 'queueMovies';
-const watchedFilms = localStorage.getItem(watchedKey);
-const queueFilms = localStorage.getItem(queuedKey);
+let watchedFilms = localStorage.getItem(watchedKey);
+let queueFilms = localStorage.getItem(queuedKey);
 let arr = [];
 let totalFilms = 0;
 
@@ -26,30 +26,33 @@ let totalFilms = 0;
 export function onLoadLibrary() {
   libraryQueue.addEventListener('click', onQueueClick);
   libraryWatcehd.addEventListener('click', onWatchedClick);
+  queueFilms = localStorage.getItem(queuedKey);
   checkLocalStorage(queueFilms);
 }
 
 function onWatchedClick() {
   libraryQueue.classList.remove('main-btn--library-active');
   libraryWatcehd.classList.add('main-btn--library-active');
+  watchedFilms = localStorage.getItem(watchedKey);
   checkLocalStorage(watchedFilms);
 }
 
 function onQueueClick() {
   libraryWatcehd.classList.remove('main-btn--library-active');
   libraryQueue.classList.add('main-btn--library-active');
+  queueFilms = localStorage.getItem(queuedKey);
   checkLocalStorage(queueFilms);
 }
 
-function checkLocalStorage(key) {
-  if (key === '[]') {
+export function checkLocalStorage(key) {
+  arr = JSON.parse(key);
+  if (arr.length === 0) {
     list.innerHTML = `<li class="empty-storage">
     <div>Sorry, this storage is empty.</div>
     <a class="home-btn" href="./index.html">Home</a>
   </li>`;
     paginationLib(0, 0);
   } else {
-    arr = JSON.parse(key);
     if (arr.length === 18) {
       list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
       paginationLib(1, 1);
