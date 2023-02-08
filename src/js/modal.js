@@ -18,13 +18,13 @@ const refs = {
   closeModalBtn: document.querySelector('[data-modal-close]'),
   trailerBtn: document.querySelector('.trailer-btn'),
   watchedLibraryBtn: document.querySelector('.js-btn-library-watched'),
-  libraryLink: document.querySelector('#library-link'),
 };
+const libraryLink = document.querySelector('#library-link');
 
 const watchedKey = 'watchedMovies';
 const queuedKey = 'queueMovies';
-const watchedFilms = localStorage.getItem(watchedKey);
-const queueFilms = localStorage.getItem(queuedKey);
+let watchedFilms = localStorage.getItem(watchedKey);
+let queueFilms = localStorage.getItem(queuedKey);
 
 // create copy FireBase obj
 let firebaseObj = null;
@@ -94,20 +94,26 @@ export function openModal(evt) {
     .catch(error => console.log(error));
 
   function handleWathedBtnClick() {
+    watchedFilms = localStorage.getItem(watchedKey);
     arrWatched = JSON.parse(watchedFilms);
     if (!arrWatched) {
       arrWatched = [];
     }
     if (!arrWatched.some(film => film.id === activeFilm.id)) {
       arrWatched.push(activeFilm);
-      localStorage.setItem('watchedMovies', JSON.stringify(arrWatched));
+      localStorage.setItem(watchedKey, JSON.stringify(arrWatched));
+      fetchModal(currentId)
+        .then(data => {
+          addToFirebase.addMovieToFireBase(data, 'Watched');
+        })
+        .catch(error => console.log(error));
     }
 
-    fetchModal(currentId)
-      .then(data => {
-        addToFirebase.addMovieToFireBase(data, 'Watched');
-      })
-      .catch(error => console.log(error));
+    // fetchModal(currentId)
+    //   .then(data => {
+    //     addToFirebase.addMovieToFireBase(data, 'Watched');
+    //   })
+    //   .catch(error => console.log(error));
   }
   function handleQueueBtnClick() {
     arrQueue = JSON.parse(queueFilms);
@@ -117,47 +123,49 @@ export function openModal(evt) {
 
     if (!arrQueue.some(film => film.id === activeFilm.id)) {
       arrQueue.push(activeFilm);
-      localStorage.setItem('queueMovies', JSON.stringify(arrQueue));
+      localStorage.setItem(queuedKey, JSON.stringify(arrQueue));
+      fetchModal(currentId)
+        .then(data => {
+          addToFirebase.addMovieToFireBase(data, 'Queue');
+        })
+        .catch(error => console.log(error));
     }
-    fetchModal(currentId)
-      .then(data => {
-        addToFirebase.addMovieToFireBase(data, 'Queue');
-      })
-      .catch(error => console.log(error));
   }
   function handleRemoveQueue() {
+    queueFilms = localStorage.getItem(queuedKey);
     arrQueue = JSON.parse(queueFilms);
     if (!arrQueue) {
       arrQueue = [];
     }
 
     if (arrQueue.some(film => film.id === activeFilm.id)) {
-      indexFilm = arrQueue.findIndex(film => film.ig === activeFilm.id);
+      indexFilm = arrQueue.findIndex(film => film.id === activeFilm.id);
       arrQueue.splice(indexFilm, 1);
-      localStorage.setItem('queueMovies', JSON.stringify(arrQueue));
+      localStorage.setItem(queuedKey, JSON.stringify(arrQueue));
+      fetchModal(currentId)
+        .then(data => {
+          addToFirebase.deleteMovieFromFireBase(data, 'Queue');
+        })
+        .catch(error => console.log(error));
     }
-    fetchModal(currentId)
-      .then(data => {
-        addToFirebase.deleteMovieFromFireBase(data, 'Queue');
-      })
-      .catch(error => console.log(error));
   }
   function handleRemoveWatched() {
+    watchedFilms = localStorage.getItem(watchedKey);
+
     arrWatched = JSON.parse(watchedFilms);
     if (!arrWatched) {
       arrWatched = [];
     }
     if (arrWatched.some(film => film.id === activeFilm.id)) {
-      indexFilm = arrWatched.findIndex(film => film.ig === activeFilm.id);
+      indexFilm = arrWatched.findIndex(film => film.id === activeFilm.id);
       arrWatched.splice(indexFilm, 1);
-      arrWatched.push(activeFilm);
-      localStorage.setItem('watchedMovies', JSON.stringify(arrWatched));
+      localStorage.setItem(watchedKey, JSON.stringify(arrWatched));
+      fetchModal(currentId)
+        .then(data => {
+          addToFirebase.deleteMovieFromFireBase(data, 'Watched');
+        })
+        .catch(error => console.log(error));
     }
-    fetchModal(currentId)
-      .then(data => {
-        addToFirebase.deleteMovieFromFireBase(data, 'Watched');
-      })
-      .catch(error => console.log(error));
   }
 
   fetchTrailerKey(currentId).then(key => {

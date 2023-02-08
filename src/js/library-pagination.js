@@ -15,7 +15,6 @@ const refsLib = {
   plusT: document.querySelector('.btn-increment-ten-library'),
   minusT: document.querySelector('.btn-decrement-ten-library'),
   containerPag: document.querySelector('.js-pagination-library'),
-  libraryScroll: document.querySelector('#library-link'),
 };
 
 refsLib.minusQu.addEventListener('click', onClickDecrementPage);
@@ -32,8 +31,8 @@ const libraryQueue = document.querySelector('.js-btn-library-queue');
 
 const watchedKey = 'watchedMovies';
 const queuedKey = 'queueMovies';
-const watchedFilms = localStorage.getItem(watchedKey);
-const queueFilms = localStorage.getItem(queuedKey);
+let watchedFilms = localStorage.getItem(watchedKey);
+let queueFilms = localStorage.getItem(queuedKey);
 // function scrollTop() {
 //   document.body.scrollTop = 0; // For Safari
 //   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
@@ -266,21 +265,21 @@ let beginPage = 0;
 let endPage = 0;
 let arrWatched = [];
 let arrQueue = [];
-let pageOfModal = 0;
-function onClickDecrementPage(e) {
+export let pageOfModal = 0;
+export function onClickDecrementPage(e) {
   activePage -= 1;
   const evtTarget = e.target;
   evtTarget.blur();
   paginationLibAllEvt(activePage, arreyWatched, beginPage, endPage, totalFilms);
 }
 
-function onClickIncrementPage(e) {
+export function onClickIncrementPage(e) {
   activePage += 1;
   const evtTarget = e.target;
   evtTarget.blur();
   paginationLibAllEvt(activePage, arreyWatched, beginPage, endPage, totalFilms);
 }
-function onClickPaginationBtnNumber(e) {
+export function onClickPaginationBtnNumber(e) {
   const evtTarget = e.target;
 
   if (evtTarget.nodeName !== 'BUTTON') {
@@ -292,13 +291,13 @@ function onClickPaginationBtnNumber(e) {
 
   evtTarget.blur();
 }
-function onClickDecrementTen(e) {
+export function onClickDecrementTen(e) {
   activePage -= 5;
   evtTarget.blur();
   const evtTarget = e.target;
   paginationLibAllEvt(activePage, arreyWatched, beginPage, endPage, totalFilms);
 }
-function onClickIncrementTen(e) {
+export function onClickIncrementTen(e) {
   activePage += 5;
   evtTarget.blur();
   const evtTarget = e.target;
@@ -312,6 +311,7 @@ function paginationLibAllEvt(page, arrey, begin, end, total) {
   }
 
   if (libraryWatcehd.classList.contains('main-btn--library-active')) {
+    watchedFilms = localStorage.getItem(watchedKey);
     arrey = JSON.parse(watchedFilms);
     total = Number.parseInt(arrey.length / 18 + 1);
     if (page > total) {
@@ -337,6 +337,7 @@ function paginationLibAllEvt(page, arrey, begin, end, total) {
   }
 
   if (libraryQueue.classList.contains('main-btn--library-active')) {
+    queueFilms = localStorage.getItem(queuedKey);
     arrey = JSON.parse(queueFilms);
     total = Number.parseInt(arrey.length / 18 + 1);
 
@@ -361,14 +362,17 @@ function paginationLibAllEvt(page, arrey, begin, end, total) {
     paginationLib(total, page);
   }
 }
-export function paginationOnModal() {
+export function paginationOnModal(page) {
+  watchedFilms = localStorage.getItem(watchedKey);
+  queueFilms = localStorage.getItem(queuedKey);
   pageOfModal = activePage;
+  page = pageOfModal;
   arrQueue = JSON.parse(queueFilms);
   arrWatched = JSON.parse(watchedFilms);
   if (libraryWatcehd.classList.contains('main-btn--library-active')) {
-    paginationLibAllEvt(activePage, arrWatched, beginPage, endPage, totalFilms);
+    paginationLibAllEvt(page, arrWatched, beginPage, endPage, totalFilms);
   }
   if (libraryQueue.classList.contains('main-btn--library-active')) {
-    paginationLibAllEvt(activePage, arrQueue, beginPage, endPage, totalFilms);
+    paginationLibAllEvt(page, arrQueue, beginPage, endPage, totalFilms);
   }
 }
