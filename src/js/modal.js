@@ -132,6 +132,9 @@ export function openModal(evt) {
     }
   }
   function handleRemoveQueue() {
+    if (!firebaseObj.isUserSignedIn()) {
+      return Report.warning('Please sign in to your account!', '', 'Okay');
+    }
     queueFilms = localStorage.getItem(queuedKey);
     arrQueue = JSON.parse(queueFilms);
     if (!arrQueue) {
@@ -150,6 +153,9 @@ export function openModal(evt) {
     }
   }
   function handleRemoveWatched() {
+    if (!firebaseObj.isUserSignedIn()) {
+      return Report.warning('Please sign in to your account!', '', 'Okay');
+    }
     watchedFilms = localStorage.getItem(watchedKey);
 
     arrWatched = JSON.parse(watchedFilms);
