@@ -49,6 +49,7 @@ export function checkLocalStorage(key) {
   if (arr.length === 0) {
     list.innerHTML = `<li class="empty-storage">
     <div>Sorry, this storage is empty.</div>
+    <a class="home-btn" href="./index.html">Home</a>
   </li>`;
     paginationLib(0, 0);
   } else {

@@ -38,7 +38,7 @@ export function onAddToLocalStorage(data, firebaseObj) {
           if (savedData === '[]') {
             list.innerHTML = `<li class="empty-storage">
             <div>Sorry, this storage is empty.</div>
-            <a class="home-btn" href="/src/index.html">Home</a>
+            <a class="home-btn" href="./index.html">Home</a>
           </li>`;
             return;
           }
@@ -74,7 +74,7 @@ export function onAddToLocalStorage(data, firebaseObj) {
           if (savedData === '[]') {
             list.innerHTML = `<li class="empty-storage">
             <div>Sorry, this storage is empty.</div>
-            <a class="home-btn" href="/src/index.html">Home</a>
+            <a class="home-btn" href="./index.html">Home</a>
           </li>`;
             return;
           }
