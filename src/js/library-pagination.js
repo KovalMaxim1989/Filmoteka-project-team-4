@@ -429,37 +429,37 @@ export function paginationOnModal(page) {
 export function paginOfMogalIndeFilm() {
   let activPage = 1;
   if (refsLib.firstP.classList.contains('btn-active')) {
-    activPage = 1;
+    activPage = Number(refsLib.firstP.textContent);
     paginationOnModal(activPage);
     return;
   }
   if (refsLib.minus2P.classList.contains('btn-active')) {
-    activPage = 2;
+    activPage = Number(refsLib.minus2P.textContent);
     paginationOnModal(activPage);
     return;
   }
   if (refsLib.minus1P.classList.contains('btn-active')) {
-    activPage = 3;
+    activPage = Number(refsLib.minus1P.textContent);
     paginationOnModal(activPage);
     return;
   }
   if (refsLib.activP.classList.contains('btn-active')) {
-    activPage = 4;
+    activPage = Number(refsLib.lastP.textContent);
     paginationOnModal(activPage);
     return;
   }
   if (refsLib.plus1P.classList.contains('btn-active')) {
-    activPage = 5;
+    activPage = Number(refsLib.lastP.textContent);
     paginationOnModal(activPage);
     return;
   }
   if (refsLib.plus2P.classList.contains('btn-active')) {
-    activPage = 6;
+    activPage = Number(refsLib.lastP.textContent);
     paginationOnModal(activPage);
     return;
   }
   if (refsLib.lastP.classList.contains('btn-active')) {
-    activPage = 7;
+    activPage = Number(refsLib.lastP.textContent);
     paginationOnModal(activPage);
     return;
   }
