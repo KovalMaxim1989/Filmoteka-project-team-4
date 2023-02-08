@@ -42,13 +42,13 @@ function onQueueClick() {
 }
 
 function checkLocalStorage(key) {
-  if (key === '[]') {
+  arr = JSON.parse(key);
+  if (arr.length === 0) {
     list.innerHTML = `<li class="empty-storage">
     <div>Sorry, this storage is empty.</div>
   </li>`;
     paginationLib(0, 0);
   } else {
-    arr = JSON.parse(key);
     if (arr.length === 18) {
       list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
       paginationLib(1, 1);

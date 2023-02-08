@@ -15,7 +15,7 @@ const refsLib = {
   plusT: document.querySelector('.btn-increment-ten-library'),
   minusT: document.querySelector('.btn-decrement-ten-library'),
   containerPag: document.querySelector('.js-pagination-library'),
-  libraryScroll: document.querySelector('#logo'),
+  libraryScroll: document.querySelector('#library-link'),
 };
 
 refsLib.minusQu.addEventListener('click', onClickDecrementPage);
@@ -264,6 +264,9 @@ let totalFilms = 1;
 let activePage = 1;
 let beginPage = 0;
 let endPage = 0;
+let arrWatched = [];
+let arrQueue = [];
+let pageOfModal = 0;
 function onClickDecrementPage(e) {
   activePage -= 1;
   const evtTarget = e.target;
@@ -356,5 +359,16 @@ function paginationLibAllEvt(page, arrey, begin, end, total) {
       return;
     }
     paginationLib(total, page);
+  }
+}
+export function paginationOnModal() {
+  pageOfModal = activePage;
+  arrQueue = JSON.parse(queueFilms);
+  arrWatched = JSON.parse(watchedFilms);
+  if (libraryWatcehd.classList.contains('main-btn--library-active')) {
+    paginationLibAllEvt(activePage, arrWatched, beginPage, endPage, totalFilms);
+  }
+  if (libraryQueue.classList.contains('main-btn--library-active')) {
+    paginationLibAllEvt(activePage, arrQueue, beginPage, endPage, totalFilms);
   }
 }

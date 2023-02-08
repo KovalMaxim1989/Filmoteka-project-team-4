@@ -18,10 +18,20 @@ const refs = {
   closeModalBtn: document.querySelector('[data-modal-close]'),
   trailerBtn: document.querySelector('.trailer-btn'),
   watchedLibraryBtn: document.querySelector('.js-btn-library-watched'),
+  libraryLink: document.querySelector('#library-link'),
 };
+
+const watchedKey = 'watchedMovies';
+const queuedKey = 'queueMovies';
+const watchedFilms = localStorage.getItem(watchedKey);
+const queueFilms = localStorage.getItem(queuedKey);
 
 // create copy FireBase obj
 let firebaseObj = null;
+let activeFilm = {};
+let arrWatched = [];
+let arrQueue = [];
+let indexFilm = 0;
 
 refs.openModalCard.addEventListener('click', openModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
@@ -57,6 +67,7 @@ export function openModal(evt) {
 
   fetchModal(currentId)
     .then(data => {
+      activeFilm = data;
       createMarkupSelectedMovie(data);
       onAddToLocalStorage(data, firebaseObj);
       const queuedBtn = document.querySelector('.js-btn-queue');
@@ -83,6 +94,15 @@ export function openModal(evt) {
     .catch(error => console.log(error));
 
   function handleWathedBtnClick() {
+    arrWatched = JSON.parse(watchedFilms);
+    if (!arrWatched) {
+      arrWatched = [];
+    }
+    if (!arrWatched.some(film => film.id === activeFilm.id)) {
+      arrWatched.push(activeFilm);
+      localStorage.setItem('watchedMovies', JSON.stringify(arrWatched));
+    }
+
     fetchModal(currentId)
       .then(data => {
         addToFirebase.addMovieToFireBase(data, 'Watched');
@@ -90,6 +110,15 @@ export function openModal(evt) {
       .catch(error => console.log(error));
   }
   function handleQueueBtnClick() {
+    arrQueue = JSON.parse(queueFilms);
+    if (!arrQueue) {
+      arrQueue = [];
+    }
+
+    if (!arrQueue.some(film => film.id === activeFilm.id)) {
+      arrQueue.push(activeFilm);
+      localStorage.setItem('queueMovies', JSON.stringify(arrQueue));
+    }
     fetchModal(currentId)
       .then(data => {
         addToFirebase.addMovieToFireBase(data, 'Queue');
@@ -97,6 +126,16 @@ export function openModal(evt) {
       .catch(error => console.log(error));
   }
   function handleRemoveQueue() {
+    arrQueue = JSON.parse(queueFilms);
+    if (!arrQueue) {
+      arrQueue = [];
+    }
+
+    if (arrQueue.some(film => film.id === activeFilm.id)) {
+      indexFilm = arrQueue.findIndex(film => film.ig === activeFilm.id);
+      arrQueue.splice(indexFilm, 1);
+      localStorage.setItem('queueMovies', JSON.stringify(arrQueue));
+    }
     fetchModal(currentId)
       .then(data => {
         addToFirebase.deleteMovieFromFireBase(data, 'Queue');
@@ -104,6 +143,16 @@ export function openModal(evt) {
       .catch(error => console.log(error));
   }
   function handleRemoveWatched() {
+    arrWatched = JSON.parse(watchedFilms);
+    if (!arrWatched) {
+      arrWatched = [];
+    }
+    if (arrWatched.some(film => film.id === activeFilm.id)) {
+      indexFilm = arrWatched.findIndex(film => film.ig === activeFilm.id);
+      arrWatched.splice(indexFilm, 1);
+      arrWatched.push(activeFilm);
+      localStorage.setItem('watchedMovies', JSON.stringify(arrWatched));
+    }
     fetchModal(currentId)
       .then(data => {
         addToFirebase.deleteMovieFromFireBase(data, 'Watched');
