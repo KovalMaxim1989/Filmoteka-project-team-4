@@ -7,137 +7,97 @@ const watchedKey = 'watchedMovies';
 const queuedKey = 'queueMovies';
 
 export function onAddToLocalStorage(data, firebaseObj) {
-  const watchedBtn = document.querySelector('.js-btn-watched');
-  const queuedBtn = document.querySelector('.js-btn-queue');
+  const watcheAdddBtn = document.querySelector('.js-btn-watched');
+  const queueAddBtn = document.querySelector('.js-btn-queue');
   const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
   const removeWatchedeBtn = document.querySelector('.js-btn-remove-watched');
 
   removeQueueBtn.addEventListener('click', () => {
-    if (!firebaseObj.isUserSignedIn()) {
-      return Report.warning('Please sign in to your account!', '', 'Okay');
-    }
+    ifUserLogin(firebaseObj);
+    localRemoveBtns(queuedKey, data);
 
     removeQueueBtn.classList.add('visually-hidden');
-    queuedBtn.classList.remove('visually-hidden');
-
-    try {
-      removeQueueBtn.classList.add('visually-hidden');
-      queuedBtn.classList.remove('visually-hidden');
-      let savedData = localStorage.getItem(queuedKey);
-
-      let movies = JSON.parse(savedData);
-      const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
-
-      if (indexOfMovie === -1) {
-        return;
-      } else {
-        movies.splice(indexOfMovie, 1);
-        localStorage.setItem(queuedKey, JSON.stringify(movies));
-        savedData = localStorage.getItem(queuedKey);
-        if (headerLibrary) {
-          if (savedData === '[]') {
-            list.innerHTML = `<li class="empty-storage">
-            <div>Sorry, this storage is empty.</div>
-            <a class="home-btn" href="./index.html">Home</a>
-          </li>`;
-            return;
-          }
-          list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
-        }
-      }
-    } catch (error) {
-      console.error('Set state error: ', error.message);
-    }
+    queueAddBtn.classList.remove('visually-hidden');
   });
 
   removeWatchedeBtn.addEventListener('click', () => {
-    if (!firebaseObj.isUserSignedIn()) {
-      return Report.warning('Please sign in to your account!', '', 'Okay');
-    }
+    ifUserLogin(firebaseObj);
+    localRemoveBtns(watchedKey, data);
 
     removeWatchedeBtn.classList.add('visually-hidden');
-    watchedBtn.classList.remove('visually-hidden');
+    watcheAdddBtn.classList.remove('visually-hidden');
+  });
 
-    try {
-      let savedData = localStorage.getItem(watchedKey);
-      let movies = JSON.parse(savedData);
-      const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
+  watcheAdddBtn.addEventListener('click', () => {
+    ifUserLogin(firebaseObj);
+    localAddBtns(watchedKey, data);
 
-      if (indexOfMovie === -1) {
-        return;
-      } else {
-        movies.splice(indexOfMovie, 1);
-        localStorage.setItem(watchedKey, JSON.stringify(movies));
-        savedData = localStorage.getItem(watchedKey);
+    watcheAdddBtn.classList.add('visually-hidden');
+    removeWatchedeBtn.classList.remove('visually-hidden');
+  });
 
-        if (headerLibrary) {
-          if (savedData === '[]') {
-            list.innerHTML = `<li class="empty-storage">
+  queueAddBtn.addEventListener('click', () => {
+    ifUserLogin(firebaseObj);
+    localAddBtns(queuedKey, data);
+
+    removeQueueBtn.classList.remove('visually-hidden');
+    queueAddBtn.classList.add('visually-hidden');
+  });
+}
+
+function localRemoveBtns(key, data) {
+  try {
+    let savedData = localStorage.getItem(key);
+
+    let movies = JSON.parse(savedData);
+    const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
+
+    if (indexOfMovie === -1) {
+      return;
+    } else {
+      movies.splice(indexOfMovie, 1);
+      localStorage.setItem(key, JSON.stringify(movies));
+      savedData = localStorage.getItem(key);
+      if (headerLibrary) {
+        if (savedData === '[]') {
+          list.innerHTML = `<li class="empty-storage">
             <div>Sorry, this storage is empty.</div>
             <a class="home-btn" href="./index.html">Home</a>
           </li>`;
-            return;
-          }
-          list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
+          return;
         }
+        list.innerHTML = createMarkupLibraryList(JSON.parse(savedData));
       }
-    } catch (error) {
-      console.error('Set state error: ', error.message);
     }
-  });
+  } catch (error) {
+    console.error('Set state error: ', error.message);
+  }
+}
 
-  watchedBtn.addEventListener('click', () => {
-    if (!firebaseObj.isUserSignedIn()) {
-      return Report.warning('Please sign in to your account!', '', 'Okay');
-    }
+function localAddBtns(key, data) {
+  try {
+    let savedData = localStorage.getItem(key);
 
-    try {
-      let savedData = localStorage.getItem(watchedKey);
+    if (savedData) {
+      let movies = JSON.parse(savedData);
+      const isUnique = movies.some(value => value.id === data.id);
 
-      if (savedData) {
-        let movies = JSON.parse(savedData);
-        const isUnique = movies.some(value => value.id === data.id);
-
-        if (!isUnique) {
-          movies.push(data);
-          localStorage.setItem(watchedKey, JSON.stringify(movies));
-        } else {
-          console.log('This film in your collection');
-        }
+      if (!isUnique) {
+        movies.push(data);
+        localStorage.setItem(key, JSON.stringify(movies));
       } else {
-        localStorage.setItem(watchedKey, JSON.stringify([data]));
+        return;
       }
-    } catch (error) {
-      console.error('Set state error: ', error.message);
+    } else {
+      localStorage.setItem(key, JSON.stringify([data]));
     }
-    removeWatchedeBtn.classList.remove('visually-hidden');
-    watchedBtn.classList.add('visually-hidden');
-  });
+  } catch (error) {
+    console.error('Set state error: ', error.message);
+  }
+}
 
-  queuedBtn.addEventListener('click', () => {
-    if (!firebaseObj.isUserSignedIn()) {
-      return Report.warning('Please sign in to your account!', '', 'Okay');
-    }
-    try {
-      let savedData = localStorage.getItem(queuedKey);
-
-      if (savedData) {
-        let movies = JSON.parse(savedData);
-        const isUnique = movies.some(value => value.id === data.id);
-
-        if (!isUnique) {
-          movies.push(data);
-          localStorage.setItem(queuedKey, JSON.stringify(movies));
-        } else {
-          console.log('This film in your collection');
-        }
-      } else {
-        localStorage.setItem(queuedKey, JSON.stringify([data]));
-      }
-    } catch (error) {
-      console.error('Set state error: ', error.message);
-    }
-    removeQueueBtn.classList.remove('visually-hidden');
-    queuedBtn.classList.add('visually-hidden');
-  });
+function ifUserLogin(firebase) {
+  if (!firebase.isUserSignedIn()) {
+    return Report.warning('Please sign in to your account!', '', 'Okay');
+  }
 }

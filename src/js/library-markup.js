@@ -46,7 +46,6 @@ function onQueueClick() {
 
 export function checkLocalStorage(key) {
   arr = JSON.parse(key);
-  console.log(arr);
 
   if (!arr) {
     list.innerHTML = `<li class="empty-storage">

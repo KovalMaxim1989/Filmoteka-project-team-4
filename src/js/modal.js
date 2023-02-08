@@ -49,17 +49,6 @@ export function openModal(evt) {
 
   let libraryPage;
 
-  if (refs.watchedLibraryBtn) {
-    libraryPage = 'queue';
-    if (
-      refs.watchedLibraryBtn.className
-        .split(' ')
-        .some(btn => btn === 'main-btn--library-active')
-    ) {
-      libraryPage = 'watched';
-    }
-  }
-
   document.querySelector('.wrap-disc').innerHTML = '';
 
   const currentMovie = evt.target.closest('.js-target');
@@ -70,26 +59,19 @@ export function openModal(evt) {
       activeFilm = data;
       createMarkupSelectedMovie(data);
       onAddToLocalStorage(data, firebaseObj);
+      checkKeyInLocal(data);
+      checkPageInLibrary(libraryPage);
       const queuedBtn = document.querySelector('.js-btn-queue');
       const watchedBtn = document.querySelector('.js-btn-watched');
       const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
       const removeWatchedeBtn = document.querySelector(
         '.js-btn-remove-watched'
       );
-      checkKeyInLocal(data);
 
       watchedBtn.addEventListener('click', handleWathedBtnClick);
       queuedBtn.addEventListener('click', handleQueueBtnClick);
       removeWatchedeBtn.addEventListener('click', handleRemoveWatched);
       removeQueueBtn.addEventListener('click', handleRemoveQueue);
-
-      if (libraryPage === 'queue') {
-        removeQueueBtn.classList.remove('visually-hidden');
-        queuedBtn.classList.add('visually-hidden');
-      } else if (libraryPage === 'watched') {
-        removeWatchedeBtn.classList.remove('visually-hidden');
-        watchedBtn.classList.add('visually-hidden');
-      }
     })
     .catch(error => console.log(error));
 
@@ -289,5 +271,26 @@ function checkKeyInLocal(data) {
       queuedBtn.classList.add('visually-hidden');
       removeQueueBtn.classList.remove('visually-hidden');
     }
+  }
+}
+
+function checkPageInLibrary(page) {
+  if (refs.watchedLibraryBtn) {
+    page = 'queue';
+    if (
+      refs.watchedLibraryBtn.className
+        .split(' ')
+        .some(btn => btn === 'main-btn--library-active')
+    ) {
+      page = 'watched';
+    }
+  }
+
+  if (page === 'queue') {
+    removeQueueBtn.classList.remove('visually-hidden');
+    queuedBtn.classList.add('visually-hidden');
+  } else if (page === 'watched') {
+    removeWatchedeBtn.classList.remove('visually-hidden');
+    watchedBtn.classList.add('visually-hidden');
   }
 }
