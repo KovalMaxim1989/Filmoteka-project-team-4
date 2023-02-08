@@ -46,20 +46,29 @@ function onQueueClick() {
 
 export function checkLocalStorage(key) {
   arr = JSON.parse(key);
-  totalFilms = Number.parseInt(arr.length / 18 + 1);
-  if (arr.length === 0) {
+  console.log(arr);
+
+  if (!arr) {
     list.innerHTML = `<li class="empty-storage">
     <div>Sorry, this storage is empty.</div>
     <a class="home-btn" href="./index.html">Home</a>
-  </li>`;
+    </li>`;
+    paginationLib(0, 0);
+    return;
+  } else if (arr.length === 0) {
+    list.innerHTML = `<li class="empty-storage">
+      <div>Sorry, this storage is empty.</div>
+      <a class="home-btn" href="./index.html">Home</a>
+    </li>`;
     paginationLib(0, 0);
   } else {
     if (arr.length === 18) {
+      totalFilms = Number.parseInt(arr.length / 18 + 1);
       list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
       paginationLib(1, 1);
       return;
     }
-
+    totalFilms = Number.parseInt(arr.length / 18 + 1);
     list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
 
     paginationLib(totalFilms, 1);
