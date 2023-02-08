@@ -45,6 +45,7 @@ function checkLocalStorage(key) {
   if (key === '[]') {
     list.innerHTML = `<li class="empty-storage">
     <div>Sorry, this storage is empty.</div>
+    <a class="home-btn" href="/src/index.html">Home</a>
   </li>`;
     paginationLib(0, 0);
   } else {
