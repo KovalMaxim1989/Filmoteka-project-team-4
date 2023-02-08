@@ -1,5 +1,6 @@
 import { createMarkupLibraryList } from './markup';
 import { scrollTop } from './button';
+import { refs } from './refs';
 const refsLib = {
   moviesL: document.querySelector('.js-films-list-library'),
   firstP: document.querySelector('.js-pagination--firstPage-library'),
@@ -265,7 +266,6 @@ let beginPage = 0;
 let endPage = 0;
 let arrWatched = [];
 let arrQueue = [];
-export let pageOfModal = 0;
 export function onClickDecrementPage(e) {
   activePage -= 1;
   const evtTarget = e.target;
@@ -363,16 +363,104 @@ function paginationLibAllEvt(page, arrey, begin, end, total) {
   }
 }
 export function paginationOnModal(page) {
-  watchedFilms = localStorage.getItem(watchedKey);
-  queueFilms = localStorage.getItem(queuedKey);
-  pageOfModal = activePage;
-  page = pageOfModal;
-  arrQueue = JSON.parse(queueFilms);
-  arrWatched = JSON.parse(watchedFilms);
-  if (libraryWatcehd.classList.contains('main-btn--library-active')) {
-    paginationLibAllEvt(page, arrWatched, beginPage, endPage, totalFilms);
+  let watched = 0;
+  let queue = 0;
+  let begin = 1;
+  let end = 1;
+  let arrey = [];
+  let total = 1;
+  if (!page || page < 0) {
+    page = 1;
+    return;
   }
+
+  if (libraryWatcehd.classList.contains('main-btn--library-active')) {
+    watched = localStorage.getItem(watchedKey);
+    arrey = JSON.parse(watched);
+    total = Number.parseInt(arrey.length / 18 + 1);
+    if (page > total) {
+      page = total;
+    }
+    if (arrey.length === 1) {
+      list.innerHTML = createMarkupLibraryList(arr);
+      paginationLib(total, page);
+    }
+    if (page === 1) {
+      const arr = arrey.slice(0, 18);
+      list.innerHTML = createMarkupLibraryList(arr);
+      paginationLib(total, page);
+
+      return;
+    }
+    begin = 18 * page - 18;
+    end = 18 * page;
+
+    const arr = arrey.slice(begin, end);
+    list.innerHTML = createMarkupLibraryList(arr);
+    paginationLib(total, page);
+  }
+
   if (libraryQueue.classList.contains('main-btn--library-active')) {
-    paginationLibAllEvt(page, arrQueue, beginPage, endPage, totalFilms);
+    queue = localStorage.getItem(queuedKey);
+    arrey = JSON.parse(queue);
+    total = Number.parseInt(arrey.length / 18 + 1);
+
+    if (page > total) {
+      page = total;
+    }
+    if (arrey.length === 1) {
+      list.innerHTML = createMarkupLibraryList(arrey);
+      paginationLib(total, page);
+      return;
+    }
+    begin = 18 * page - 18;
+    end = 18 * page;
+    const arr = arrey.slice(begin, end);
+    list.innerHTML = createMarkupLibraryList(arr);
+    if (page === 1) {
+      const arr = arrey.slice(0, 18);
+      list.innerHTML = createMarkupLibraryList(arr);
+      paginationLib(total, page);
+      return;
+    }
+    paginationLib(total, page);
+  }
+}
+export function paginOfMogalIndeFilm() {
+  let activPage = 1;
+  if (refsLib.firstP.classList.contains('btn-active')) {
+    activPage = 1;
+    paginationOnModal(activPage);
+    return;
+  }
+  if (refsLib.minus2P.classList.contains('btn-active')) {
+    activPage = 2;
+    paginationOnModal(activPage);
+    return;
+  }
+  if (refsLib.minus1P.classList.contains('btn-active')) {
+    activPage = 3;
+    paginationOnModal(activPage);
+    return;
+  }
+  if (refsLib.activP.classList.contains('btn-active')) {
+    activPage = 4;
+    paginationOnModal(activPage);
+    return;
+  }
+  if (refsLib.plus1P.classList.contains('btn-active')) {
+    activPage = 5;
+    paginationOnModal(activPage);
+    return;
+  }
+  if (refsLib.plus2P.classList.contains('btn-active')) {
+    activPage = 6;
+    paginationOnModal(activPage);
+    return;
+  }
+  if (refsLib.lastP.classList.contains('btn-active')) {
+    activPage = 7;
+    paginationOnModal(activPage);
+    return;
   }
 }

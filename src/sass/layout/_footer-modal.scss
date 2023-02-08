@@ -1,4 +1,5 @@
-.backdrop-footer {
+.backdrop-footer,
+.backdrop-footer-lib {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +13,8 @@
     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.backdrop-footer.is-hidden {
+.backdrop-footer.is-hidden,
+.backdrop-footer-lib.is-hidden {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
