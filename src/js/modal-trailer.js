@@ -31,6 +31,7 @@ async function fetchTrailerKey(currentId) {
     return key;
   } catch (error) {
     refs.trailerBtn.classList.add('visually-hidden');
+    spinner.stop();
   }
 }
 
