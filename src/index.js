@@ -20,6 +20,7 @@ import { scrollTop } from './js/button';
 
 // filters
 import './js/filter-search-films';
+import './js/animationsFilterBtn';
 
 // ! Section for create new Class instances:
 // here you create new Class instances
