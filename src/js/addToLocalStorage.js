@@ -15,11 +15,12 @@ export function onAddToLocalStorage(data, firebaseObj) {
   removeQueueBtn.addEventListener('click', () => {
     if (!firebaseObj.isUserSignedIn()) {
       return Report.warning('Please sign in to your account!', '', 'Okay');
-    }
-    removeQueueBtn.classList.add('visually-hidden');
-    queuedBtn.classList.remove('visually-hidden');
+    } else {
+      removeQueueBtn.classList.add('visually-hidden');
+      queuedBtn.classList.remove('visually-hidden');
 
-    onRemoveLocal(data, queuedKey);
+      onRemoveLocal(data, queuedKey);
+    }
   });
 
   removeWatchedeBtn.addEventListener('click', () => {
@@ -45,11 +46,12 @@ export function onAddToLocalStorage(data, firebaseObj) {
   queuedBtn.addEventListener('click', () => {
     if (!firebaseObj.isUserSignedIn()) {
       return Report.warning('Please sign in to your account!', '', 'Okay');
-    }
-    removeQueueBtn.classList.remove('visually-hidden');
-    queuedBtn.classList.add('visually-hidden');
+    } else {
+      removeQueueBtn.classList.remove('visually-hidden');
+      queuedBtn.classList.add('visually-hidden');
 
-    onAddLocal(data, queuedKey);
+      onAddLocal(data, queuedKey);
+    }
   });
 }
 
