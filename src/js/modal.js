@@ -4,11 +4,14 @@ import { createMarkupSelectedMovie } from './markup';
 import { fetchTrailerKey } from './modal-trailer';
 import { onAddToLocalStorage } from './addToLocalStorage';
 import { AddToFirebase } from './addToFirebase';
-
+import { showMovieFromFirebase } from './library-markup';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Spinner } from './spinner';
 
-// import { refs } from './refs';
+const spinner = new Spinner();
+
 const addToFirebase = new AddToFirebase();
 
 const refs = {
@@ -18,8 +21,10 @@ const refs = {
   closeModalBtn: document.querySelector('[data-modal-close]'),
   trailerBtn: document.querySelector('.trailer-btn'),
   watchedLibraryBtn: document.querySelector('.js-btn-library-watched'),
+  queueLibraryBtn: document.querySelector('.js-btn-library-queue'),
 };
-const libraryLink = document.querySelector('#library-link');
+
+// const libraryLink = document.querySelector('#library-link');
 
 const watchedKey = 'watchedMovies';
 const queuedKey = 'queueMovies';
@@ -28,10 +33,10 @@ let queueFilms = localStorage.getItem(queuedKey);
 
 // create copy FireBase obj
 let firebaseObj = null;
-let activeFilm = {};
-let arrWatched = [];
-let arrQueue = [];
-let indexFilm = 0;
+// let activeFilm = {};
+// let arrWatched = [];
+// let arrQueue = [];
+// let indexFilm = 0;
 
 refs.openModalCard.addEventListener('click', openModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
@@ -67,7 +72,7 @@ export function openModal(evt) {
 
   fetchModal(currentId)
     .then(data => {
-      activeFilm = data;
+      // activeFilm = data;
       createMarkupSelectedMovie(data);
       onAddToLocalStorage(data, firebaseObj);
       const queuedBtn = document.querySelector('.js-btn-queue');
@@ -76,7 +81,8 @@ export function openModal(evt) {
       const removeWatchedeBtn = document.querySelector(
         '.js-btn-remove-watched'
       );
-      checkKeyInLocal(data);
+      // checkKeyInLocal(data);
+      checkKeyInFirebase(data);
 
       watchedBtn.addEventListener('click', handleWathedBtnClick);
       queuedBtn.addEventListener('click', handleQueueBtnClick);
