@@ -830,18 +830,18 @@ export async function onClickDecrementTen(e) {
     Notify.failure(error);
   }
 }
-function onFilterIncrementTenPagination(respons, respons, API, totals) {
+function onFilterIncrementTenPagination(respons, eventT, API, totals) {
   totals = respons.total_pages;
   if (!respons.total_pages) {
     refsPag.containerPage.classList.add('visually-hidden');
   }
   if (respons.total_pages > 500) {
     onFilterObj(respons);
-    respons.blur();
+    eventT.blur();
     return;
   }
 
-  onCreateListFilmPagination(API, respons, respons);
+  onCreateListFilmPagination(API, respons, eventT);
 }
 export async function onClickIncrementTen(e) {
   pageActive += 10;
