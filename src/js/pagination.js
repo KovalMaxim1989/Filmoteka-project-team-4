@@ -30,6 +30,8 @@ refsPag.lastPage.addEventListener('click', onClickPaginationBtnNumber);
 refsPag.firstPage.addEventListener('click', onClickPaginationBtnNumber);
 
 const spinner = new Spinner();
+let pageActive = 1;
+export let totalPages = 100;
 
 export function pagination(data) {
   scrollTop();
@@ -251,28 +253,15 @@ export function pagination(data) {
       refsPag.plus1Page.classList.add('visually-hidden');
       refsPag.minus1Page.classList.remove('visually-hidden');
       refsPag.minus2Page.classList.remove('visually-hidden');
-      refsPag.lastPage.classList.remove('visually-hidden');
-      refsPag.activPage.classList.add('visually-hidden');
-      refsPag.minusTen.classList.add('visually-hidden');
-      refsPag.plusTen.classList.add('visually-hidden');
-      refsPag.minusQuery.classList.remove('visually-hidden');
-      refsPag.plusQuery.classList.remove('visually-hidden');
-
-      break;
-    case 5:
-      refsPag.plus2Page.classList.add('visually-hidden');
-      refsPag.plus1Page.classList.add('visually-hidden');
-      refsPag.minus1Page.classList.remove('visually-hidden');
-      refsPag.minus2Page.classList.remove('visually-hidden');
-      refsPag.lastPage.classList.remove('visually-hidden');
+      refsPag.lastPage.classList.add('visually-hidden');
       refsPag.activPage.classList.remove('visually-hidden');
       refsPag.minusTen.classList.add('visually-hidden');
       refsPag.plusTen.classList.add('visually-hidden');
+      refsPag.minusQuery.classList.add('visually-hidden');
+      refsPag.plusQuery.classList.add('visually-hidden');
 
-      refsPag.minusQuery.classList.remove('visually-hidden');
-      refsPag.plusQuery.classList.remove('visually-hidden');
       break;
-    case 6:
+    case 5:
       refsPag.plus2Page.classList.add('visually-hidden');
       refsPag.plus1Page.classList.remove('visually-hidden');
       refsPag.minus1Page.classList.remove('visually-hidden');
@@ -281,8 +270,21 @@ export function pagination(data) {
       refsPag.activPage.classList.remove('visually-hidden');
       refsPag.minusTen.classList.add('visually-hidden');
       refsPag.plusTen.classList.add('visually-hidden');
-      refsPag.minusQuery.classList.remove('visually-hidden');
-      refsPag.plusQuery.classList.remove('visually-hidden');
+
+      refsPag.minusQuery.classList.add('visually-hidden');
+      refsPag.plusQuery.classList.add('visually-hidden');
+      break;
+    case 6:
+      refsPag.plus2Page.classList.remove('visually-hidden');
+      refsPag.plus1Page.classList.remove('visually-hidden');
+      refsPag.minus1Page.classList.remove('visually-hidden');
+      refsPag.minus2Page.classList.remove('visually-hidden');
+      refsPag.lastPage.classList.remove('visually-hidden');
+      refsPag.activPage.classList.remove('visually-hidden');
+      refsPag.minusTen.classList.add('visually-hidden');
+      refsPag.plusTen.classList.add('visually-hidden');
+      refsPag.minusQuery.classList.add('visually-hidden');
+      refsPag.plusQuery.classList.add('visually-hidden');
       break;
 
     default:
@@ -298,8 +300,23 @@ export function pagination(data) {
       refsPag.plusTen.classList.remove('visually-hidden');
   }
 }
-let pageActive = 1;
-export let totalPages = 100;
+function onFilterIncrementPagination(respons, eventT, page, API, totals) {
+  totals = respons.total_pages;
+  if (page > respons.total_pages) {
+    page = 1;
+    onClickIncrementPage(e);
+  }
+  if (page >= respons.total_pages) {
+    refsPag.lastPage.classList.add('btn-active');
+  }
+  if (respons.total_pages > 500) {
+    onFilterObj(respons);
+    eventT.blur();
+    return;
+  }
+
+  onCreateListFilmPagination(API, respons, eventT);
+}
 
 export async function onClickIncrementPage(e) {
   pageActive += 1;
@@ -319,21 +336,13 @@ export async function onClickIncrementPage(e) {
       await movieAPI
         .getNowPlaying()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive > data.total_pages) {
-            pageActive = 1;
-            onClickIncrementPage(e);
-          }
-          if (pageActive >= data.total_pages) {
-            refsPag.lastPage.classList.add('btn-active');
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterIncrementPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -344,22 +353,13 @@ export async function onClickIncrementPage(e) {
       await movieAPI
         .getPopular()
         .then(data => {
-          totalPages = data.total_pages;
-
-          if (pageActive > data.total_pages) {
-            pageActive = 1;
-            onClickIncrementPage(e);
-          }
-          if (pageActive >= data.total_pages) {
-            refsPag.lastPage.classList.add('btn-active');
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterIncrementPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -370,21 +370,13 @@ export async function onClickIncrementPage(e) {
       await movieAPI
         .getTopRated()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive > data.total_pages) {
-            pageActive = 1;
-            onClickIncrementPage(e);
-          }
-          if (pageActive >= data.total_pages) {
-            refsPag.lastPage.classList.add('btn-active');
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterIncrementPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -395,21 +387,13 @@ export async function onClickIncrementPage(e) {
       await movieAPI
         .getUpcoming()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive > data.total_pages) {
-            pageActive = 1;
-            onClickIncrementPage(e);
-          }
-          if (pageActive >= data.total_pages) {
-            refsPag.lastPage.classList.add('btn-active');
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterIncrementPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -449,7 +433,6 @@ export async function onClickIncrementPage(e) {
       await movieAPI
         .getTrendMovie()
         .then(data => {
-          evtTarget.blur();
           totalPages = data.total_pages;
           if (pageActive > data.total_pages) {
             pageActive = 1;
@@ -459,11 +442,7 @@ export async function onClickIncrementPage(e) {
             refsPag.lastPage.classList.add('btn-active');
           }
 
-          const necessaryData = dataService.getDataTrendMovies(data.results);
-          const markupTrendMovies = createMarkupFilmsList(necessaryData);
-          refs.moviesList.innerHTML = markupTrendMovies;
-
-          pagination(data);
+          onCreateListFilmPagination(dataService, data, evtTarget);
         })
         .catch(err => {
           Notify.failure(err);
@@ -475,6 +454,21 @@ export async function onClickIncrementPage(e) {
   } catch (error) {
     Notify.failure(error);
   }
+}
+
+function onFilterDecrementPagination(respons, eventT, page, API, totals) {
+  totals = respons.total_pages;
+  if (page > respons.total_pages) {
+    page = 1;
+    onClickDecrementPage(e);
+  }
+  if (respons.total_pages > 500) {
+    onFilterObj(respons);
+    eventT.blur();
+    return;
+  }
+
+  onCreateListFilmPagination(API, respons, eventT);
 }
 export async function onClickDecrementPage(e) {
   pageActive -= 1;
@@ -498,18 +492,13 @@ export async function onClickDecrementPage(e) {
       await movieAPI
         .getNowPlaying()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive > data.total_pages) {
-            pageActive = 1;
-            onClickDecrementPage(e);
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterDecrementPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -520,18 +509,13 @@ export async function onClickDecrementPage(e) {
       await movieAPI
         .getPopular()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive > data.total_pages) {
-            pageActive = 1;
-            onClickDecrementPage(e);
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterDecrementPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -542,18 +526,13 @@ export async function onClickDecrementPage(e) {
       await movieAPI
         .getTopRated()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive > data.total_pages) {
-            pageActive = 1;
-            onClickDecrementPage(e);
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterDecrementPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -564,18 +543,13 @@ export async function onClickDecrementPage(e) {
       await movieAPI
         .getUpcoming()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive > data.total_pages) {
-            pageActive = 1;
-            onClickDecrementPage(e);
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterDecrementPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -623,6 +597,17 @@ export async function onClickDecrementPage(e) {
     Notify.failure(error);
   }
 }
+
+function onFilterBtnNumberPagination(respons, eventT, API, totals) {
+  totals = respons.total_pages;
+  if (respons.total_pages > 500) {
+    onFilterObj(respons);
+    eventT.blur();
+    return;
+  }
+
+  onCreateListFilmPagination(API, respons, eventT);
+}
 export async function onClickPaginationBtnNumber(e) {
   const evtTarget = e.target;
   pageActive = Number(evtTarget.textContent);
@@ -642,14 +627,7 @@ export async function onClickPaginationBtnNumber(e) {
       await movieAPI
         .getNowPlaying()
         .then(data => {
-          totalPages = data.total_pages;
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterBtnNumberPagination(data, evtTarget, dataService, totalPages);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -660,14 +638,7 @@ export async function onClickPaginationBtnNumber(e) {
       await movieAPI
         .getPopular()
         .then(data => {
-          totalPages = data.total_pages;
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterBtnNumberPagination(data, evtTarget, dataService, totalPages);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -678,14 +649,7 @@ export async function onClickPaginationBtnNumber(e) {
       await movieAPI
         .getTopRated()
         .then(data => {
-          totalPages = data.total_pages;
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterBtnNumberPagination(data, evtTarget, dataService, totalPages);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -696,14 +660,7 @@ export async function onClickPaginationBtnNumber(e) {
       await movieAPI
         .getUpcoming()
         .then(data => {
-          totalPages = data.total_pages;
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterBtnNumberPagination(data, evtTarget, dataService, totalPages);
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -742,7 +699,19 @@ export async function onClickPaginationBtnNumber(e) {
     Notify.failure(error);
   }
 }
+function onFilterDecrementTenPagination(respons, eventT, page, API, totals) {
+  totals = respons.total_pages;
+  if (page <= 0) {
+    return;
+  }
+  if (respons.total_pages > 500) {
+    onFilterObj(respons);
+    eventT.blur();
+    return;
+  }
 
+  onCreateListFilmPagination(API, respons, eventT);
+}
 export async function onClickDecrementTen(e) {
   pageActive -= 10;
   const evtTarget = e.target;
@@ -762,17 +731,13 @@ export async function onClickDecrementTen(e) {
       await movieAPI
         .getNowPlaying()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive <= 0) {
-            return;
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterDecrementTenPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -783,17 +748,13 @@ export async function onClickDecrementTen(e) {
       await movieAPI
         .getPopular()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive <= 0) {
-            return;
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterDecrementTenPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -804,17 +765,13 @@ export async function onClickDecrementTen(e) {
       await movieAPI
         .getTopRated()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive <= 0) {
-            return;
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterDecrementTenPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -825,17 +782,13 @@ export async function onClickDecrementTen(e) {
       await movieAPI
         .getUpcoming()
         .then(data => {
-          totalPages = data.total_pages;
-          if (pageActive <= 0) {
-            return;
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterDecrementTenPagination(
+            data,
+            evtTarget,
+            pageActive,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -877,6 +830,19 @@ export async function onClickDecrementTen(e) {
     Notify.failure(error);
   }
 }
+function onFilterIncrementTenPagination(respons, respons, API, totals) {
+  totals = respons.total_pages;
+  if (!respons.total_pages) {
+    refsPag.containerPage.classList.add('visually-hidden');
+  }
+  if (respons.total_pages > 500) {
+    onFilterObj(respons);
+    respons.blur();
+    return;
+  }
+
+  onCreateListFilmPagination(API, respons, respons);
+}
 export async function onClickIncrementTen(e) {
   pageActive += 10;
   const evtTarget = e.target;
@@ -894,17 +860,12 @@ export async function onClickIncrementTen(e) {
       await movieAPI
         .getNowPlaying()
         .then(data => {
-          totalPages = data.total_pages;
-          if (!data.total_pages) {
-            refsPag.containerPage.classList.add('visually-hidden');
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterIncrementTenPagination(
+            data,
+            evtTarget,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -916,16 +877,12 @@ export async function onClickIncrementTen(e) {
         .getPopular()
         .then(data => {
           totalPages = data.total_pages;
-          if (!data.total_pages) {
-            refsPag.containerPage.classList.add('visually-hidden');
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterIncrementTenPagination(
+            data,
+            evtTarget,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -936,17 +893,12 @@ export async function onClickIncrementTen(e) {
       await movieAPI
         .getTopRated()
         .then(data => {
-          totalPages = data.total_pages;
-          if (!data.total_pages) {
-            refsPag.containerPage.classList.add('visually-hidden');
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterIncrementTenPagination(
+            data,
+            evtTarget,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
@@ -957,17 +909,12 @@ export async function onClickIncrementTen(e) {
       await movieAPI
         .getUpcoming()
         .then(data => {
-          totalPages = data.total_pages;
-          if (!data.total_pages) {
-            refsPag.containerPage.classList.add('visually-hidden');
-          }
-          if (data.total_pages > 500) {
-            onFilterObj(data);
-            evtTarget.blur();
-            return;
-          }
-
-          onCreateListFilmPagination(dataService, data, evtTarget);
+          onFilterIncrementTenPagination(
+            data,
+            evtTarget,
+            dataService,
+            totalPages
+          );
         })
         .catch(err => Notify.failure(err))
         .finally(() => {
