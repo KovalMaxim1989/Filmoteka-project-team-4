@@ -1,5 +1,5 @@
 import { createMarkupLibraryList } from './markup';
-import { paginationLib } from './library-pagination';
+// import { paginationLib } from './library-pagination';
 // import { Pagination } from 'swiper';
 import { Spinner } from './spinner';
 
@@ -11,8 +11,8 @@ const libraryQueue = document.querySelector('.js-btn-library-queue');
 
 const watchedKey = 'watchedMovies';
 const queuedKey = 'queueMovies';
-let watchedFilms = localStorage.getItem(watchedKey);
-let queueFilms = localStorage.getItem(queuedKey);
+// let watchedFilms = localStorage.getItem(watchedKey);
+// let queueFilms = localStorage.getItem(queuedKey);
 let arr = [];
 let totalFilms = 0;
 let fireBase = null;
@@ -20,7 +20,6 @@ let fireBase = null;
 export function onLoadLibrary(firebaseLib) {
   libraryQueue.addEventListener('click', onQueueClick);
   libraryWatched.addEventListener('click', onWatchedClick);
-  queueFilms = localStorage.getItem(queuedKey);
   // checkLocalStorage(queueFilms);
   fireBase = firebaseLib;
   fireBase.afterLogin = showMovieFromFirebase;
@@ -42,23 +41,14 @@ function onQueueClick() {
 
 export function checkLocalStorage(key) {
   arr = JSON.parse(key);
-
-  if (!arr) {
+  if (arr.length === 0) {
     list.innerHTML = `<li class="empty-storage">
     <div>Sorry, this storage is empty.</div>
     <a class="home-btn" href="./index.html">Home</a>
-    </li>`;
-    paginationLib(0, 0);
-    return;
-  } else if (arr.length === 0) {
-    list.innerHTML = `<li class="empty-storage">
-      <div>Sorry, this storage is empty.</div>
-      <a class="home-btn" href="./index.html">Home</a>
-    </li>`;
+  </li>`;
     paginationLib(0, 0);
   } else {
     if (arr.length === 18) {
-      totalFilms = Number.parseInt(arr.length / 18 + 1);
       list.innerHTML = createMarkupLibraryList(arr.slice(0, 18));
       paginationLib(1, 1);
       return;

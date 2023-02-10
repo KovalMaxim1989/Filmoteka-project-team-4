@@ -24,19 +24,8 @@ const refs = {
   queueLibraryBtn: document.querySelector('.js-btn-library-queue'),
 };
 
-// const libraryLink = document.querySelector('#library-link');
-
-const watchedKey = 'watchedMovies';
-const queuedKey = 'queueMovies';
-let watchedFilms = localStorage.getItem(watchedKey);
-let queueFilms = localStorage.getItem(queuedKey);
-
 // create copy FireBase obj
 let firebaseObj = null;
-// let activeFilm = {};
-// let arrWatched = [];
-// let arrQueue = [];
-// let indexFilm = 0;
 
 refs.openModalCard.addEventListener('click', openModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
@@ -72,7 +61,6 @@ export function openModal(evt) {
 
   fetchModal(currentId)
     .then(data => {
-      // activeFilm = data;
       createMarkupSelectedMovie(data);
       onAddToLocalStorage(data, firebaseObj);
       const queuedBtn = document.querySelector('.js-btn-queue');
@@ -99,46 +87,6 @@ export function openModal(evt) {
     })
     .catch(error => console.log(error));
 
-  // function handleWathedBtnClick() {
-  //   watchedFilms = localStorage.getItem(watchedKey);
-  //   arrWatched = JSON.parse(watchedFilms);
-  //   if (!arrWatched) {
-  //     arrWatched = [];
-  //   }
-  //   if (!arrWatched.some(film => film.id === activeFilm.id)) {
-  //     arrWatched.push(activeFilm);
-  //     localStorage.setItem(watchedKey, JSON.stringify(arrWatched));
-  //     fetchModal(currentId)
-  //       .then(data => {
-  //         addToFirebase.addMovieToFireBase(data, 'Watched');
-  //       })
-  //       .catch(error => console.log(error));
-  //   }
-
-  //   // fetchModal(currentId)
-  //   //   .then(data => {
-  //   //     addToFirebase.addMovieToFireBase(data, 'Watched');
-  //   //   })
-  //   //   .catch(error => console.log(error));
-  // }
-  // function handleQueueBtnClick() {
-  //   queueFilms = localStorage.getItem(queuedKey);
-  //   arrQueue = JSON.parse(queueFilms);
-  //   if (!arrQueue) {
-  //     arrQueue = [];
-  //   }
-
-  //   if (!arrQueue.some(film => film.id === activeFilm.id)) {
-  //     arrQueue.push(activeFilm);
-  //     localStorage.setItem(queuedKey, JSON.stringify(arrQueue));
-  //     fetchModal(currentId)
-  //       .then(data => {
-  //         addToFirebase.addMovieToFireBase(data, 'Queue');
-  //       })
-  //       .catch(error => console.log(error));
-  //   }
-  // }
-
   function handleWathedBtnClick() {
     fetchModal(currentId)
       .then(data => {
@@ -153,50 +101,6 @@ export function openModal(evt) {
       })
       .catch(error => console.log(error));
   }
-
-  // function handleRemoveQueue() {
-  //   if (!firebaseObj.isUserSignedIn()) {
-  //     return Report.warning('Please sign in to your account!', '', 'Okay');
-  //   }
-  //   queueFilms = localStorage.getItem(queuedKey);
-  //   arrQueue = JSON.parse(queueFilms);
-  //   if (!arrQueue) {
-  //     arrQueue = [];
-  //   }
-
-  //   if (arrQueue.some(film => film.id === activeFilm.id)) {
-  //     indexFilm = arrQueue.findIndex(film => film.id === activeFilm.id);
-  //     arrQueue.splice(indexFilm, 1);
-  //     localStorage.setItem(queuedKey, JSON.stringify(arrQueue));
-  //     fetchModal(currentId)
-  //       .then(data => {
-  //         addToFirebase.deleteMovieFromFireBase(data, 'Queue');
-  //       })
-  //       .catch(error => console.log(error));
-  //   }
-  // }
-  // function handleRemoveWatched() {
-  //   if (!firebaseObj.isUserSignedIn()) {
-  //     return Report.warning('Please sign in to your account!', '', 'Okay');
-  //   }
-  //   watchedFilms = localStorage.getItem(watchedKey);
-
-  //   arrWatched = JSON.parse(watchedFilms);
-  //   if (!arrWatched) {
-  //     arrWatched = [];
-  //   }
-  //   if (arrWatched.some(film => film.id === activeFilm.id)) {
-  //     indexFilm = arrWatched.findIndex(film => film.id === activeFilm.id);
-  //     arrWatched.splice(indexFilm, 1);
-  //     localStorage.setItem(watchedKey, JSON.stringify(arrWatched));
-  //     fetchModal(currentId)
-  //       .then(data => {
-  //         addToFirebase.deleteMovieFromFireBase(data, 'Watched');
-  //       })
-  //       .catch(error => console.log(error));
-  //   }
-  // }
-
   function handleRemoveQueue() {
     if (!firebaseObj.isUserSignedIn()) {
       return Report.warning('Please sign in to your account!', '', 'Okay');
@@ -354,6 +258,8 @@ function checkKeyInFirebase(data) {
   firebaseObj
     .readMovieData('Queue')
     .then(({ arrFilms }) => {
+      console.log(arrFilms);
+
       if (!arrFilms) {
         queuedBtn.classList.remove('visually-hidden');
         removeQueueBtn.classList.add('visually-hidden');
