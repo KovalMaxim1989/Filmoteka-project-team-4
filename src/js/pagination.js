@@ -253,28 +253,15 @@ export function pagination(data) {
       refsPag.plus1Page.classList.add('visually-hidden');
       refsPag.minus1Page.classList.remove('visually-hidden');
       refsPag.minus2Page.classList.remove('visually-hidden');
-      refsPag.lastPage.classList.remove('visually-hidden');
-      refsPag.activPage.classList.add('visually-hidden');
-      refsPag.minusTen.classList.add('visually-hidden');
-      refsPag.plusTen.classList.add('visually-hidden');
-      refsPag.minusQuery.classList.remove('visually-hidden');
-      refsPag.plusQuery.classList.remove('visually-hidden');
-
-      break;
-    case 5:
-      refsPag.plus2Page.classList.add('visually-hidden');
-      refsPag.plus1Page.classList.add('visually-hidden');
-      refsPag.minus1Page.classList.remove('visually-hidden');
-      refsPag.minus2Page.classList.remove('visually-hidden');
-      refsPag.lastPage.classList.remove('visually-hidden');
+      refsPag.lastPage.classList.add('visually-hidden');
       refsPag.activPage.classList.remove('visually-hidden');
       refsPag.minusTen.classList.add('visually-hidden');
       refsPag.plusTen.classList.add('visually-hidden');
+      refsPag.minusQuery.classList.add('visually-hidden');
+      refsPag.plusQuery.classList.add('visually-hidden');
 
-      refsPag.minusQuery.classList.remove('visually-hidden');
-      refsPag.plusQuery.classList.remove('visually-hidden');
       break;
-    case 6:
+    case 5:
       refsPag.plus2Page.classList.add('visually-hidden');
       refsPag.plus1Page.classList.remove('visually-hidden');
       refsPag.minus1Page.classList.remove('visually-hidden');
@@ -283,8 +270,21 @@ export function pagination(data) {
       refsPag.activPage.classList.remove('visually-hidden');
       refsPag.minusTen.classList.add('visually-hidden');
       refsPag.plusTen.classList.add('visually-hidden');
-      refsPag.minusQuery.classList.remove('visually-hidden');
-      refsPag.plusQuery.classList.remove('visually-hidden');
+
+      refsPag.minusQuery.classList.add('visually-hidden');
+      refsPag.plusQuery.classList.add('visually-hidden');
+      break;
+    case 6:
+      refsPag.plus2Page.classList.remove('visually-hidden');
+      refsPag.plus1Page.classList.remove('visually-hidden');
+      refsPag.minus1Page.classList.remove('visually-hidden');
+      refsPag.minus2Page.classList.remove('visually-hidden');
+      refsPag.lastPage.classList.remove('visually-hidden');
+      refsPag.activPage.classList.remove('visually-hidden');
+      refsPag.minusTen.classList.add('visually-hidden');
+      refsPag.plusTen.classList.add('visually-hidden');
+      refsPag.minusQuery.classList.add('visually-hidden');
+      refsPag.plusQuery.classList.add('visually-hidden');
       break;
 
     default:
