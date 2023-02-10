@@ -47,19 +47,6 @@ export function openModal(evt) {
     return;
   }
 
-  let libraryPage;
-
-  if (refs.watchedLibraryBtn) {
-    libraryPage = 'queue';
-    if (
-      refs.watchedLibraryBtn.className
-        .split(' ')
-        .some(btn => btn === 'main-btn--library-active')
-    ) {
-      libraryPage = 'watched';
-    }
-  }
-
   document.querySelector('.wrap-disc').innerHTML = '';
 
   const currentMovie = evt.target.closest('.js-target');
@@ -82,14 +69,6 @@ export function openModal(evt) {
       queuedBtn.addEventListener('click', handleQueueBtnClick);
       removeWatchedeBtn.addEventListener('click', handleRemoveWatched);
       removeQueueBtn.addEventListener('click', handleRemoveQueue);
-
-      if (libraryPage === 'queue') {
-        removeQueueBtn.classList.remove('visually-hidden');
-        queuedBtn.classList.add('visually-hidden');
-      } else if (libraryPage === 'watched') {
-        removeWatchedeBtn.classList.remove('visually-hidden');
-        watchedBtn.classList.add('visually-hidden');
-      }
     })
     .catch(error => console.log(error));
 
