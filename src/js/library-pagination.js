@@ -374,6 +374,8 @@ export function paginationOnModal(page) {
   let end = 1;
   let arrey = [];
   let total = 1;
+  let arrQue = [];
+  let arrWatc = [];
   if (!page || page < 0) {
     page = 1;
     return;
@@ -383,8 +385,26 @@ export function paginationOnModal(page) {
     watched = localStorage.getItem(watchedKey);
     arrey = JSON.parse(watched);
     total = Number.parseInt(arrey.length / 18 + 1);
+
     if (page > total) {
       page = total;
+    }
+    begin = 18 * page - 18;
+    end = 18 * page;
+
+    arrWatc = arrey.slice(begin, end);
+    if (page > 1) {
+      if (arrWatc.length === 0) {
+        total -= 1;
+        page -= 1;
+        begin = 18 * page - 18;
+        end = 18 * page;
+
+        arrWatc = arrey.slice(begin, end);
+        list.innerHTML = createMarkupLibraryList(arrWatc);
+        paginationLib(total, page);
+        return;
+      }
     }
     if (arrey.length === 0 && page === 1) {
       paginationLib(0, page);
@@ -395,16 +415,13 @@ export function paginationOnModal(page) {
       paginationLib(total, page);
     }
     if (page === 1) {
-      const arr = arrey.slice(0, 18);
-      list.innerHTML = createMarkupLibraryList(arr);
+      arrWatc = arrey.slice(0, 18);
+      list.innerHTML = createMarkupLibraryList(arrWatc);
       paginationLib(total, page);
 
       return;
     }
-    begin = 18 * page - 18;
-    end = 18 * page;
 
-    const arr = arrey.slice(begin, end);
     list.innerHTML = createMarkupLibraryList(arr);
     paginationLib(total, page);
   }
@@ -417,25 +434,45 @@ export function paginationOnModal(page) {
     if (page > total) {
       page = total;
     }
+    begin = 18 * page - 18;
+    end = 18 * page;
+
+    arrQue = arrey.slice(begin, end);
+    if (page > 1) {
+      if (arrQue.length === 0) {
+        total -= 1;
+        page -= 1;
+        begin = 18 * page - 18;
+        end = 18 * page;
+
+        arrQue = arrey.slice(begin, end);
+        list.innerHTML = createMarkupLibraryList(arrQue);
+        paginationLib(total, page);
+        return;
+      }
+    }
     if (arrey.length === 0 && page === 1) {
       paginationLib(0, page);
+
       return;
     }
     if (arrey.length === 1) {
       list.innerHTML = createMarkupLibraryList(arrey);
       paginationLib(total, page);
+    }
+    if (page === 1) {
+      arrQue = arrey.slice(0, 18);
+      list.innerHTML = createMarkupLibraryList(arrQue);
+      paginationLib(total, page);
+
       return;
     }
     begin = 18 * page - 18;
     end = 18 * page;
-    const arr = arrey.slice(begin, end);
-    list.innerHTML = createMarkupLibraryList(arr);
-    if (page === 1) {
-      const arr = arrey.slice(0, 18);
-      list.innerHTML = createMarkupLibraryList(arr);
-      paginationLib(total, page);
-      return;
-    }
+
+    arrQue = arrey.slice(begin, end);
+
+    list.innerHTML = createMarkupLibraryList(arrQue);
     paginationLib(total, page);
   }
 }
