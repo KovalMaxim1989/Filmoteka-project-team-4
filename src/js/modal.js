@@ -63,7 +63,13 @@ export function openModal(evt) {
       const removeWatchedeBtn = document.querySelector(
         '.js-btn-remove-watched'
       );
-      checkKeyInLocal(data);
+      checkKeyInLocal(
+        data,
+        queuedBtn,
+        watchedBtn,
+        removeQueueBtn,
+        removeWatchedeBtn
+      );
 
       watchedBtn.addEventListener('click', handleWathedBtnClick);
       queuedBtn.addEventListener('click', handleQueueBtnClick);
@@ -243,12 +249,13 @@ async function fetchModal(movie_id) {
   }
 }
 
-function checkKeyInLocal(data) {
-  const queuedBtn = document.querySelector('.js-btn-queue');
-  const watchedBtn = document.querySelector('.js-btn-watched');
-  const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
-  const removeWatchedeBtn = document.querySelector('.js-btn-remove-watched');
-
+function checkKeyInLocal(
+  data,
+  queuedBtn,
+  watchedBtn,
+  removeQueueBtn,
+  removeWatchedeBtn
+) {
   const valueOfWatchedKey = localStorage.getItem('watchedMovies');
   const valueOfQueueKey = localStorage.getItem('queueMovies');
 
