@@ -9,6 +9,7 @@ import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { Spinner } from './spinner';
+import { onOpenModal, onCloseModal } from './registr-modal';
 
 const spinner = new Spinner();
 
@@ -22,6 +23,13 @@ const refs = {
   trailerBtn: document.querySelector('.trailer-btn'),
   watchedLibraryBtn: document.querySelector('.js-btn-library-watched'),
   queueLibraryBtn: document.querySelector('.js-btn-library-queue'),
+  modalSignInBtn: document.querySelector('.js-modal-sign-in'),
+
+  queuedBtn: document.querySelector('.js-btn-queue'),
+  watchedBtn: document.querySelector('.js-btn-watched'),
+  removeQueueBtn: document.querySelector('.js-btn-remove-queue'),
+  removeWatchedBtn: document.querySelector('.js-btn-remove-watched'),
+  signInBtn: document.querySelector('.js-modal-sign-in'),
 };
 
 // create copy FireBase obj
@@ -62,65 +70,71 @@ export function openModal(evt) {
   fetchModal(currentId)
     .then(data => {
       createMarkupSelectedMovie(data);
-      onAddToLocalStorage(data, firebaseObj);
+
       const queuedBtn = document.querySelector('.js-btn-queue');
       const watchedBtn = document.querySelector('.js-btn-watched');
       const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
-      const removeWatchedeBtn = document.querySelector(
-        '.js-btn-remove-watched'
-      );
-      // checkKeyInLocal(data);
-      checkKeyInFirebase(data);
+      const removeWatchedBtn = document.querySelector('.js-btn-remove-watched');
+      const signInBtn = document.querySelector('.js-modal-sign-in');
 
-      watchedBtn.addEventListener('click', handleWathedBtnClick);
-      queuedBtn.addEventListener('click', handleQueueBtnClick);
-      removeWatchedeBtn.addEventListener('click', handleRemoveWatched);
-      removeQueueBtn.addEventListener('click', handleRemoveQueue);
+      if (firebaseObj.isUserSignedIn()) {
+        signInBtn.classList.add('visually-hidden');
+        // onAddToLocalStorage(data, firebaseObj);
+        // checkKeyInLocal(data);
 
-      if (libraryPage === 'queue') {
-        removeQueueBtn.classList.remove('visually-hidden');
+        checkKeyInFirebase(data);
+
+        watchedBtn.addEventListener('click', () => {
+          fetchModal(currentId)
+            .then(data => {
+              addToFirebase.addMovieToFireBase(data, 'Watched');
+
+              removeWatchedBtn.classList.remove('visually-hidden');
+              watchedBtn.classList.add('visually-hidden');
+            })
+            .catch(error => console.log(error));
+        });
+        queuedBtn.addEventListener('click', () => {
+          fetchModal(currentId)
+            .then(data => {
+              addToFirebase.addMovieToFireBase(data, 'Queue');
+
+              removeQueueBtn.classList.remove('visually-hidden');
+              queuedBtn.classList.add('visually-hidden');
+            })
+            .catch(error => console.log(error));
+        });
+        removeWatchedBtn.addEventListener('click', () => {
+          fetchModal(currentId)
+            .then(data => {
+              addToFirebase.deleteMovieFromFireBase(data, 'Watched');
+
+              removeWatchedBtn.classList.add('visually-hidden');
+              watchedBtn.classList.remove('visually-hidden');
+            })
+            .catch(error => console.log(error));
+        });
+        removeQueueBtn.addEventListener('click', () => {
+          fetchModal(currentId)
+            .then(data => {
+              addToFirebase.deleteMovieFromFireBase(data, 'Queue');
+
+              removeQueueBtn.classList.add('visually-hidden');
+              queuedBtn.classList.remove('visually-hidden');
+            })
+            .catch(error => console.log(error));
+        });
+      } else {
+        signInBtn.classList.remove('visually-hidden');
         queuedBtn.classList.add('visually-hidden');
-      } else if (libraryPage === 'watched') {
-        removeWatchedeBtn.classList.remove('visually-hidden');
         watchedBtn.classList.add('visually-hidden');
+        removeQueueBtn.classList.add('visually-hidden');
+        removeWatchedBtn.classList.add('visually-hidden');
+
+        signInBtn.addEventListener('click', onOpenModal);
       }
     })
     .catch(error => console.log(error));
-
-  function handleWathedBtnClick() {
-    fetchModal(currentId)
-      .then(data => {
-        addToFirebase.addMovieToFireBase(data, 'Watched');
-      })
-      .catch(error => console.log(error));
-  }
-  function handleQueueBtnClick() {
-    fetchModal(currentId)
-      .then(data => {
-        addToFirebase.addMovieToFireBase(data, 'Queue');
-      })
-      .catch(error => console.log(error));
-  }
-  function handleRemoveQueue() {
-    if (!firebaseObj.isUserSignedIn()) {
-      return Report.warning('Please sign in to your account!', '', 'Okay');
-    }
-    fetchModal(currentId)
-      .then(data => {
-        addToFirebase.deleteMovieFromFireBase(data, 'Queue');
-      })
-      .catch(error => console.log(error));
-  }
-  function handleRemoveWatched() {
-    if (!firebaseObj.isUserSignedIn()) {
-      return Report.warning('Please sign in to your account!', '', 'Okay');
-    }
-    fetchModal(currentId)
-      .then(data => {
-        addToFirebase.deleteMovieFromFireBase(data, 'Watched');
-      })
-      .catch(error => console.log(error));
-  }
 
   fetchTrailerKey(currentId).then(key => {
     refs.trailerBtn.onclick = () => {
@@ -155,7 +169,7 @@ export function openModal(evt) {
   toggleModal();
 }
 
-function toggleModal() {
+export function toggleModal() {
   window.addEventListener('keydown', onEscPress);
   refs.modalMovies.classList.toggle('is-hidden');
 
@@ -200,10 +214,6 @@ function onBackdropClick(evt) {
 function onEscPress(evt) {
   if (evt.key === 'Escape') {
     toggleModal();
-
-    // window.onscroll = function () {
-    //   window.scrollTo();
-    // };
   }
 }
 
@@ -225,7 +235,7 @@ function checkKeyInLocal(data) {
   const queuedBtn = document.querySelector('.js-btn-queue');
   const watchedBtn = document.querySelector('.js-btn-watched');
   const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
-  const removeWatchedeBtn = document.querySelector('.js-btn-remove-watched');
+  const removeWatchedBtn = document.querySelector('.js-btn-remove-watched');
 
   const valueOfWatchedKey = localStorage.getItem('watchedMovies');
   const valueOfQueueKey = localStorage.getItem('queueMovies');
@@ -235,7 +245,7 @@ function checkKeyInLocal(data) {
     const isUnique = movies.some(value => value.id === data.id);
     if (isUnique) {
       watchedBtn.classList.add('visually-hidden');
-      removeWatchedeBtn.classList.remove('visually-hidden');
+      removeWatchedBtn.classList.remove('visually-hidden');
     }
   }
 
@@ -253,13 +263,11 @@ function checkKeyInFirebase(data) {
   const queuedBtn = document.querySelector('.js-btn-queue');
   const watchedBtn = document.querySelector('.js-btn-watched');
   const removeQueueBtn = document.querySelector('.js-btn-remove-queue');
-  const removeWatchedeBtn = document.querySelector('.js-btn-remove-watched');
+  const removeWatchedBtn = document.querySelector('.js-btn-remove-watched');
   spinner.start();
   firebaseObj
     .readMovieData('Queue')
     .then(({ arrFilms }) => {
-      console.log(arrFilms);
-
       if (!arrFilms) {
         queuedBtn.classList.remove('visually-hidden');
         removeQueueBtn.classList.add('visually-hidden');
@@ -285,18 +293,18 @@ function checkKeyInFirebase(data) {
     .then(({ arrFilms }) => {
       if (!arrFilms) {
         watchedBtn.classList.remove('visually-hidden');
-        removeWatchedeBtn.classList.add('visually-hidden');
+        removeWatchedBtn.classList.add('visually-hidden');
       }
 
       const isUnique = arrFilms.some(elem => elem.id === data.id);
 
       if (isUnique) {
         watchedBtn.classList.add('visually-hidden');
-        removeWatchedeBtn.classList.remove('visually-hidden');
+        removeWatchedBtn.classList.remove('visually-hidden');
       }
       if (!isUnique) {
         watchedBtn.classList.remove('visually-hidden');
-        removeWatchedeBtn.classList.add('visually-hidden');
+        removeWatchedBtn.classList.add('visually-hidden');
       }
     })
     .catch(error => {
@@ -310,3 +318,52 @@ function checkKeyInFirebase(data) {
 function ifLibrary() {
   return document.documentURI.includes('library.html');
 }
+
+// ! Delete in production
+
+//  function handleWathedBtnClick() {
+//    fetchModal(currentId)
+//      .then(data => {
+//        addToFirebase.addMovieToFireBase(data, 'Watched');
+
+//        // refs.removeWatchedBtn.classList.remove('visually-hidden');
+//        // refs.watchedBtn.classList.add('visually-hidden');
+//      })
+//      .catch(error => console.log(error));
+//  }
+//  function handleQueueBtnClick() {
+//    fetchModal(currentId)
+//      .then(data => {
+//        addToFirebase.addMovieToFireBase(data, 'Queue');
+
+//        // refs.removeQueueBtn.classList.remove('visually-hidden');
+//        // refs.queuedBtn.classList.add('visually-hidden');
+//      })
+//      .catch(error => console.log(error));
+//  }
+//  function handleRemoveQueue() {
+//    if (!firebaseObj.isUserSignedIn()) {
+//      return Report.warning('Please sign in to your account!', '', 'Okay');
+//    }
+//    fetchModal(currentId)
+//      .then(data => {
+//        addToFirebase.deleteMovieFromFireBase(data, 'Queue');
+
+//        // refs.removeQueueBtn.classList.add('visually-hidden');
+//        // refs.queuedBtn.classList.remove('visually-hidden');
+//      })
+//      .catch(error => console.log(error));
+//  }
+//  function handleRemoveWatched() {
+//    if (!firebaseObj.isUserSignedIn()) {
+//      return Report.warning('Please sign in to your account!', '', 'Okay');
+//    }
+//    fetchModal(currentId)
+//      .then(data => {
+//        addToFirebase.deleteMovieFromFireBase(data, 'Watched');
+
+//        // refs.removeWatchedBtn.classList.add('visually-hidden');
+//        // refs.watchedBtn.classList.remove('visually-hidden');
+//      })
+//      .catch(error => console.log(error));
+//  }

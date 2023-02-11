@@ -11,8 +11,8 @@ const libraryQueue = document.querySelector('.js-btn-library-queue');
 
 const watchedKey = 'watchedMovies';
 const queuedKey = 'queueMovies';
-// let watchedFilms = localStorage.getItem(watchedKey);
-// let queueFilms = localStorage.getItem(queuedKey);
+let watchedFilms = localStorage.getItem(watchedKey);
+let queueFilms = localStorage.getItem(queuedKey);
 let arr = [];
 let totalFilms = 0;
 let fireBase = null;

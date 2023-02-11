@@ -17,6 +17,9 @@ export function onAddToLocalStorage(data, firebaseObj) {
       return Report.warning('Please sign in to your account!', '', 'Okay');
     }
 
+    removeQueueBtn.classList.add('visually-hidden');
+    queuedBtn.classList.remove('visually-hidden');
+
     try {
       removeQueueBtn.classList.add('visually-hidden');
       queuedBtn.classList.remove('visually-hidden');
@@ -52,9 +55,10 @@ export function onAddToLocalStorage(data, firebaseObj) {
       return Report.warning('Please sign in to your account!', '', 'Okay');
     }
 
+    removeWatchedeBtn.classList.add('visually-hidden');
+    watchedBtn.classList.remove('visually-hidden');
+
     try {
-      removeWatchedeBtn.classList.add('visually-hidden');
-      watchedBtn.classList.remove('visually-hidden');
       let savedData = localStorage.getItem(watchedKey);
       let movies = JSON.parse(savedData);
       const indexOfMovie = movies.findIndex(movie => movie.id === data.id);
@@ -88,8 +92,6 @@ export function onAddToLocalStorage(data, firebaseObj) {
     }
 
     try {
-      removeWatchedeBtn.classList.remove('visually-hidden');
-      watchedBtn.classList.add('visually-hidden');
       let savedData = localStorage.getItem(watchedKey);
 
       if (savedData) {
@@ -106,6 +108,8 @@ export function onAddToLocalStorage(data, firebaseObj) {
     } catch (error) {
       console.error('Set state error: ', error.message);
     }
+    removeWatchedeBtn.classList.remove('visually-hidden');
+    watchedBtn.classList.add('visually-hidden');
   });
 
   queuedBtn.addEventListener('click', () => {
@@ -113,8 +117,6 @@ export function onAddToLocalStorage(data, firebaseObj) {
       return Report.warning('Please sign in to your account!', '', 'Okay');
     }
     try {
-      removeQueueBtn.classList.remove('visually-hidden');
-      queuedBtn.classList.add('visually-hidden');
       let savedData = localStorage.getItem(queuedKey);
 
       if (savedData) {
@@ -131,5 +133,7 @@ export function onAddToLocalStorage(data, firebaseObj) {
     } catch (error) {
       console.error('Set state error: ', error.message);
     }
+    removeQueueBtn.classList.remove('visually-hidden');
+    queuedBtn.classList.add('visually-hidden');
   });
 }

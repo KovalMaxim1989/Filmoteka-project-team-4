@@ -33,6 +33,7 @@ import {
 // import { getFirebaseConfig } from '../js/firebase-config';
 import { refs } from '../js/refs';
 import { onCloseModal } from '../js/registr-modal';
+import { toggleModal } from '../js/modal';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
 export class FireBaseService {
@@ -139,6 +140,10 @@ function authStateObserver(user) {
 
     // close modal
     onCloseModal();
+    let isCloseModal = refs.modalMovies.classList.contains('is-hidden');
+    if (!isCloseModal) {
+      toggleModal();
+    }
   } else {
     // User is signed out!
     // Hide user's profile and sign-out button.

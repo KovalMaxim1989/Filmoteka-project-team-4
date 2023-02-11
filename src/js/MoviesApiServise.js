@@ -11,7 +11,7 @@ export class MovieAPI {
   async getTrendMovie() {
     try {
       const { data } = await axios.get(
-        `${this.#BASE_URL}/trending/movie/week?api_key=${this.#API_KEY}&page=${
+        `${this.#BASE_URL}/trending/movie/day?api_key=${this.#API_KEY}&page=${
           this.#page
         }`
       );

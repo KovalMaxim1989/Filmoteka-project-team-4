@@ -1,6 +1,5 @@
 // import { createMarkupLibraryList } from './markup';
 // import { scrollTop } from './button';
-// import { refs } from './refs';
 // const refsLib = {
 //   moviesL: document.querySelector('.js-films-list-library'),
 //   firstP: document.querySelector('.js-pagination--firstPage-library'),
@@ -16,6 +15,7 @@
 //   plusT: document.querySelector('.btn-increment-ten-library'),
 //   minusT: document.querySelector('.btn-decrement-ten-library'),
 //   containerPag: document.querySelector('.js-pagination-library'),
+//   libraryScroll: document.querySelector('#logo'),
 // };
 
 // refsLib.minusQu.addEventListener('click', onClickDecrementPage);
@@ -32,8 +32,8 @@
 
 // const watchedKey = 'watchedMovies';
 // const queuedKey = 'queueMovies';
-// let watchedFilms = localStorage.getItem(watchedKey);
-// let queueFilms = localStorage.getItem(queuedKey);
+// const watchedFilms = localStorage.getItem(watchedKey);
+// const queueFilms = localStorage.getItem(queuedKey);
 // // function scrollTop() {
 // //   document.body.scrollTop = 0; // For Safari
 // //   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
@@ -166,7 +166,6 @@
 //       refsLib.containerPag.classList.add('visually-hidden');
 //       break;
 //     case 1:
-//       refsLib.containerPag.classList.remove('visually-hidden');
 //       refsLib.plus2P.classList.add('visually-hidden');
 //       refsLib.plus1P.classList.add('visually-hidden');
 //       refsLib.minus1P.classList.add('visually-hidden');
@@ -181,7 +180,6 @@
 
 //       break;
 //     case 2:
-//       refsLib.containerPag.classList.remove('visually-hidden');
 //       refsLib.plus2P.classList.add('visually-hidden');
 //       refsLib.plus1P.classList.add('visually-hidden');
 //       refsLib.minus1P.classList.add('visually-hidden');
@@ -195,7 +193,6 @@
 //       refsLib.plusQu.classList.add('visually-hidden');
 //       break;
 //     case 3:
-//       refsLib.containerPag.classList.remove('visually-hidden');
 //       refsLib.plus2P.classList.add('visually-hidden');
 //       refsLib.plus1P.classList.add('visually-hidden');
 //       refsLib.minus1P.classList.remove('visually-hidden');
@@ -210,7 +207,6 @@
 
 //       break;
 //     case 4:
-//       refsLib.containerPag.classList.remove('visually-hidden');
 //       refsLib.plus2P.classList.add('visually-hidden');
 //       refsLib.plus1P.classList.add('visually-hidden');
 //       refsLib.minus1P.classList.remove('visually-hidden');
@@ -224,7 +220,6 @@
 
 //       break;
 //     case 5:
-//       refsLib.containerPag.classList.remove('visually-hidden');
 //       refsLib.plus2P.classList.add('visually-hidden');
 //       refsLib.plus1P.classList.add('visually-hidden');
 //       refsLib.minus1P.classList.remove('visually-hidden');
@@ -238,7 +233,6 @@
 //       refsLib.plusQu.classList.remove('visually-hidden');
 //       break;
 //     case 6:
-//       refsLib.containerPag.classList.remove('visually-hidden');
 //       refsLib.plus2P.classList.add('visually-hidden');
 //       refsLib.plus1P.classList.remove('visually-hidden');
 //       refsLib.minus1P.classList.remove('visually-hidden');
@@ -252,7 +246,6 @@
 //       break;
 
 //     default:
-//       refsLib.containerPag.classList.remove('visually-hidden');
 //       refsLib.plus2P.classList.remove('visually-hidden');
 //       refsLib.plus1P.classList.remove('visually-hidden');
 //       refsLib.minus1P.classList.remove('visually-hidden');
@@ -271,20 +264,20 @@
 // let activePage = 1;
 // let beginPage = 0;
 // let endPage = 0;
-// export function onClickDecrementPage(e) {
+// function onClickDecrementPage(e) {
 //   activePage -= 1;
 //   const evtTarget = e.target;
 //   evtTarget.blur();
 //   paginationLibAllEvt(activePage, arreyWatched, beginPage, endPage, totalFilms);
 // }
 
-// export function onClickIncrementPage(e) {
+// function onClickIncrementPage(e) {
 //   activePage += 1;
 //   const evtTarget = e.target;
 //   evtTarget.blur();
 //   paginationLibAllEvt(activePage, arreyWatched, beginPage, endPage, totalFilms);
 // }
-// export function onClickPaginationBtnNumber(e) {
+// function onClickPaginationBtnNumber(e) {
 //   const evtTarget = e.target;
 
 //   if (evtTarget.nodeName !== 'BUTTON') {
@@ -296,13 +289,13 @@
 
 //   evtTarget.blur();
 // }
-// export function onClickDecrementTen(e) {
+// function onClickDecrementTen(e) {
 //   activePage -= 5;
 //   evtTarget.blur();
 //   const evtTarget = e.target;
 //   paginationLibAllEvt(activePage, arreyWatched, beginPage, endPage, totalFilms);
 // }
-// export function onClickIncrementTen(e) {
+// function onClickIncrementTen(e) {
 //   activePage += 5;
 //   evtTarget.blur();
 //   const evtTarget = e.target;
@@ -316,14 +309,13 @@
 //   }
 
 //   if (libraryWatcehd.classList.contains('main-btn--library-active')) {
-//     watchedFilms = localStorage.getItem(watchedKey);
 //     arrey = JSON.parse(watchedFilms);
 //     total = Number.parseInt(arrey.length / 18 + 1);
 //     if (page > total) {
 //       page = total;
 //     }
 //     if (arrey.length === 1) {
-//       list.innerHTML = createMarkupLibraryList(arrey);
+//       list.innerHTML = createMarkupLibraryList(arr);
 //       paginationLib(total, page);
 //     }
 //     if (page === 1) {
@@ -342,7 +334,6 @@
 //   }
 
 //   if (libraryQueue.classList.contains('main-btn--library-active')) {
-//     queueFilms = localStorage.getItem(queuedKey);
 //     arrey = JSON.parse(queueFilms);
 //     total = Number.parseInt(arrey.length / 18 + 1);
 
@@ -365,152 +356,5 @@
 //       return;
 //     }
 //     paginationLib(total, page);
-//   }
-// }
-// export function paginationOnModal(page) {
-//   let watched = 0;
-//   let queue = 0;
-//   let begin = 1;
-//   let end = 1;
-//   let arrey = [];
-//   let total = 1;
-//   let arrQue = [];
-//   let arrWatc = [];
-//   if (!page || page < 0) {
-//     page = 1;
-//     return;
-//   }
-
-//   if (libraryWatcehd.classList.contains('main-btn--library-active')) {
-//     watched = localStorage.getItem(watchedKey);
-//     arrey = JSON.parse(watched);
-//     total = Number.parseInt(arrey.length / 18 + 1);
-
-//     if (page > total) {
-//       page = total;
-//     }
-//     begin = 18 * page - 18;
-//     end = 18 * page;
-
-//     arrWatc = arrey.slice(begin, end);
-//     if (page > 1) {
-//       if (arrWatc.length === 0) {
-//         total -= 1;
-//         page -= 1;
-//         begin = 18 * page - 18;
-//         end = 18 * page;
-
-//         arrWatc = arrey.slice(begin, end);
-//         list.innerHTML = createMarkupLibraryList(arrWatc);
-//         paginationLib(total, page);
-//         return;
-//       }
-//     }
-//     if (arrey.length === 0 && page === 1) {
-//       paginationLib(0, page);
-//       return;
-//     }
-//     if (arrey.length === 1) {
-//       list.innerHTML = createMarkupLibraryList(arrey);
-//       paginationLib(total, page);
-//     }
-//     if (page === 1) {
-//       arrWatc = arrey.slice(0, 18);
-//       list.innerHTML = createMarkupLibraryList(arrWatc);
-//       paginationLib(total, page);
-
-//       return;
-//     }
-
-//     list.innerHTML = createMarkupLibraryList(arr);
-//     paginationLib(total, page);
-//   }
-
-//   if (libraryQueue.classList.contains('main-btn--library-active')) {
-//     queue = localStorage.getItem(queuedKey);
-//     arrey = JSON.parse(queue);
-//     total = Number.parseInt(arrey.length / 18 + 1);
-
-//     if (page > total) {
-//       page = total;
-//     }
-//     begin = 18 * page - 18;
-//     end = 18 * page;
-
-//     arrQue = arrey.slice(begin, end);
-//     if (page > 1) {
-//       if (arrQue.length === 0) {
-//         total -= 1;
-//         page -= 1;
-//         begin = 18 * page - 18;
-//         end = 18 * page;
-
-//         arrQue = arrey.slice(begin, end);
-//         list.innerHTML = createMarkupLibraryList(arrQue);
-//         paginationLib(total, page);
-//         return;
-//       }
-//     }
-//     if (arrey.length === 0 && page === 1) {
-//       paginationLib(0, page);
-
-//       return;
-//     }
-//     if (arrey.length === 1) {
-//       list.innerHTML = createMarkupLibraryList(arrey);
-//       paginationLib(total, page);
-//     }
-//     if (page === 1) {
-//       arrQue = arrey.slice(0, 18);
-//       list.innerHTML = createMarkupLibraryList(arrQue);
-//       paginationLib(total, page);
-
-//       return;
-//     }
-//     begin = 18 * page - 18;
-//     end = 18 * page;
-
-//     arrQue = arrey.slice(begin, end);
-
-//     list.innerHTML = createMarkupLibraryList(arrQue);
-//     paginationLib(total, page);
-//   }
-// }
-// export function paginOfMogalIndeFilm() {
-//   let activPage = 1;
-//   if (refsLib.firstP.classList.contains('btn-active')) {
-//     activPage = Number(refsLib.firstP.textContent);
-//     paginationOnModal(activPage);
-//     return;
-//   }
-//   if (refsLib.minus2P.classList.contains('btn-active')) {
-//     activPage = Number(refsLib.minus2P.textContent);
-//     paginationOnModal(activPage);
-//     return;
-//   }
-//   if (refsLib.minus1P.classList.contains('btn-active')) {
-//     activPage = Number(refsLib.minus1P.textContent);
-//     paginationOnModal(activPage);
-//     return;
-//   }
-//   if (refsLib.activP.classList.contains('btn-active')) {
-//     activPage = Number(refsLib.lastP.textContent);
-//     paginationOnModal(activPage);
-//     return;
-//   }
-//   if (refsLib.plus1P.classList.contains('btn-active')) {
-//     activPage = Number(refsLib.lastP.textContent);
-//     paginationOnModal(activPage);
-//     return;
-//   }
-//   if (refsLib.plus2P.classList.contains('btn-active')) {
-//     activPage = Number(refsLib.lastP.textContent);
-//     paginationOnModal(activPage);
-//     return;
-//   }
-//   if (refsLib.lastP.classList.contains('btn-active')) {
-//     activPage = Number(refsLib.lastP.textContent);
-//     paginationOnModal(activPage);
-//     return;
 //   }
 // }
