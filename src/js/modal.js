@@ -49,19 +49,6 @@ export function openModal(evt) {
     return;
   }
 
-  let libraryPage;
-
-  if (refs.watchedLibraryBtn) {
-    libraryPage = 'queue';
-    if (
-      refs.watchedLibraryBtn.className
-        .split(' ')
-        .some(btn => btn === 'main-btn--library-active')
-    ) {
-      libraryPage = 'watched';
-    }
-  }
-
   document.querySelector('.wrap-disc').innerHTML = '';
 
   const currentMovie = evt.target.closest('.js-target');
