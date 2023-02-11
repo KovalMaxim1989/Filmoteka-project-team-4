@@ -126,8 +126,10 @@ export function openModal(evt) {
         });
       } else {
         signInBtn.classList.remove('visually-hidden');
-        queuedBtn.classList.add('visually-hidden');
-        watchedBtn.classList.add('visually-hidden');
+        queuedBtn.classList.remove('visually-hidden');
+        watchedBtn.classList.remove('visually-hidden');
+        watchedBtn.setAttribute('disabled', true);
+        queuedBtn.setAttribute('disabled', true);
         removeQueueBtn.classList.add('visually-hidden');
         removeWatchedBtn.classList.add('visually-hidden');
 
