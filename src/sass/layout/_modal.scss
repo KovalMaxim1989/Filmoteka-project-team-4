@@ -72,7 +72,7 @@ iframe {
     // padding-top: 219px;
     transform: translate(-50%, -50%) scale(1);
     transform-origin: center;
-    width: 400px;
+    width: 75%;
     min-height: 580px;
 
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -96,7 +96,7 @@ iframe {
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (min-width: 748px) {
+  @media screen and (min-width: 768px) {
     max-width: 100%;
     display: flex;
     align-items: flex-start;
