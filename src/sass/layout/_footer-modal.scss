@@ -1,5 +1,4 @@
-.backdrop-footer,
-.backdrop-footer-lib {
+.backdrop-footer {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,8 +12,7 @@
     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.backdrop-footer.is-hidden,
-.backdrop-footer-lib.is-hidden {
+.backdrop-footer.is-hidden {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
@@ -117,13 +115,13 @@
   line-height: 1.17;
 
   @media screen and (max-width: 479px) {
-    font-weight: 450;
-    font-size: 24px;
+    font-weight: 500;
+    font-size: 22px;
   }
 
   @media screen and (min-width: 480px) {
-    font-weight: 500;
-    font-size: 28px;
+    font-weight: 400;
+    font-size: 24px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -134,6 +132,7 @@
 
 .modal-team__title--letter {
   color: $orange-hover;
+  font-size: 34px;
 
   animation: animate_grow 2s infinite;
 }

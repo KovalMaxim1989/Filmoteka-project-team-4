@@ -1,8 +1,9 @@
 import { refs } from './refs';
+import { bodyScrollOff } from './modal';
 
 refs.openRegistrModalBtn.addEventListener('click', onOpenModal);
 
-function onOpenModal() {
+export function onOpenModal() {
   refs.openRegistrModalBtn.removeEventListener('click', onOpenModal);
   refs.closeRegistrModalBtn.addEventListener('click', onCloseModal);
   refs.backdropRegistr.addEventListener('click', onClickBackdrop);

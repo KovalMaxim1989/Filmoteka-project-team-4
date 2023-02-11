@@ -227,15 +227,19 @@ iframe {
 
 .button-container {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-around;
 
   @media screen and (min-width: 480px) {
+    width: 265px;
     justify-content: center;
   }
 
   @media screen and (min-width: 1280px) {
-    justify-content: flex-start;
-    padding-left: 8px;
+    width: 100%;
+    justify-content: center;
+    // padding-left: 8px;
   }
 }
 
@@ -320,6 +324,13 @@ iframe {
     background-color: #ff6b01;
     color: #ffffff;
     border: transparent;
+  }
+
+  &:disabled {
+    background-color: $txt-disabled-color;
+    color: $txt-black-color;
+    border: transparent;
+    cursor: default;
   }
 }
 

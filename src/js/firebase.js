@@ -33,11 +33,13 @@ import {
 // import { getFirebaseConfig } from '../js/firebase-config';
 import { refs } from '../js/refs';
 import { onCloseModal } from '../js/registr-modal';
+import { toggleModal } from '../js/modal';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
 export class FireBaseService {
   constructor() {
     this.NAME_COLLECTION_FILESTORAGE = 'storage_filmoteka';
+    this.afterLogin = null;
   }
   // Signs-in Movie cabinet.
   async signIn() {
@@ -56,8 +58,17 @@ export class FireBaseService {
   // Initialize firebase auth
   initFirebaseAuth() {
     // Listen to auth state changes.
-    onAuthStateChanged(getAuth(), authStateObserver);
+    onAuthStateChanged(getAuth(), this.observer);
   }
+
+  // Listen to auth state changes for using in diferent pages
+  observer = user => {
+    authStateObserver(user);
+
+    if (user && typeof this.afterLogin === 'function') {
+      this.afterLogin();
+    }
+  };
 
   // Returns true if a user is signed-in.
   isUserSignedIn() {
@@ -129,6 +140,10 @@ function authStateObserver(user) {
 
     // close modal
     onCloseModal();
+    let isCloseModal = refs.modalMovies.classList.contains('is-hidden');
+    if (!isCloseModal) {
+      toggleModal();
+    }
   } else {
     // User is signed out!
     // Hide user's profile and sign-out button.

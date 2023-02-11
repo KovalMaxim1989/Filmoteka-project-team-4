@@ -104,6 +104,9 @@ export function createMarkupSelectedMovie(moviesData) {
      <button type='button'class='modal-btn btn-queue js-btn-queue'>
        add to queue
      </button>
+     <button type='button'class='modal-btn btn-sign-in js-modal-sign-in'>
+       please sign in
+     </button>
    </div>
    </div>
  </div>`;
